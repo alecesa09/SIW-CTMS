@@ -20,7 +20,7 @@ public class Movie {
 	@Min(1900)
 	@Max(2100)
 	private Integer year;
-	
+	@NotBlank
 	private String UrlImage;
 	
 	public long getId() {

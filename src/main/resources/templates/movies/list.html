@@ -28,7 +28,7 @@
         <div th:if="${movies.isEmpty()}" class="empty-state">
             <p>Non ci sono film nel sistema. Inizia aggiungendone uno!</p>
         </div>
-
+		<div><p th:text="'(conteggio film:' + ${count} + ')'">conteggio film:</p> </div>
         <div class="movie-grid">
             <div th:each="movie : ${movies}" class="movie-card">
                 <div class="movie-poster-wrapper">

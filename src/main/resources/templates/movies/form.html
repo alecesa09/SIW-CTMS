@@ -38,14 +38,14 @@
                 
                 <div class="form-group">
                     <label for="year">Anno di Uscita</label>
-                    <input type="number" id="year" th:field="*{year}" placeholder="Es: 2014" min="1888" max="2100" />
+                    <input type="number" id="year" th:field="*{year}" placeholder="Es: 2014"  />
 					<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
                 </div>
                 
                 <div class="form-group">
                     <label for="urlImage">URL Locandina (Immagine)</label>
                     <input type="url" id="urlImage" th:field="*{UrlImage}" placeholder="https://link-immagine.com/foto.jpg" />
-					<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+					<span th:if="${#fields.hasErrors('UrlImage')}" th:errors="*{UrlImage}"></span>
                     <small class="form-note">Inserisci un link diretto all'immagine del film.</small>
                 </div>
                 

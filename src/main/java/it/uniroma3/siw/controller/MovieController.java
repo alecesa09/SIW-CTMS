@@ -1,5 +1,8 @@
 package it.uniroma3.siw.controller;
 
+import it.uniroma3.siw.repository.MovieRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +18,9 @@ import jakarta.validation.Valid;
 
 @Controller
 public class MovieController {
+
   @Autowired MovieService movieService;
+
   @GetMapping("/movies/{id}")
   public String show(@PathVariable("id") Long id, Model model) {
 	    model.addAttribute("movie", this.movieService.findById(id).get());
@@ -24,7 +29,9 @@ public class MovieController {
 
   @GetMapping("/movies")
   public String list(Model model) {
-    model.addAttribute("movies", this.movieService.findAll());
+	List<Movie> list = this.movieService.findAll();
+    model.addAttribute("movies", list );
+    model.addAttribute("count",list.size());
     return "movies/list";
   }
   @GetMapping("/movies/new")
@@ -44,9 +51,5 @@ public class MovieController {
       this.movieService.save(movie);
       return "redirect:/movies";
   }
-  
-  @GetMapping("/")
-  public String start(Model model) {
-	  return "index";
-  }
+
 }

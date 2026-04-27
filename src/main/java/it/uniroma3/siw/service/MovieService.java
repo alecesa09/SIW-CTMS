@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 import it.uniroma3.siw.Movie;
 import it.uniroma3.siw.repository.MovieRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 @Service
 public class MovieService {
 
-    private final MovieRepository movieRepository;
+	@Autowired MovieRepository movieRepository;
 
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -32,5 +33,9 @@ public class MovieService {
     
     public boolean alreadyExists(Movie movie){
     	return movieRepository.existsByTitleAndYear(movie.getTitle(), movie.getYear());
+    }
+    
+    public long count() {
+    	return movieRepository.count();
     }
 }
