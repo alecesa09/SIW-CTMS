@@ -11,7 +11,7 @@ public class HomeController {
 	 @Autowired MovieService movieService;
 	 @GetMapping("/")
 	  public String start(Model model) {
-		  model.addAttribute("count",movieService.count());
+		  model.addAttribute("count",movieService.count());	
 		  return "index";
 	  }
 }
