@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiungi Nuovo Film - SIW</title>
+    <link rel="stylesheet" href="/stile.css?version=4" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    
+    <header class="navbar">
+        <div class="container">
+            <a href="/movies" class="logo">
+                <img src="/logo-siw.png" alt="Logo SIW" />
+            </a>
+            <nav>
+                <a href="/movies" class="btn-link">← Torna al catalogo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <div class="form-container">
+            <section class="hero-section">
+                <h1>Aggiungi un Nuovo Film</h1>
+                <p>Inserisci i dettagli qui sotto per arricchire il database.</p>
+            </section>
+            <form th:action="@{/movie}" method="POST" th:object="${movie}" class="styled-form">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					 <p th:each = "err:${#fields.globalErrors()}" th:text = "${err}">...</p> 
+				</div>
+                <div class="form-group">
+                    <label for="title">Titolo del Film</label>
+                    <input type="text" id="title" th:field="*{title}" placeholder="Es: Interstellar" />
+					<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="year">Anno di Uscita</label>
+                    <input type="number" id="year" th:field="*{year}" placeholder="Es: 2014" min="1888" max="2100" />
+					<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="urlImage">URL Locandina (Immagine)</label>
+                    <input type="url" id="urlImage" th:field="*{UrlImage}" placeholder="https://link-immagine.com/foto.jpg" />
+					<span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
+                    <small class="form-note">Inserisci un link diretto all'immagine del film.</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Conferma e Salva</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 SIW. Pannello Amministrazione.</p>
+        </div>
+    </footer>
+</body>
+</html>
