@@ -21,3 +21,10 @@ update movie set url_image = 'https://mr.comingsoon.it/imgdb/locandine/235x336/5
 
 -- Il Gladiatore (Link alternativo)
 update movie set url_image = 'https://mr.comingsoon.it/imgdb/locandine/235x336/943.jpg' where title = 'Il Gladiatore';
+
+
+INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Federico Fellini', '1920-01-20', 'Rimini');
+INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Sophia Loren', '1934-09-20', 'Roma');
+INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Marcello Mastroianni', '1924-09-28', 'Fontana Liri');
+INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Ennio Morricone', '1928-11-10', 'Roma');
+INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Sergio Leone', '1929-01-03', 'Roma');

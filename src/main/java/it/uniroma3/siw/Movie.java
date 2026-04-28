@@ -1,11 +1,16 @@
 package it.uniroma3.siw;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -23,6 +28,19 @@ public class Movie {
 	@NotBlank
 	private String UrlImage;
 	
+	@ManyToOne
+	//@JoinColumn(name = "director_id")
+	private Artist director;
+	
+	@ManyToMany
+	private List<Artist> actors;
+	
+	public Artist getDirector() {
+		return director;
+	}
+	public void setDirector(Artist director) {
+		this.director = director;
+	}
 	public long getId() {
 		return id;
 	}
