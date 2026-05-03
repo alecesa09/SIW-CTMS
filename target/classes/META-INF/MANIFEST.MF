@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Build-Jdk-Spec: 23
+Build-Jdk-Spec: 21
 Implementation-Title: siw-movie-02
 Implementation-Version: 1.0
 Created-By: Maven Integration for Eclipse
