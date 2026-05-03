@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +26,6 @@ public class Movie {
 	@Min(1900)
 	@Max(2100)
 	private Integer year;
-	@NotBlank
 	private String UrlImage;
 	
 	@ManyToOne
@@ -79,6 +79,12 @@ public class Movie {
 			return false;
 		Movie other = (Movie) obj;
 		return Objects.equals(title, other.title) && Objects.equals(year, other.year);
+	}
+	public List<Artist> getActors() {
+		return actors;
+	}
+	public void setActors(List<Artist> actors) {
+		this.actors = actors;
 	}
 	
 }

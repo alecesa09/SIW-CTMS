@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Artist;
+import it.uniroma3.siw.Movie;
 import it.uniroma3.siw.repository.ArtistRepository;
 
 
@@ -27,6 +28,14 @@ public class ArtistService {
 	public List<Artist> findAll(){
 		List<Artist> artist = (List<Artist>) this.artistRepository.findAll();
 		return artist;
+	}
+	
+	public boolean alreadyExists(Artist artist){
+    	return artistRepository.existsByNameAndDate(artist.getName(), artist.getDate());
+    }
+	
+	public void save(Artist artist) {
+		artistRepository.save(artist);
 	}
 
 }

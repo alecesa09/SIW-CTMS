@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.Artist;
 import it.uniroma3.siw.Movie;
 import it.uniroma3.siw.repository.MovieRepository;
 
@@ -35,7 +36,19 @@ public class MovieService {
     	return movieRepository.existsByTitleAndYear(movie.getTitle(), movie.getYear());
     }
     
+    public boolean actorIsPresent(Movie movie,Long id) {
+    	return movieRepository.existsByTitleAndYearAndActors_Id(movie.getTitle(), movie.getYear(), id);
+    }
+    
     public long count() {
     	return movieRepository.count();
+    }
+    
+    public void salvaAttorenelfilm(Movie movie, Long id){
+    		movieRepository.addActorToMovieSQL(movie.getId(), id);
+    	}
+    
+    public Movie findByIdConAttori(Long id) {
+    	return movieRepository.findByIdConAttori(id);
     }
 }

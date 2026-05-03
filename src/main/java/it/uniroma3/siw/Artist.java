@@ -34,9 +34,6 @@ public class Artist {
 	
 	@ManyToMany(mappedBy = "actors")
 	private List<Movie>  starredMovie;
-	
-	
-	
 
 	public List<Movie> getDirectedMovie() {
 		return directedMovie;

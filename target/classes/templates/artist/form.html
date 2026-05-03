@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aggiungi Nuovo Artista - SIW</title>
+    <link rel="stylesheet" href="/stile.css?version=4" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    
+    <header class="navbar">
+        <div class="container">
+            <!-- [Speculazione] Ipotizzo che la rotta di ritorno sia /artists. Modifica se necessario. -->
+            <a href="/artists" class="logo">
+                <img src="/logo-siw.png" alt="Logo SIW" />
+            </a>
+            <nav>
+                <a href="/artists" class="btn-link">← Torna all'elenco</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <div class="form-container">
+            <section class="hero-section">
+                <h1>Aggiungi un Nuovo Artista</h1>
+                <p>Inserisci i dettagli qui sotto per arricchire il database.</p>
+            </section>
+            
+            <!-- [Speculazione] Ipotizzo che l'endpoint sia /artist e l'oggetto si chiami 'artist' -->
+            <form th:action="@{/artist}" method="POST" th:object="${artist}" class="styled-form">
+                
+                <div th:if="${#fields.hasGlobalErrors()}">
+                     <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+                </div>
+
+                <!-- Campo Name -->
+                <div class="form-group">
+                    <label for="name">Nome e Cognome</label>
+                    <!-- [verificato] th:field="*{name}" mappa la proprietà privata 'name' -->
+                    <input type="text" id="name" th:field="*{name}" placeholder="Es: Christopher Nolan" />
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                </div>
+                
+                <!-- Campo Date (LocalDate) -->
+                <div class="form-group">
+                    <label for="date">Data di Nascita</label>
+                    <!-- [verificato] input type="date" è il formato HTML standard per mappare un oggetto LocalDate -->
+                    <input type="date" id="date" th:field="*{date}" />
+                    <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+                </div>
+                
+                <!-- Campo PlaceOfBirth -->
+                <div class="form-group">
+                    <label for="placeOfBirth">Luogo di Nascita</label>
+                    <input type="text" id="placeOfBirth" th:field="*{placeOfBirth}" placeholder="Es: Londra" />
+                    <span th:if="${#fields.hasErrors('placeOfBirth')}" th:errors="*{placeOfBirth}"></span>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Conferma e Salva</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 SIW. Pannello Amministrazione.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,57 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${movie != null} ? ${movie.title} : 'Film non trovato'">Dettaglio Film</title>
-    <link rel="stylesheet" href="/stile.css?version=5" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="dark-theme">
+<body>
 
-    <header class="navbar">
-        <div class="container">
-            <a href="/movies" class="logo">
-                <img src="/logo-siw.png" alt="Logo SIW" />
-            </a>
-            <nav>
-                <a href="/movies" class="btn-link">← Torna alla lista</a>
-            </nav>
-        </div>
-    </header>
+    <!-- Link per tornare indietro -->
+    <a href="/movies">← Torna alla lista</a>
+    <hr>
 
-    <main class="container page-content">
-        <div th:if="${movie}" class="movie-details-card">
-            <div class="details-grid">
-                <div class="details-poster-wrapper">
-                    <img th:if="${movie.UrlImage != null}" th:src="${movie.UrlImage}" alt="Locandina" class="movie-poster-large" />
-                    <img th:unless="${movie.UrlImage != null}" src="/logo-siw.png" alt="N/D" class="movie-poster-large placeholder" />
-                </div>
+    <!-- CASO 1: Il film esiste nel Model -->
+    <div th:if="${movie}">
+        
+        <h1 th:text="${movie.title}">Titolo Film</h1>
+        <p>Anno di uscita: <span th:text="${movie.year}">2000</span></p>
 
-                <div class="details-info">
-                    <h1 th:text="${movie.title}" class="details-title">Titolo Film</h1>
-                    <div class="details-meta">
-                        <span class="meta-label">Anno di uscita:</span>
-                        <span th:text="${movie.year}" class="meta-value">2000</span>
-                    </div>
-                    
-                    <div class="details-actions">
-                        <a href="#" class="btn-primary">Modifica Dati</a> </div>
-                </div>
-            </div>
-        </div>
+        <!-- Gestione dell'immagine: mostra la locandina se c'è, altrimenti il logo di default -->
+        <img th:if="${movie.UrlImage != null}" th:src="${movie.UrlImage}" alt="Locandina" width="250" />
+        <img th:unless="${movie.UrlImage != null}" src="/logo-siw.png" alt="N/D" width="250" />
+		
+		<div th:if="${movie.director != null}"> 
+		    regista: 
+		    <a th:href="@{/artist/{id}(id=${movie.director.id})}">
+		        <span th:text="${movie.director.name}">luca bianchi</span>
+		    </a>
+		</div>
+        
+		<div>
+			attori:<span>
+			<div th:each="attore : ${attori}" >
+                <p th:text="${attore.name}">nome attore</p>
+		    </div>
+			</span>
+		</div>
+        
+    </div>
 
-        <div th:unless="${movie}" class="empty-state">
-            <h2>Ops! Film non trovato</h2>
-            <p>Il film che stai cercando non è presente nel nostro database.</p>
-            <a href="/movies" class="btn-primary">Torna alla Home</a>
-        </div>
-    </main>
+    <!-- CASO 2: Il film NON esiste nel Model (es. ID errato) -->
+    <div th:unless="${movie}">
+        <h2>Ops! Film non trovato</h2>
+        <p>Il film che stai cercando non è presente nel nostro database.</p>
+    </div>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 SIW. Dettagli Film JPA.</p>
-        </div>
-    </footer>
 </body>
 </html>
