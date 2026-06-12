@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<div th:if="${squadre.isEmpty()}">
+	    	<p>Non ci sono film nel sistema. Inizia aggiungendone uno!</p>
+		</div>
+		<div th:each="squadra:${squadre}">
+			<a th:href="@{'/squadra/' + ${squadra.id}}">
+				<h3 th:text="${squadra.nome}">nome giocatore></h3>
+			</a>			
+	<body>

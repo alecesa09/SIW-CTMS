@@ -1,30 +1,40 @@
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Full metal jacket', 'https://pad.mymovies.it/filmclub/2006/04/020/locandina.jpg', 1987);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Non e'' un paese per vecchi', 'https://musicart.xboxlive.com/7/89d04600-0000-0000-0000-000000000002/504/image.jpg',2007);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'The founder', 'https://pad.mymovies.it/filmclub/2016/03/235/locandina.jpg',2016);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Harry Potter e la pietra filosofale', 'https://pad.mymovies.it/filmclub/2001/12/001/locandina.jpg',2001);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Il pianeta delle scimmie', 'https://media-assets.wired.it/photos/615daad62707bc568326abfa/master/w_1600,c_limit/war-for-the-planet-of-the-apes1.jpg',2001);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Lo chiamavano Jeeg Robot', 'https://www.rai.it/dl/img/2016/02/23/1280x720_1456237082397_jeegrobot.jpg',2015);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Yesterday', 'https://citynews-today.stgy.ovh/~media/horizontal-mid/20648620006811/yesterday-film-poster-movie-universal-pictures-2.jpg',2019);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Inception', 'https://pad.mymovies.it/filmclub/2010/01/011/locandina.jpg', 2010);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Pulp Fiction', 'https://pad.mymovies.it/filmclub/2006/08/046/locandina.jpg', 1994);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Interstellar', 'https://pad.mymovies.it/filmclub/2014/01/001/locandina.jpg', 2014);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Parasite', 'https://pad.mymovies.it/filmclub/2019/05/012/locandina.jpg', 2019);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Il Gladiatore', 'https://pad.mymovies.it/filmclub/2000/05/011/locandina.jpg', 2000);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Whiplash', 'https://pad.mymovies.it/filmclub/2014/05/054/locandina.jpg', 2014);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Mad Max: Fury Road', 'https://pad.mymovies.it/filmclub/2012/07/045/locandina.jpg', 2015);
-insert into movie (id, title, url_image, year) values(nextval('movie_seq'), 'Spider-Man: Un nuovo universo', 'https://pad.mymovies.it/filmclub/2018/06/001/locandina.jpg', 2018)
--- Pulp Fiction (Link da Wikimedia)
-update movie set url_image = 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Pulp_Fiction_%281994%29_poster.jpg' where title = 'Pulp Fiction';
-
--- Parasite (Link alternativo)
-update movie set url_image = 'https://mr.comingsoon.it/imgdb/locandine/235x336/56230.jpg' where title = 'Parasite';
-
--- Il Gladiatore (Link alternativo)
-update movie set url_image = 'https://mr.comingsoon.it/imgdb/locandine/235x336/943.jpg' where title = 'Il Gladiatore';
-
-
-INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Federico Fellini', '1920-01-20', 'Rimini');
-INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Sophia Loren', '1934-09-20', 'Roma');
-INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Marcello Mastroianni', '1924-09-28', 'Fontana Liri');
-INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Ennio Morricone', '1928-11-10', 'Roma');
-INSERT INTO artist (id,name, date, place_of_birth) VALUES (nextval('artist_seq'),'Sergio Leone', '1929-01-03', 'Roma');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (1, 'Genoa', 1893, 'Genova');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (2, 'Udinese', 1896, 'Udine');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (3, 'Juventus', 1897, 'Torino');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (4, 'Milan', 1899, 'Milano');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (5, 'Lazio', 1900, 'Roma');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (6, 'Fiorentina', 1926, 'Firenze');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (7, 'Torino', 1906, 'Torino');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (8, 'Inter', 1908, 'Milano');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (9, 'Bologna', 1909, 'Bologna');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (10, 'Hellas Verona', 1903, 'Verona');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (11, 'Napoli', 1926, 'Napoli');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (12, 'Cagliari', 1920, 'Cagliari');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (13, 'Roma', 1927, 'Roma');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (14, 'Sampdoria', 1946, 'Genova');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (15, 'Atalanta', 1907, 'Bergamo');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (16, 'Parma', 1913, 'Parma');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (17, 'Lecce', 1908, 'Lecce');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (18, 'Empoli', 1920, 'Empoli');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (19, 'Monza', 1912, 'Monza');
+INSERT INTO squadra (id, nome, anno, citta) VALUES (20, 'Venezia', 1907, 'Venezia');
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (1, 'Gianluigi', 'Buffon', '1978-01-28', 3);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (2, 'Alessandro', 'Del Piero', '1974-11-09', 3);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (3, 'Paolo', 'Maldini', '1968-06-26', 4);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (4, 'Marco', 'van Basten', '1964-10-31', 4);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (5, 'Javier', 'Zanetti', '1973-08-10', 8);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (6, 'Ronaldo', 'Luis Nazario', '1976-09-18', 8);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (7, 'Diego Armando', 'Maradona', '1960-10-30', 11);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (8, 'Careca', 'Antonio de Oliveira', '1960-10-05', 11);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (9, 'Francesco', 'Totti', '1976-09-27', 13);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (10, 'Daniele', 'De Rossi', '1983-07-24', 13);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (11, 'Gabriel', 'Batistuta', '1969-02-01', 6);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (12, 'Gigi', 'Riva', '1944-11-07', 12);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (13, 'Giorgio', 'Chinaglia', '1947-01-24', 5);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (14, 'Ciro', 'Immobile', '1990-02-20', 5);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (15, 'Roberto', 'Mancini', '1964-11-27', 14);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (16, 'Gianluca', 'Vialli', '1964-07-09', 14);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (17, 'Giacomo', 'Bulgarelli', '1940-10-24', 9);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (18, 'Valentino', 'Mazzola', '1919-01-26', 7);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (19, 'Antonio', 'Di Natale', '1977-10-13', 2);
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id) VALUES (20, 'Hernan', 'Crespo', '1975-07-05', 16);

@@ -1,0 +1,58 @@
+h1 {
+    text-align: center;
+    color: white;
+    font-family: 'Arial Black', sans-serif; /* Font robusto */
+    text-transform: uppercase;             /* Tutto maiuscolo */
+    letter-spacing: 2px;                   /* Spaziatura tra le lettere */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombra per staccarlo dallo sfondo */
+    font-size: 3rem;                       /* Dimensione importante */
+}
+body {
+    margin: 0;
+    padding: 0;
+    /* ... eventuale background ... */
+}
+.card{
+	background-color: rgba(255, 255, 255, 0.4);
+	width: 500px;
+	aspect-ratio: 4 / 1;
+	border-radius: 16px;
+	display: flex;
+	align-items: center; 
+	justify-content: center;
+	font-weight: bold;
+	color: white;
+}
+
+.contenitore-card {
+    display: flex;
+    gap: 10%;
+    flex-wrap: wrap; 
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.contenitore-card a {
+    text-decoration: none;
+    color: dark;
+	font-size: 70px;
+	padding:10px;
+}
+
+body {
+    /* Il percorso dell'immagine: metti l'immagine nella cartella static */
+    background-image: url('/erba.jpg');
+    
+    /* Impedisce all'immagine di ripetersi */
+    background-repeat: no-repeat;
+    
+    /* Forza l'immagine a coprire l'intera area */
+    background-size: cover;
+    
+    /* Centra l'immagine nello schermo */
+    background-position: center;
+    
+    /* Opzionale: fa sì che l'immagine resti fissa durante lo scroll */
+    background-attachment: fixed;
+}

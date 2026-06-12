@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio Squadra</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <div th:if="${squadra}">
+        <h1 th:text="${squadra.nome}">Nome Squadra</h1>
+        <p><strong>Anno di fondazione:</strong> <span th:text="${squadra.anno}"></span></p>
+        <p><strong>Città:</strong> <span th:text="${squadra.citta}"></span></p>
+
+        <h2>Rosa Giocatori</h2>
+        
+        <div th:if="${not #sets.isEmpty(squadra.giocatori)}">
+            <ul>
+                <li th:each="giocatore : ${squadra.giocatori}">
+                    <span th:text="${giocatore.nome + ' ' + giocatore.cognome}">Nome Cognome</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div th:if="${#sets.isEmpty(squadra.giocatori)}">
+            <p>Nessun giocatore registrato per questa squadra.</p>
+        </div>
+    </div>
+
+    <div th:if="${squadra == null}">
+        <h1>Squadra non trovata</h1>
+        <a href="/">Torna alla Home</a>
+    </div>
+
+</body>
+</html>

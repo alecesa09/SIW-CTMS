@@ -9,11 +9,11 @@
 		<version>4.0.3</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>it.uniroma3.siw</groupId>
-	<artifactId>siw-movie-02</artifactId>
+	<groupId>it.uniroma3.project</groupId>
+	<artifactId>torneone</artifactId>
 	<version>1.0</version>
-	<name>siw-movie-02</name>
-	<description>siw movie</description>
+	<name>torneone</name>
+	<description>torneone</description>
 	<url />
 	<licenses>
 		<license />

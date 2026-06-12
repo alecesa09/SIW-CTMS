@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Torneo - Dark</title>
+    <style>
+        /* Stili generali della pagina */
+        body {
+            background-color: green; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            color: #ffffff; /* Testo principale bianco */
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 4px rgba(255,255,255,0.1);
+        }
+
+        /* Contenitore a griglia per i riquadri */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Stile dei singoli riquadri trasparenti */
+        .card {
+            background-color: rgba(255, 255, 255, 0.4); /* Bianco trasparente (10% di opacità) */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Bordo sottile semi-trasparente */
+            border-radius: 16px; /* Bordi stondati */
+            padding: 30px 20px;
+            text-align: center;
+            backdrop-filter: blur(5px); /* Effetto sfocatura dietro il riquadro */
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #ffffff; /* Testo all'interno dei riquadri bianco */
+        }
+
+        /* Effetto al passaggio del mouse */
+        .card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.2); /* Diventa leggermente più opaco (20%) */
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1); /* Bagliore leggero */
+        }
+
+        /* Colore del testo dei link per utilizzi futuri */
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pannello di Gestione</h1>
+
+    <div class="dashboard">
+        <div class="card">
+            <span>Creazione e modifica di un torneo</span>
+        </div>
+        <div class="card">
+            <span>Inserimento e modifica di una squadra</span>
+        </div>
+        <div class="card">
+            <span>Inserimento e modifica dei giocatori</span>
+        </div>
+        <div class="card">
+            <span>Registrazione di una partita</span>
+        </div>
+        <div class="card">
+            <span>Inserimento del risultato di una partita</span>
+        </div>
+        <div class="card">
+            <span>Eliminazione di squadre e partite</span>
+        </div>
+    </div>
+
+</body>
+</html>
