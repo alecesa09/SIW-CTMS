@@ -27,7 +27,7 @@ public class Giocatore {
     @ManyToOne
 	@JoinColumn(name="squadra_id")
     private Squadra squadra;
-    @NotBlank
+    
     private LocalDate nascita;
     
     public Long getId() {
@@ -53,5 +53,11 @@ public class Giocatore {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-
+    public LocalDate getNascita() {
+        return nascita;
+    }
+    
+    public void setNascita(LocalDate date) {
+        this.nascita=date;
+    }
 }

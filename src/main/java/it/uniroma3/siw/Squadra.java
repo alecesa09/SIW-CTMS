@@ -21,7 +21,6 @@ public class Squadra {
 	@NotBlank
 	private String nome;
 	
-	@NotBlank
 	@Min(1700)
 	@Max(2100)
 	private Integer anno;
@@ -32,7 +31,14 @@ public class Squadra {
     private Set<Giocatore> giocatori;
 	
 	@OneToMany(mappedBy="squadra")
-	List<RigaClassifica> classifica;
+	List<SquadraIscritta> classifica;
+	
+	@OneToMany(mappedBy="squadraCasa")
+	List<Partita> partiteIncasa;
+	
+	@OneToMany(mappedBy="squadraTrasferta")
+	List<Partita> partiteFuoriCasa;
+	
 	public long getId() {
 		return id;
 	}

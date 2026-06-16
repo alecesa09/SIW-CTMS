@@ -6,12 +6,12 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(
-    name = "classifica",
+    name = "SquadraIscritta",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = {"torneo_id", "squadra_id"})
     }
 )
-public class  RigaClassifica {
+public class  SquadraIscritta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -90,7 +90,7 @@ public class  RigaClassifica {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		RigaClassifica other = (RigaClassifica) obj;
+		SquadraIscritta other = (SquadraIscritta) obj;
 		return Objects.equals(id, other.id);
 	}
 

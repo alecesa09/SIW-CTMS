@@ -1,0 +1,60 @@
+Ecco il codice HTML completo per il template Thymeleaf list.html, strutturato per integrarsi perfettamente con il metodo del tuo controller e rispettare i requisiti di visualizzazione pubblica previsti dal progetto [verificato].
+
+Il file deve essere posizionato nella cartella src/main/resources/templates/torneo/list.html [verificato].
+
+HTML
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Elenco Tornei</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #0056b3; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f1f1; }
+        .btn { display: inline-block; padding: 6px 12px; background-color: #0056b3; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; }
+        .btn:hover { background-color: #004085; }
+        .btn-admin { background-color: #28a745; margin-bottom: 15px; }
+        .btn-admin:hover { background-color: #218838; }
+        .no-data { font-style: italic; color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Elenco dei Tornei</h1>
+
+    <p><a th:href="@{/admin/torneo}" class="btn btn-admin">Aggiungi Nuovo Torneo</a></p>
+
+    <div th:if="${#lists.isEmpty(tornei)}" class="no-data">
+        Nessun torneo disponibile al momento.
+    </div>
+
+    <table th:if="${not #lists.isEmpty(tornei)}">
+        <thead>
+            <tr>
+                <th>Nome del Torneo</th>
+                <th>Anno</th>
+                <th>Descrizione</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="torneo : ${tornei}">
+                <td>
+                    <a th:href="@{/tornei/{id}(id=${torneo.id})}" th:text="${torneo.nome}">Nome Torneo</a>
+                </td>
+                <td th:text="${torneo.anno}">2026</td>
+                <td th:text="${torneo.descrizione != null && !torneo.descrizione.isEmpty()} ? ${torneo.descrizione} : 'Nessuna descrizione disponibile.'">Descrizione...</td>
+                <td>
+                    <a th:href="@{/tornei/{id}(id=${torneo.id})}" class="btn">Vedi Dettaglio</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

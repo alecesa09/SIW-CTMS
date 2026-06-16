@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendario Partite</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        th { background-color: #0056b3; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f1f1; }
+        .match-teams { font-weight: bold; font-size: 1.1em; }
+        .score { font-weight: bold; font-size: 1.2em; color: #28a745; }
+        .status { color: #6c757d; font-style: italic; }
+        .btn { padding: 5px 10px; background-color: #0056b3; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; }
+        .btn:hover { background-color: #004085; }
+        .no-data { font-style: italic; color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Calendario Partite</h1>
+
+    <div th:if="${#lists.isEmpty(partite)}" class="no-data">
+        Nessuna partita in calendario al momento.
+    </div>
+
+    <table th:if="${not #lists.isEmpty(partite)}">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Luogo</th>
+                <th>Partita</th>
+                <th>Risultato / Stato</th>
+                <th>Arbitro</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+		<tbody>
+		            <tr th:each="partita : ${partite}">
+		                
+		                <td th:text="${partita.data != null ? #temporals.format(partita.data, 'dd/MM/yyyy') : 'Da definire'}">10/10/2026</td>
+		                
+		                <td th:text="${partita.luogo != null && !partita.luogo.isEmpty()} ? ${partita.luogo} : 'Da definire'">Campo Sportivo</td>
+		                
+		                <td class="match-teams">
+		                    <span th:text="${partita.squadraCasa != null ? partita.squadraCasa.nome : 'TBD'}">Squadra 1</span>
+		                    -
+		                    <span th:text="${partita.squadraTrasferta != null ? partita.squadraTrasferta.nome : 'TBD'}">Squadra 2</span>
+		                </td>
+		                
+		                <td>
+		                    <span th:if="${partita.stato.name() == 'TERMINATA' or partita.stato.name() == 'IN_CORSO'}" class="score" th:text="${partita.golCasa + ' - ' + partita.golTrasferta}">1 - 0</span>
+		                    
+		                    <span th:unless="${partita.stato.name() == 'TERMINATA' or partita.stato.name() == 'IN_CORSO'}" class="status" th:text="${partita.stato}">PROGRAMMATA</span>
+		                </td>
+		                
+		                <td th:text="${partita.arbitro != null ? partita.arbitro.nome + ' ' + partita.arbitro.cognome : 'Non designato'}">Mario Rossi</td>
+		                
+		                <td>
+		                    <a class="btn" th:href="@{/partita/{id}(id=${partita.id})}">Dettagli</a>
+		                </td>
+		            </tr>
+		        </tbody>
+</html>

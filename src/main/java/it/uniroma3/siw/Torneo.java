@@ -22,7 +22,6 @@ public class Torneo {
 	@NotBlank
 	private String nome;
 	
-	@NotBlank
 	@Min(1900)
 	@Max(2100)
 	private Integer anno;
@@ -30,7 +29,10 @@ public class Torneo {
 	private String descrizione;
 	
 	@OneToMany(mappedBy="torneo")
-	List<RigaClassifica> classifica;
+	List<SquadraIscritta> iscrizioni;
+	
+	@OneToMany(mappedBy="torneo")
+	List<Partita> partite;
 
 	public long getId() {
 		return id;
@@ -79,6 +81,18 @@ public class Torneo {
 			return false;
 		Torneo other = (Torneo) obj;
 		return id == other.id;
+	}
+
+	public List<SquadraIscritta> getIscrizioni() {
+		return iscrizioni;
+	}
+
+	public void setIscrizioni(List<SquadraIscritta> iscrizioni) {
+		this.iscrizioni = iscrizioni;
+	}
+
+	public void setAnno(Integer anno) {
+		this.anno = anno;
 	}
 	
 	

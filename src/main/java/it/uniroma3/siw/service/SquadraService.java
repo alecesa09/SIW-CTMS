@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.Squadra;
 import it.uniroma3.siw.repository.SquadraRepository;
 
@@ -12,7 +14,6 @@ import it.uniroma3.siw.repository.SquadraRepository;
 public class SquadraService {
 	private final SquadraRepository squadraRepository;
    
-    // Costruttore per iniettare i Repository
     public SquadraService(SquadraRepository squadraRepository) {
         this.squadraRepository = squadraRepository;
     }
@@ -26,4 +27,10 @@ public class SquadraService {
 	public List<Squadra> findAll() {
         return (List<Squadra>) squadraRepository.findAll();
     }
+	
+	@Transactional(readOnly = true)
+	public List<Object[]> findbyTorneoid_nome_id(Long id){
+		return squadraRepository.findSquadreRawByTorneoId(id);
+	}
+	
 }

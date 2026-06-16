@@ -29,32 +29,36 @@ public class Partita {
         PROGRAMMATA, IN_CORSO, TERMINATA, ANNULLATA, IN_SOSPESO
     }
 	
-	
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@NotBlank
+	
 	private LocalDate date;
-	private String luogo; //che vuol di?
+	private String luogo;
 	private Integer golCasa;
 	private Integer golTrasferta;
-	@NotBlank
+	
 	@Enumerated(EnumType.STRING)
 	private Stato stato;
 	
 	@OneToMany(mappedBy = "partita")
 	private List<Commento> commenti;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="squadraCasaId")
 	private Squadra squadraCasa;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="squadraTrasfertaId")
 	private Squadra squadraTrasferta;
 	
 	@ManyToOne
-	@JoinColumn(name="arbitro")
+	@JoinColumn(name="arbitroId")
 	private Arbitro arbitro;
+	
+	@ManyToOne
+	@JoinColumn(name="torneoId")
+	private Torneo torneo;
 	
 	public long getId() {
 		return id;
@@ -115,6 +119,30 @@ public class Partita {
 			return false;
 		Partita other = (Partita) obj;
 		return id == other.id;
+	}
+	public Squadra getSquadraCasa() {
+		return squadraCasa;
+	}
+	public void setSquadraCasa(Squadra squadraCasa) {
+		this.squadraCasa = squadraCasa;
+	}
+	public Squadra getSquadraTrasferta() {
+		return squadraTrasferta;
+	}
+	public void setSquadraTrasferta(Squadra squadraTrasferta) {
+		this.squadraTrasferta = squadraTrasferta;
+	}
+	public Arbitro getArbitro() {
+		return arbitro;
+	}
+	public void setArbitro(Arbitro arbitro) {
+		this.arbitro = arbitro;
+	}
+	public Torneo getTorneo() {
+		return torneo;
+	}
+	public void setTorneo(Torneo torneo) {
+		this.torneo = torneo;
 	}
 	
 }

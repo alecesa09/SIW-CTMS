@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio Giocatore</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1 { color: #333; }
+        .card { 
+            border: 1px solid #ddd; 
+            padding: 20px; 
+            border-radius: 8px; 
+            max-width: 400px; 
+            background-color: #f9f9f9; 
+        }
+        .label { font-weight: bold; color: #555; }
+        .btn { 
+            display: inline-block; 
+            margin-top: 15px; 
+            padding: 8px 15px; 
+            background-color: #0056b3; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+        }
+        .btn:hover { background-color: #004085; }
+        .error { color: red; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <h1>Scheda Giocatore</h1>
+
+    <!-- Messaggio mostrato se il controller non passa alcun giocatore -->
+    <div th:if="${giocatore == null}" class="error">
+        Nessun giocatore trovato con questo identificativo.
+    </div>
+
+    <!-- Sezione mostrata solo se il giocatore esiste -->
+    <div th:if="${giocatore != null}" class="card" th:object="${giocatore}">
+        
+        <p><span class="label">Nome:</span> <span th:text="*{nome}">Mario</span></p>
+        <p><span class="label">Cognome:</span> <span th:text="*{cognome}">Rossi</span></p>
+        
+        <!-- Formattazione della LocalDate con #temporals.format -->
+        <p>
+            <span class="label">Data di nascita:</span> 
+            <span th:text="*{nascita != null ? #temporals.format(nascita, 'dd/MM/yyyy') : 'Dato non disponibile'}">01/01/1990</span>
+        </p>
+        
+        <!-- Accesso sicuro all'entità annidata Squadra -->
+        <p>
+            <span class="label">Squadra:</span> 
+            <span th:text="*{squadra != null ? squadra.nome : 'Svincolato'}">Genoa</span>
+        </p>
+        
+    </div>
+
+    <a class="btn" th:href="@{/giocatori}">Torna alla lista giocatori</a>
+
+</body>
+</html>
