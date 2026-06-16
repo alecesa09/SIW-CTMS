@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Giocatore;
+import it.uniroma3.siw.dto.GiocatoreDto;
 import it.uniroma3.siw.repository.GiocatoreRepository;
 
 @Service
@@ -22,8 +23,8 @@ public class GiocatoreService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Object[]> findGiocatoreBySquadra(long id){
-		List<Object[]> giocatori = this.giocatoreRepository.findParametriBySquadraId(id);
+	public List<GiocatoreDto> findGiocatoreBySquadra(long id){
+		List<GiocatoreDto> giocatori = this.giocatoreRepository.findParametriBySquadraId(id);
 		return giocatori;
 	}
 }

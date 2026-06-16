@@ -30,6 +30,8 @@ public class Giocatore {
     
     private LocalDate nascita;
     
+    private String nazionalita;
+    
     public Long getId() {
         return id;
     }
@@ -60,4 +62,21 @@ public class Giocatore {
     public void setNascita(LocalDate date) {
         this.nascita=date;
     }
+    public Squadra getSquadra() {
+        return squadra;
+    }
+    
+    public void setSquadra(Squadra squadra) {
+        this.squadra=squadra;
+    }
+
+	public String getNazionalita() {
+		return nazionalita;
+	}
+
+	public void setNazionalita(String nazionalità) {
+		this.nazionalita = nazionalità;
+	}
+    
+    
 }

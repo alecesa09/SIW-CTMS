@@ -7,34 +7,26 @@
 </head>
 <body>
 
-    <div th:if="${squadra}">
-        <h1 th:text="${squadra.nome}">Nome Squadra</h1>
-        <p><strong>Anno di fondazione:</strong> <span th:text="${squadra.anno}"></span></p>
-        <p><strong>Città:</strong> <span th:text="${squadra.citta}"></span></p>
-		<a th:href="@{/squadra/calendario/{id}(id=*{id})}">link calendario</a>
-
-        <h2>Rosa Giocatori</h2>
-        
-        <div th:if="${not #sets.isEmpty(giocatori)}">
-			<ul>
-			    <li th:each="giocatore : ${giocatori}">
-			        <a th:href="@{/giocatore/{id}(id=${giocatore.id})}" 
-			           th:text="${giocatore.nome + ' ' + giocatore.cognome}">
-			           Nome Cognome
-			        </a>
-			    </li>
-			</ul>
-        </div>
-        
-        <div th:if="${#sets.isEmpty(squadra.giocatori)}">
-            <p>Nessun giocatore registrato per questa squadra.</p>
-        </div>
+	<div th:if="${squadra}" th:object="${squadra}">
+	        <h1 th:text="*{nome}">Nome Squadra</h1>
+	        <p><strong>Anno di fondazione:</strong> <span th:text="*{anno}"></span></p>
+	        <p><strong>Città:</strong> <span th:text="*{citta}"></span></p>
+	        <a th:href="@{/squadra/calendario/{id}(id=*{id})}">link calendario</a>
+	</div> 
+	<h2>Rosa Giocatori</h2>
+    <div th:if="${giocatori}">
+		<ul>
+		    <li th:each="giocatore : ${giocatori}">
+		        <a th:href="@{/giocatore/{id}(id=${giocatore.id})}" 
+		           th:text="${giocatore.nome + ' ' + giocatore.cognome}">
+		           Nome Cognome
+		        </a>
+		    </li>
+		</ul>
     </div>
-
     <div th:if="${squadra == null}">
         <h1>Squadra non trovata</h1>
         <a href="/">Torna alla Home</a>
     </div>
-
 </body>
 </html>

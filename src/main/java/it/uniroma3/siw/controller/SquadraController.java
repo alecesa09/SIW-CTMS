@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.Squadra;
+import it.uniroma3.siw.dto.GiocatoreDto;
 import it.uniroma3.siw.service.GiocatoreService;
 import it.uniroma3.siw.service.PartitaService;
 import it.uniroma3.siw.service.SquadraService;
@@ -28,7 +29,7 @@ public class SquadraController {
 	@GetMapping("/squadra/{id}")
 	public String show(@PathVariable("id") Long id, Model model) {
 	    Squadra squadra = this.squadraService.findById(id);
-	    List<Object[]> giocatori = this.giocatoreService.findGiocatoreBySquadra(id);
+	    List<GiocatoreDto> giocatori = this.giocatoreService.findGiocatoreBySquadra(id);
 	    model.addAttribute("squadra",squadra );
 	    model.addAttribute("giocatori",giocatori );
 	    return "squadra/home";

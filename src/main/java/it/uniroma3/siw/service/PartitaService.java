@@ -20,12 +20,11 @@ public class PartitaService {
 	
 	@Transactional(readOnly = true)
 	public List<Partita> findCalendarioByTorneo(Long id){
-		return partitaRepository.findByTorneoId(id);
+		return partitaRepository.findByTorneoIdOrderByDataAsc(id);
 	}
 	
 	@Transactional(readOnly = true)
 	public List<Partita> findCalendarioBySquadra(Long id){
 		return partitaRepository.getCalendarioDiSquadraPerId(id);
 	}
-	
 }

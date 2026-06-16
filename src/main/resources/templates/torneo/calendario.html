@@ -41,7 +41,7 @@
         <tbody>
             <tr th:each="partita : ${partite}">
                 
-                <td th:text="${partita.date != null ? #temporals.format(partita.date, 'dd/MM/yyyy') : 'Da definire'}">10/10/2026</td>
+                <td th:text="${partita.data != null ? #temporals.format(partita.data, 'dd/MM/yyyy') : 'Da definire'}">10/10/2026</td>
                 
                 <td th:text="${partita.luogo != null && !partita.luogo.isEmpty()} ? ${partita.luogo} : 'Da definire'">Campo Sportivo</td>
                 

@@ -33,7 +33,7 @@ public class Partita {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private LocalDate date;
+	private LocalDate data;
 	private String luogo;
 	private Integer golCasa;
 	private Integer golTrasferta;
@@ -66,11 +66,11 @@ public class Partita {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public LocalDate getDate() {
-		return date;
+	public LocalDate getData() {
+		return data;
 	}
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setData(LocalDate date) {
+		this.data = date;
 	}
 	public String getLuogo() {
 		return luogo;

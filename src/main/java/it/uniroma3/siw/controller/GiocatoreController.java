@@ -20,6 +20,6 @@ public class GiocatoreController {
 	public String show(@PathVariable("id") Long id, Model model) {
 		Giocatore giocatore = this.giocatoreService.findGiocatoreById(id);
 	    model.addAttribute("giocatore",giocatore);
-	    return "squadra/home";
+	    return "giocatore/home";
 	}
 }

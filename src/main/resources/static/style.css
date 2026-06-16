@@ -42,7 +42,7 @@ body {
 
 body {
     /* Il percorso dell'immagine: metti l'immagine nella cartella static */
-    background-image: url('/erba.jpg');
+    background-image: url('/stadium.jpg');
     
     /* Impedisce all'immagine di ripetersi */
     background-repeat: no-repeat;
