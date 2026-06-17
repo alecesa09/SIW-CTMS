@@ -1,0 +1,179 @@
+html {
+    font-size: 15px; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: rgba(33, 74, 38, 1); 
+    color: #ffffff; 
+}
+
+a {
+    color: #ffffff; 
+    text-decoration: none;
+}
+
+
+nav, .squadra-header, .info-squadra {
+    margin: 1.5rem; 
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+.logo {
+    height: 3.3rem;
+    width: 3.3rem;
+    border-radius: 100%;
+}
+
+.menu-destra {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.menu-destra span {
+    display: inline-block;
+    width: 8rem;          
+    height: 3rem;          
+    background-color: rgba(0, 0, 0, 0.3); 
+    border-radius: 8px;    
+    transition: background-color 0.2s ease;
+}
+
+.menu-destra span a {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    width: 100%;             
+    height: 100%;                      
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.menu-destra span:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.squadra-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.05rem;
+    margin-bottom: 0.5rem;
+}
+
+.squadra-info p {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.squadra-header img {
+    width: 10rem; 
+    height: auto;
+}
+
+.btn-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-link:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+
+.info-squadra {
+    display: flex;
+    justify-content: space-between; 
+    gap: 2rem;                      
+}
+
+.contenitore-lista {
+    flex: 1; 
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 0px;
+}
+
+.titolo-sezione {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem;
+	border-radius: 20px 20px 0 0;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.lista-verticale {
+    list-style: none;
+}
+
+.riga-giocatore {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    margin: 2rem;
+    padding: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.riga-giocatore:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.riga-giocatore a {
+    display: block;
+    font-size: 1rem;
+}
+
+
+.link-partita-blocco {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data-partita {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+
+.risultato-partita {
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 0.05rem;
+}

@@ -1,19 +1,18 @@
 -- ==========================================
 -- 1. INSERIMENTO SQUADRE (12 Squadre)
 -- ==========================================
-INSERT INTO squadra (id, nome, anno, citta) VALUES (1, 'Genoa', 1893, 'Genova');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (2, 'Udinese', 1896, 'Udine');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (3, 'Juventus', 1897, 'Torino');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (4, 'Milan', 1899, 'Milano');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (5, 'Lazio', 1900, 'Roma');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (6, 'Fiorentina', 1926, 'Firenze');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (7, 'Torino', 1906, 'Torino');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (8, 'Inter', 1908, 'Milano');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (9, 'Bologna', 1909, 'Bologna');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (10, 'Hellas Verona', 1903, 'Verona');
--- Nuove Squadre
-INSERT INTO squadra (id, nome, anno, citta) VALUES (11, 'Roma', 1927, 'Roma');
-INSERT INTO squadra (id, nome, anno, citta) VALUES (12, 'Napoli', 1926, 'Napoli');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (1, 'Genoa', 1893, 'Genova', 'https://www.stickersmurali.com/img-webp.php?p=products/listado/merchant/asfs1757.jpg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (2, 'Udinese', 1896, 'Udine', 'https://it.wikipedia.org/wiki/Special:FilePath/Udinese_Calcio_logo.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (3, 'Juventus', 1897, 'Torino', 'https://it.wikipedia.org/wiki/Special:FilePath/Juventus_FC_-_logo_black_(Italy,_2020).svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (4, 'Milan', 1899, 'Milano', 'https://it.wikipedia.org/wiki/Special:FilePath/Logo_of_AC_Milan.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (5, 'Lazio', 1900, 'Roma', 'https://it.wikipedia.org/wiki/Special:FilePath/S.S._Lazio_logo.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (6, 'Fiorentina', 1926, 'Firenze', 'https://it.wikipedia.org/wiki/Special:FilePath/ACF_Fiorentina_2022.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (7, 'Torino', 1906, 'Torino', 'https://it.wikipedia.org/wiki/Special:FilePath/Torino_FC_logo.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (8, 'Inter', 1908, 'Milano', 'https://it.wikipedia.org/wiki/Special:FilePath/FC_Internazionale_Milano_2021.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (9, 'Bologna', 1909, 'Bologna', 'https://it.wikipedia.org/wiki/Special:FilePath/Bologna_FC_1909_logo.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (10, 'Hellas Verona', 1903, 'Verona', 'https://it.wikipedia.org/wiki/Special:FilePath/Hellas_Verona_FC_logo.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (11, 'Roma', 1927, 'Roma', 'https://it.wikipedia.org/wiki/Special:FilePath/AS_Roma_logo_(2017).svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (12, 'Napoli', 1926, 'Napoli', 'https://it.wikipedia.org/wiki/Special:FilePath/S.S.C._Napoli_logo.svg');
 
 
 -- ==========================================

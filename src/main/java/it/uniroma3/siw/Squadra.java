@@ -27,6 +27,8 @@ public class Squadra {
 	
 	private String citta;
 	
+	private String logo;
+	
 	@OneToMany(mappedBy = "squadra")
     private Set<Giocatore> giocatori;
 	
@@ -94,5 +96,37 @@ public class Squadra {
 			return false;
 		Squadra other = (Squadra) obj;
 		return id == other.id;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+
+	public List<SquadraIscritta> getClassifica() {
+		return classifica;
+	}
+
+	public void setClassifica(List<SquadraIscritta> classifica) {
+		this.classifica = classifica;
+	}
+
+	public List<Partita> getPartiteIncasa() {
+		return partiteIncasa;
+	}
+
+	public void setPartiteIncasa(List<Partita> partiteIncasa) {
+		this.partiteIncasa = partiteIncasa;
+	}
+
+	public List<Partita> getPartiteFuoriCasa() {
+		return partiteFuoriCasa;
+	}
+
+	public void setPartiteFuoriCasa(List<Partita> partiteFuoriCasa) {
+		this.partiteFuoriCasa = partiteFuoriCasa;
 	}
 }

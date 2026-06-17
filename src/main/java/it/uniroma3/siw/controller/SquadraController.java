@@ -30,8 +30,10 @@ public class SquadraController {
 	public String show(@PathVariable("id") Long id, Model model) {
 	    Squadra squadra = this.squadraService.findById(id);
 	    List<GiocatoreDto> giocatori = this.giocatoreService.findGiocatoreBySquadra(id);
+	    List<Partita> partite = partitaService.findUltime5(id);
 	    model.addAttribute("squadra",squadra );
 	    model.addAttribute("giocatori",giocatori );
+	    model.addAttribute("partite",partite );
 	    return "squadra/home";
 	}
 	

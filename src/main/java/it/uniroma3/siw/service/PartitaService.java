@@ -2,29 +2,41 @@ package it.uniroma3.siw.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.repository.PartitaRepository;
 
-
 @Service
 public class PartitaService {
-	
+
 	private final PartitaRepository partitaRepository;
-	   
-    public PartitaService(PartitaRepository partitaRepository) {
-        this.partitaRepository = partitaRepository;
-    }
-	
+
+	public PartitaService(PartitaRepository partitaRepository) {
+		this.partitaRepository = partitaRepository;
+	}
+
 	@Transactional(readOnly = true)
-	public List<Partita> findCalendarioByTorneo(Long id){
+	public List<Partita> findCalendarioByTorneo(Long id) {
 		return partitaRepository.findByTorneoIdOrderByDataAsc(id);
 	}
-	
+
 	@Transactional(readOnly = true)
-	public List<Partita> findCalendarioBySquadra(Long id){
+	public List<Partita> findCalendarioBySquadra(Long id) {
 		return partitaRepository.getCalendarioDiSquadraPerId(id);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Partita> findUltime5(Long idSquadra) {
+	    return partitaRepository.findTop5BySquadraCasaIdAndStatoOrSquadraTrasfertaIdAndStatoOrderByDataDesc(
+	        idSquadra,               
+	        Partita.Stato.TERMINATA, 
+	        idSquadra,               
+	        Partita.Stato.TERMINATA  
+	    );
+	    
 	}
 }

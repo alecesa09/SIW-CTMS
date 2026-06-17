@@ -6,6 +6,7 @@ import java.util.Objects;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -52,11 +53,11 @@ public class Partita {
 	@JoinColumn(name="squadraTrasfertaId")
 	private Squadra squadraTrasferta;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="arbitroId")
 	private Arbitro arbitro;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="torneoId")
 	private Torneo torneo;
 	

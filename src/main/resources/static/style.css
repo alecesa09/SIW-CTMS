@@ -26,9 +26,9 @@ body {
 
 .contenitore-card {
     display: flex;
-    gap: 10%;
+    gap: 20%;
     flex-wrap: wrap; 
-	justify-content: center;
+	justify-content: left;
 	align-items: center;
 	width: 100%;
 }

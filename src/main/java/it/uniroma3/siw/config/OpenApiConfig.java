@@ -13,9 +13,9 @@ public class OpenApiConfig {
     public OpenAPI openAPI() {
         return new OpenAPI()
             .info(new Info()
-                .title("SIW Movie API")
+                .title("CTMS")
                 .version("v1")
-                .description("API REST per la gestione di film e artisti"));
+                .description("API REST per la gestione tornei"));
     }
     //http://localhost:8080/swagger-ui.html
     //http://localhost:8080/v3/api-docs
