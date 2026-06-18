@@ -16,7 +16,11 @@
         <h1>CTMS</h1>
         <div class="menu-destra">
             <span><a href="/tornei">Tornei</a></span>
-            <span><a href="/squadre">Squadre</a></span>
+            <span>			
+				<form th:action="@{/logout}" method="POST">
+			   	 	<button type="submit" >Esci</button>
+				</form>
+			</span>
         </div>
     </nav>
   

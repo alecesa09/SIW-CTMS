@@ -3,6 +3,7 @@ package it.uniroma3.siw;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,14 +18,14 @@ public class Utente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@NotBlank
-	private String username;
+	private String nome;
 	@NotBlank
-	private String password;
+	private String cognome;
+	@NotBlank @Column(nullable = false, unique = true) 
+	private String email;
 	
 	@OneToMany(mappedBy="utente")
 	private List<Commento> commenti;
-	
-	//ruolo
 	
 	public Long getId() {
 		return id;
@@ -32,14 +33,6 @@ public class Utente {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Override
@@ -58,7 +51,40 @@ public class Utente {
 		Utente other = (Utente) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Commento> getCommenti() {
+		return commenti;
+	}
+
+	public void setCommenti(List<Commento> commenti) {
+		this.commenti = commenti;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }

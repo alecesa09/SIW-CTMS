@@ -260,7 +260,7 @@ INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_ca
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (10, '2026-08-05', 'Stadio Diego Armando Maradona', 3, 1, 'TERMINATA', 12, 11, 5, 6);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (11, '2026-09-10', 'Campo Testaccio', 0, 0, 'PROGRAMMATA', 11, 2, 4, 7);
 
-
+INSERT INTO credentials (id, username, password, role) VALUES(nextval('credentials_seq'), 'alessio', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'ADMIN');
 -- ==========================================
 -- 7. AGGIORNAMENTO SEQUENZE HIBERNATE
 -- ==========================================
