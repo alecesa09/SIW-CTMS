@@ -1,5 +1,3 @@
-Cosa scrivere nel README.md (Versione Definitiva)
-Puoi usare i dati esatti che hai appena raccolto per scrivere un resoconto brillante e professionale nel tuo repository GitHub:
 Analisi Sperimentale sulle Prestazioni (Art. 8.2)
 Per soddisfare il requisito dell'analisi sperimentale, ho testato l'estrazione dati per il caso d'uso "Visualizzazione Classifica del Torneo". Questo scenario richiede la lettura del Torneo, della lista delle SquadreIscritte (per i punteggi) e delle entità Squadra (per stamparne il nome). Il test è stato condotto su un torneo popolato con N=10 squadre iscritte.
 Test 1 (EAGER / LAZY di default): Utilizzando le impostazioni base di JPA, l'ORM è incappato nel Problema N+1. Analizzando i log di Hibernate, il sistema ha generato 1 query principale per estrarre torneo e iscrizioni, seguita da ben 10 query singole (una per ogni iterazione) per estrarre i nomi delle singole squadre. Tempo di esecuzione registrato dal CommandLineRunner: 0,061 secondi.
