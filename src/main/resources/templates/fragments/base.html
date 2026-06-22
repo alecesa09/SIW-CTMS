@@ -1,0 +1,44 @@
+<nav th:fragment="navBar">
+    <div>
+        <a href="/">
+            <img th:src="@{/images/pallone.jpg}" alt="Logo ctms" class="logo">
+        </a>
+    </div>
+    
+    <h1>CTMS</h1>
+    
+    <div class="menu-destra">
+        
+        <span>
+            <a href="/tornei">Tornei</a>
+        </span>
+        
+        <th:block th:if="${userDetails == null}">
+            <span>
+                <a href="/login">Accedi</a>
+            </span>
+            <span>
+                <a href="/registrazione">Registrati</a>
+            </span>
+        </th:block>
+
+        <th:block th:if="${userDetails != null}">
+            <span>
+                <a href="/profilo">
+                    Ciao, <strong th:text="${userDetails.username}" style="margin-left: 5px;">Utente</strong>!
+                </a>
+            </span>
+            
+            <span>
+                <form th:action="@{/logout}" method="POST">
+                    <button type="submit">Esci</button>
+                </form>
+            </span>
+        </th:block>
+    </div>
+</nav>
+
+
+<footer th:fragment="footer">
+	
+</footer>

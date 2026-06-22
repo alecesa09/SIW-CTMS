@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dettaglio Partita</title>
+    <link rel="stylesheet" href="/css/squadra-home.css">
+    <style>
+        .tabellone-partita {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            margin: 1.5rem;
+            text-align: center;
+        }
+
+        .squadra-nome {
+            font-size: 2rem;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .punteggio {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            letter-spacing: 0.2rem;
+        }
+
+        .badge-stato {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+        
+        .dettagli-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem;
+        }
+
+        .card-info {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <nav th:replace="fragments/base.html :: navBar"></nav>
+
+    <div th:if="${partita == null}" class="error" style="margin: 2rem; text-align: center;">
+        Nessuna partita trovata con questo identificativo.
+    </div>
+
+    <div th:if="${partita != null}" th:object="${partita}">
+        
+        <div class="tabellone-partita">
+            <div class="squadra-nome" th:text="*{squadraCasa != null ? squadraCasa.nome : 'Squadra in attesa'}">Squadra Casa</div>
+            
+            <div>
+                <div class="badge-stato" th:text="*{stato}">PROGRAMMATA</div>
+                <div class="punteggio">
+                    <span th:text="*{golCasa}">0</span> - <span th:text="*{golTrasferta}">0</span>
+                </div>
+            </div>
+
+            <div class="squadra-nome" th:text="*{squadraTrasferta != null ? squadraTrasferta.nome : 'Squadra in attesa'}">Squadra Trasferta</div>
+        </div>
+
+        <div class="dettagli-grid">
+            
+            <div class="card-info">
+                <h3 class="titolo-sezione" style="border-radius: 10px; margin-bottom: 1rem;">Informazioni Evento</h3>
+                <p>
+                    <strong>Data:</strong> 
+                    <span th:text="*{data != null ? #temporals.format(data, 'dd/MM/yyyy') : 'Da definire'}">01/01/2026</span>
+                </p>
+                <p>
+                    <strong>Luogo:</strong> 
+                    <span th:text="*{luogo != null ? luogo : 'Da definire'}">Stadio</span>
+                </p>
+                <p>
+                    <strong>Arbitro:</strong> 
+                    <span th:if="*{arbitro != null}">
+                        <a th:href="@{'/arbitro/' + *{arbitro.id}}" th:text="*{arbitro.nome + ' ' + arbitro.cognome}">Nome Arbitro</a>
+                    </span>
+                    <span th:if="*{arbitro == null}">Non designato</span>
+                </p>
+            </div>
+				
+			<div th:if="${commenti == null}" style="padding: 1rem; border: 1px dashed rgba(255,255,255,0.5); border-radius: 8px;">
+		        <p>Devi essere registrato per leggere o scrivere commenti.</p>
+		        <a href="/login" class="btn-link" style="display: inline-block; margin-top: 10px;">Accedi o Registrati</a>
+		    </div>
+            <div class="card-info" th:if="${commenti != null}">
+                
+                <h3 class="titolo-sezione" style="border-radius: 10px; margin-bottom: 1rem;">Commenti (<span th:text="${commenti.size()}">0</span>)</h3>
+                
+                <div th:if="${commenti.empty}">
+                    <p style="color: rgba(255,255,255,0.6);">Nessun commento per questa partita.</p>
+                </div>
+                
+                <ul class="lista-verticale" th:if="${!commenti.empty}">
+                    <li th:each="commento : ${commenti}" class="riga-giocatore" style="margin: 0.5rem 0;">
+                        <strong th:text="${commento.utente != null ? commento.utente.nome + ' ' + commento.utente.cognome : 'Anonimo'}">Utente</strong>: 
+                        <span th:text="${commento.testo}">Testo del commento</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

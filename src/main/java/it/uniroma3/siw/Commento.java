@@ -3,6 +3,7 @@ package it.uniroma3.siw;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,6 +22,7 @@ public class Commento {
 	private String testo;
 	
 	@ManyToOne
+	@JoinColumn(name="partita_id")
 	private Partita partita;
 	
 	@ManyToOne
@@ -64,6 +66,14 @@ public class Commento {
 			return false;
 		Commento commento = (Commento) obj;
 		return id == commento.id;
+	}
+
+	public Utente getUtente() {
+		return utente;
+	}
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	}
 	
 }

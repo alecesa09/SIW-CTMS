@@ -1,30 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>index</title>
-	    <link rel="stylesheet" href="style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>CTMS - Home</title>
+		<link rel="stylesheet" href="/css/squadra-home.css">
 	</head>
-	<body style="background-color: green;" >
-		<h1 style="color:white">totalfootball</th1>
+	<body>
+		<nav th:replace="fragments/base.html :: navBar"></nav>
+					
 		<div class="contenitore-card">
-			<a href="/squadre">
-				<div class="card">
-					<span> squadre </span>
+			<a href="/squadre" class="btn-link">
+				<div class="card" >
+					<span>squadre</span>
 				</div>
 			</a> 
 			
-			<a href="/giocatori">
-				<div class="card">
-					<span> giocatori </span>
+			<a href="/giocatori" class="btn-link">
+				<div class="card" >
+					<span>giocatori</span>
 				</div>
 			</a> 
-			<a href="/tornei">
+			
+			<a href="/tornei" class="btn-link">
 				<div class="card">
-					<span> tornei </span>
+					<span>tornei</span>
 				</div>
 			</a> 
 		</div>
+		<footer th:replace="fragments/base.html :: footer"></footer>
 	</body>
 </html>

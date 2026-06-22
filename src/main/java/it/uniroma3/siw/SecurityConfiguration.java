@@ -26,8 +26,8 @@ public class SecurityConfiguration {
     @Bean 
     public UserDetailsService userDetailsService() { 
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager(dataSource); 
-        manager.setUsersByUsernameQuery("SELECT username, password, 1 as enabled FROM credentials WHERE username=?");
-        manager.setAuthoritiesByUsernameQuery("SELECT username, role FROM credentials WHERE username=?"); 
+        manager.setUsersByUsernameQuery("SELECT username, psw, 1 as enabled FROM credentials WHERE username=?");
+        manager.setAuthoritiesByUsernameQuery("SELECT username, ruolo FROM credentials WHERE username=?"); 
         return manager;
     }
 
@@ -39,20 +39,21 @@ public class SecurityConfiguration {
     @Bean 
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception { 
     	httpSecurity.authorizeHttpRequests(authorize -> { 
-    		authorize.requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/login", "/css/**", "/images/**", "/favicon.ico").permitAll();
-    		authorize.requestMatchers(HttpMethod.POST, "/register", "/login"). permitAll() ; 
+    		authorize.requestMatchers(HttpMethod.GET, "/commento"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
+    		authorize.requestMatchers(HttpMethod.POST, "/commento"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
     		authorize.requestMatchers(HttpMethod.GET, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
     		authorize.requestMatchers(HttpMethod.POST, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
-    		authorize.anyRequest().authenticated(); });
+    		authorize.anyRequest().permitAll(); });
 
     	httpSecurity.formLogin(form -> { 
     		form.loginPage("/login").permitAll(); 
-    		form.defaultSuccessUrl("/", true); 
+    		form.defaultSuccessUrl("/"); 
     		form.failureUrl("/login?error=true"); 
     		});
+    	
     	httpSecurity.logout(logout -> { 
     		logout.logoutUrl("/logout"); 
-    		logout.logoutSuccessUrl("/"); 
+    		logout.logoutSuccessUrl("/");
     		logout.invalidateHttpSession(true); 
     		logout.deleteCookies("JSESSIONID"); 
     		logout.clearAuthentication(true); 

@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity 
 public class Credentials {
@@ -17,11 +18,18 @@ public class Credentials {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private Long id;
-	@Column(nullable = false, unique = true) 
-	private String username; @Column(nullable = false, unique = false) 
-	private String password; private String role; 
+	@Column(nullable = false, unique = true)
+	@NotBlank
+	private String username;
+	
+	@Column(nullable = false, unique = false) 
+	@NotBlank
+	private String psw; 
+	private String ruolo; 
+	
 	@OneToOne(cascade = CascadeType.ALL) 
-	private Utente user;
+	private Utente utente;
+	
 	public Long getId() {
 		return id;
 	}
@@ -34,24 +42,7 @@ public class Credentials {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	public Utente getUser() {
-		return user;
-	}
-	public void setUser(Utente user) {
-		this.user = user;
-	}
+
 	public static String getDefaultRole() {
 		return DEFAULT_ROLE;
 	}
@@ -72,6 +63,24 @@ public class Credentials {
 			return false;
 		Credentials other = (Credentials) obj;
 		return Objects.equals(id, other.id);
+	}
+	public String getPsw() {
+		return psw;
+	}
+	public void setPsw(String psw) {
+		this.psw = psw;
+	}
+	public String getRuolo() {
+		return ruolo;
+	}
+	public void setRuolo(String ruolo) {
+		this.ruolo = ruolo;
+	}
+	public Utente getUtente() {
+		return utente;
+	}
+	public void setUtente(Utente utente) {
+		this.utente = utente;
 	} 
 	
 	

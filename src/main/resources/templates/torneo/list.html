@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Elenco Tornei</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<link rel="stylesheet" href="/css/squadra-home.css">
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
         h1 { color: #333; }
@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-
+	<nav th:replace="fragments/base.html :: navBar"></nav>
     <h1>Elenco dei Tornei</h1>
 
     <p><a th:href="@{/admin/torneo}" class="btn btn-admin">Aggiungi Nuovo Torneo</a></p>

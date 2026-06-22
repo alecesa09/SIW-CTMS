@@ -18,6 +18,11 @@ public class PartitaService {
 	public PartitaService(PartitaRepository partitaRepository) {
 		this.partitaRepository = partitaRepository;
 	}
+	
+	@Transactional(readOnly = true)
+	public Partita findById(Long id) {
+		return partitaRepository.findById(id).get();
+	}
 
 	@Transactional(readOnly = true)
 	public List<Partita> findCalendarioByTorneo(Long id) {

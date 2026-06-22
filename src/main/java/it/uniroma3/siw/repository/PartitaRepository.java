@@ -1,5 +1,6 @@
 package it.uniroma3.siw.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -23,5 +24,7 @@ public interface PartitaRepository extends JpaRepository<Partita, Long>{
 		    Long idComeSquadraTrasferta, 
 		    Partita.Stato statoComeTrasferta
 		);
+	
+	List<Partita> findByData(LocalDate data);
 
 }

@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>dettalgio squadra</title>
+    <title>Dettaglio arbitro</title>
 	<link rel="stylesheet" href="/css/squadra-home.css">
 </head>
 <body>
 	<nav th:replace="fragments/base.html :: navBar"></nav>
-    <div th:if="${giocatore == null}" class="error">
-        Nessun giocatore trovato con questo identificativo.
+	
+    <div th:if="${arbitro == null}" class="error">
+        Nessun arbitro trovato con questo identificativo.
     </div>
-    <div th:if="${giocatore != null}" th:object="${giocatore}" >
+    <div th:if="${arbitro != null}" th:object="${arbitro}">
 		
 		<h1><span th:text="*{nome}">Mario</span><span> </span><span th:text="*{cognome}">Rossi</span></h1>
 		<div class="card" >
@@ -23,13 +24,8 @@
 	            <span class="label">nazionalità:</span> 
 	            <span th:text="*{nazionalita != null ? nazionalita : 'Dato non disponibile'}">italia</span>
 	        </p>
-	        <p>
-	            <span class="label">Squadra:</span> 
-	            <span th:text="*{squadra != null ? squadra.nome : 'Svincolato'}">Genoa</span>
-	        </p>
-	         <a class="btn" th:if="*{squadra != null}" th:href="@{/squadra/{id}(id=*{squadra.id})}">indietro alla squadra</a>
-			 <a class="btn" th:if="*{squadra == null}" th:href="@{/}">torna alla lista</a>
 		</div>
     </div>
+	<footer th:replace="fragments/base.html :: footer"></footer>
 </body>
 </html>

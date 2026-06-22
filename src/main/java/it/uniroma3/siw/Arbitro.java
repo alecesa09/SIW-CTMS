@@ -1,5 +1,6 @@
 package it.uniroma3.siw;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -7,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 @Entity
 public class Arbitro {
 	@Id
@@ -16,6 +18,10 @@ public class Arbitro {
 	private String nome;
 	@NotBlank
 	private String cognome;
+	@NotNull
+	private LocalDate nascita;
+	@NotBlank
+	private String nazionalita;
 	public long getId() {
 		return id;
 	}
@@ -48,6 +54,18 @@ public class Arbitro {
 			return false;
 		Arbitro other = (Arbitro) obj;
 		return id == other.id;
+	}
+	public LocalDate getNascita() {
+		return nascita;
+	}
+	public void setNascita(LocalDate nascita) {
+		this.nascita = nascita;
+	}
+	public String getNazionalita() {
+		return nazionalita;
+	}
+	public void setNazionalita(String nazionalita) {
+		this.nazionalita = nazionalita;
 	}
 	
 	

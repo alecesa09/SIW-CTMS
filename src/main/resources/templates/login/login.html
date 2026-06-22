@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accesso al Sistema</title>
+	<link rel="stylesheet" href="/css/squadra-home.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,6 +55,7 @@
             font-size: 1em;
             cursor: pointer;
             margin-top: 10px;
+			margin-bottom:1rem;
         }
         button:hover {
             background-color: #004494;
@@ -67,6 +69,18 @@
             text-align: center;
             font-size: 0.9em;
         }
+		.link-centrato {
+		    display: block;       
+		    text-align: center;   
+		    margin-top: 15px;     
+		    color: #0056b3;       
+		    text-decoration: none;
+		    font-size: 0.9em;
+		}
+
+		.link-centrato:hover {
+		    text-decoration: underline;
+		}
     </style>
 </head>
 <body>
@@ -88,8 +102,9 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-
             <button type="submit">Entra</button>
+			
+			<a href="/registrazione" class="link-centrato">registrati</a>
         </form>
     </div>
 
