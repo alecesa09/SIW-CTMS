@@ -9,4 +9,6 @@ import it.uniroma3.siw.Torneo;
 public interface TorneoRepository extends CrudRepository<Torneo, Long>{
 	@Query("SELECT t FROM Torneo t LEFT JOIN FETCH t.iscrizioni i LEFT JOIN FETCH i.squadra WHERE t.id = :id")
 	Torneo findByIdWithSquadre(@Param("id") Long id);
+	
+	
 }

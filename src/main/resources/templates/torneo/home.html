@@ -3,20 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Dettaglio Torneo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/css/squadra-home.css">
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        .details { margin-bottom: 30px; background-color: #f9f9f9; padding: 15px; border-left: 5px solid #0056b3; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #f2f2f2; font-weight: bold; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        .no-data { italic; color: #666; }
-    </style>
 </head>
 <body>
 	<nav th:replace="fragments/base.html :: navBar"></nav>
+    
     <div class="details" th:object="${torneo}">
         <h1 th:text="*{nome} + ' (' + *{anno} + ')'">Nome Torneo (Anno)</h1>
         <p><strong>Descrizione:</strong></p>
@@ -25,8 +17,8 @@
 	</div>
 
     <h2>Squadre Iscritte</h2>
-    
-    <table th:if="${not #lists.isEmpty(torneo.iscrizioni)}">
+
+    <table th:if="${!iscrizioni.isEmpty()}">
         <thead>
             <tr>
                 <th>Squadra</th>
@@ -41,9 +33,7 @@
         </tbody>
     </table>
 
-    <p class="no-data" th:if="${#lists.isEmpty(torneo.iscrizioni)}">Nessuna squadra è ancora iscritta a questo torneo.</p>
-
-    <p><a th:href="@{/tornei}">Torna all'elenco dei tornei</a></p>
+    <p class="no-data" th:if="${iscrizioni.isEmpty()}">Nessuna squadra è ancora iscritta a questo torneo.</p>
 
 </body>
 </html>

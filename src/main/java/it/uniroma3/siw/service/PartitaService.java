@@ -1,5 +1,6 @@
 package it.uniroma3.siw.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
@@ -42,6 +43,11 @@ public class PartitaService {
 	        idSquadra,               
 	        Partita.Stato.TERMINATA  
 	    );
-	    
 	}
+	@Transactional(readOnly = true)
+	public List<Partita> findByData(){
+		LocalDate date = LocalDate.now();
+		return partitaRepository.findByData(date);
+	}
+	
 }

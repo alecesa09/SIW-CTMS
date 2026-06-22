@@ -48,6 +48,7 @@ nav h1 {
     font-size: 2.5rem;
     font-weight: 700;
     letter-spacing: -0.05rem;
+	color:white;
 }
 
 .menu-destra {
@@ -139,7 +140,11 @@ h1 {
 }
 
 .btn-link:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color:  rgba(255, 255, 255, 0.2);
+}
+
+.btn : hover{
+	background-color:  rgba(255, 255, 255, 0.2);
 }
 
 .info-squadra {

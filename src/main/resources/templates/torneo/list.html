@@ -18,20 +18,19 @@
         .btn-admin { background-color: #28a745; margin-bottom: 15px; }
         .btn-admin:hover { background-color: #218838; }
         .no-data { font-style: italic; color: #666; margin-top: 20px; }
+		.thead{ background-color: #004085;}
     </style>
 </head>
 <body>
 	<nav th:replace="fragments/base.html :: navBar"></nav>
     <h1>Elenco dei Tornei</h1>
 
-    <p><a th:href="@{/admin/torneo}" class="btn btn-admin">Aggiungi Nuovo Torneo</a></p>
-
     <div th:if="${#lists.isEmpty(tornei)}" class="no-data">
         Nessun torneo disponibile al momento.
     </div>
 
     <table th:if="${not #lists.isEmpty(tornei)}">
-        <thead>
+        <thead >
             <tr>
                 <th>Nome del Torneo</th>
                 <th>Anno</th>

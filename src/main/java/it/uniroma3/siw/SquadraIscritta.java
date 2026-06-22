@@ -17,11 +17,11 @@ public class  SquadraIscritta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "torneo_id", nullable = false)
     private Torneo torneo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "squadra_id", nullable = false)
     private Squadra squadra;
     
@@ -30,6 +30,7 @@ public class  SquadraIscritta {
     private int vittorie;
     private int pareggi;
     private int sconfitte;
+    
 	public Long getId() {
 		return id;
 	}
