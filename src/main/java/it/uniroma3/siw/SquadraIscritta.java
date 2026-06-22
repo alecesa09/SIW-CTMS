@@ -21,7 +21,7 @@ public class  SquadraIscritta {
     @JoinColumn(name = "torneo_id", nullable = false)
     private Torneo torneo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "squadra_id", nullable = false)
     private Squadra squadra;
     
