@@ -3,6 +3,10 @@ package it.uniroma3.siw;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +17,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class,
+		  property = "id")
 @Entity
 public class Torneo {
 	

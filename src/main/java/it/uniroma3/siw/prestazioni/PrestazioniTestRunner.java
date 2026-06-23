@@ -23,7 +23,7 @@ public class PrestazioniTestRunner implements CommandLineRunner {
     @Transactional // strategie per il fetch dellaa classifica
     public void run(String... args) throws Exception {
     	
-       
+       /*
         StopWatch stopWatchBase = new StopWatch();
         stopWatchBase.start();
         Torneo torneoBase = torneoRepository.findByIdWithIscrizioni(2L);
@@ -35,7 +35,7 @@ public class PrestazioniTestRunner implements CommandLineRunner {
         stopWatchBase.stop();
         System.out.println("Tempo impiegato (LAZY/EAGER dall'entità): " + stopWatchBase.getTotalTimeSeconds() + " secondi");
 	
-         /*
+         
         // TEST 2: JOIN FETCH (Puoi farlo girare di seguito!)
         // Presuppone che tu abbia creato nel TorneoRepository un metodo: 
         // @Query("SELECT t FROM Torneo t JOIN FETCH t.iscrizioni WHERE t.id = :id")

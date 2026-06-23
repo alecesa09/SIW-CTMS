@@ -2,6 +2,8 @@ package it.uniroma3.siw;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +13,9 @@ import jakarta.persistence.*;
         @UniqueConstraint(columnNames = {"torneo_id", "squadra_id"})
     }
 )
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class,
+		  property = "id")
 public class  SquadraIscritta {
 
     @Id
