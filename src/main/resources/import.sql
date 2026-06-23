@@ -1,9 +1,9 @@
 
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (1, 'Genoa', 1893, 'Genova', 'https://www.stickersmurali.com/img-webp.php?p=products/listado/merchant/asfs1757.jpg');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (2, 'Udinese', 1896, 'Udine', 'https://it.wikipedia.org/wiki/Special:FilePath/Udinese_Calcio_logo.svg');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (3, 'Juventus', 1897, 'Torino', 'https://it.wikipedia.org/wiki/Special:FilePath/Juventus_FC_-_logo_black_(Italy,_2020).svg');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (4, 'Milan', 1899, 'Milano', 'https://it.wikipedia.org/wiki/Special:FilePath/Logo_of_AC_Milan.svg');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (5, 'Lazio', 1900, 'Roma', 'https://it.wikipedia.org/wiki/Special:FilePath/S.S._Lazio_logo.svg');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (1, 'Genoa', 1893, 'Genova', '/immagini/genoa.png');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (2, 'Udinese', 1896, 'Udine', '/immagini/udinese.png');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (3, 'Juventus', 1897, 'Torino', '/immagini/juventus.png');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (4, 'Milan', 1899, 'Milano', '/immagini/milan.png');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (5, 'Lazio', 1900, 'Roma', '/immagini/lazio.png');
 INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (6, 'Roma', 1927, 'Roma', '/immagini/roma.png');
 INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (7, 'Napoli', 1926, 'Napoli', '/immagini/napoli.png');
 INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (8, 'Fiorentina', 1926, 'Firenze', '/immagini/fiorentina.png');
@@ -195,18 +195,18 @@ INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_ca
 -- Nuove partite
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (4, '2026-06-10', 'Stadio Olimpico', 3, 1, 'TERMINATA', 6, 7, 1, 1);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (5, '2026-06-12', 'Artemio Franchi', 2, 2, 'TERMINATA', 8, 9, 2, 1);
-INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (6, '2026-06-15', 'Dall Ara', 1, 0, 'TERMINATA', 10, 11, 1, 1);
-INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (7, '2026-06-18', 'Marassi', 0, 1, 'TERMINATA', 12, 13, 2, 1);
-INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (8, '2026-06-20', 'Bentegodi', 2, 3, 'TERMINATA', 14, 15, 1, 1);
+INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (6, '2026-06-24', 'Dall Ara', 1, 0, 'TERMINATA', 10, 11, 1, 1);
+INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (7, '2026-06-24', 'Marassi', 0, 1, 'TERMINATA', 12, 13, 2, 1);
+INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (8, '2026-06-24', 'Bentegodi', 2, 3, 'TERMINATA', 14, 15, 1, 1);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (9, '2026-09-01', 'San Siro', 2, 2, 'TERMINATA', 16, 3, 3, 2);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (10, '2026-09-05', 'U-Power Stadium', 1, 0, 'TERMINATA', 17, 18, 4, 2);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (11, '2026-09-10', 'Castellani', 0, 3, 'TERMINATA', 19, 7, 3, 2);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (12, '2026-09-12', 'Stirpe', 1, 1, 'TERMINATA', 20, 21, 4, 2);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (13, '2026-09-15', 'Mapei Stadium', 2, 1, 'TERMINATA', 22, 6, 3, 2);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (14, '2026-09-18', 'Zini', 0, 0, 'PROGRAMMATA', 23, 16, 4, 2);
-INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (15, '2026-09-20', 'Penzo', 0, 0, 'PROGRAMMATA', 24, 25, 3, 2);
-INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (16, '2026-09-22', 'Olimpico', 0, 0, 'PROGRAMMATA', 5, 8, 4, 2);
-INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (17, '2026-09-25', 'Maradona', 0, 0, 'PROGRAMMATA', 7, 4, 3, 2);
+INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (15, '2026-06-24', 'Penzo', 0, 0, 'PROGRAMMATA', 24, 25, 3, 2);
+INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (16, '2026-06-24', 'Olimpico', 0, 0, 'PROGRAMMATA', 5, 8, 4, 2);
+INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (17, '2026-06-24', 'Maradona', 0, 0, 'PROGRAMMATA', 7, 4, 3, 2);
 INSERT INTO partita (id, data, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (18, '2026-09-30', 'Allianz Stadium', 0, 0, 'PROGRAMMATA', 3, 1, 4, 2);
 
 -- ==========================================

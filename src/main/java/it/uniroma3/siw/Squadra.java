@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +15,10 @@ import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+
+@JsonIdentityInfo(
+		  generator = ObjectIdGenerators.PropertyGenerator.class,
+		  property = "id")
 @Entity
 public class Squadra {
 	@Id
@@ -33,7 +40,7 @@ public class Squadra {
     private Set<Giocatore> giocatori;
 	
 	@OneToMany(mappedBy="squadra")
-	List<SquadraIscritta> classifica;
+	List<SquadraIscritta> iscrizioni;
 	
 	@OneToMany(mappedBy="squadraCasa")
 	List<Partita> partiteIncasa;
@@ -106,12 +113,12 @@ public class Squadra {
 		this.logo = logo;
 	}
 
-	public List<SquadraIscritta> getClassifica() {
-		return classifica;
+	public List<SquadraIscritta> getIscrizioni() {
+		return iscrizioni;
 	}
 
-	public void setClassifica(List<SquadraIscritta> classifica) {
-		this.classifica = classifica;
+	public void setIscrizioni(List<SquadraIscritta> classifica) {
+		this.iscrizioni = classifica;
 	}
 
 	public List<Partita> getPartiteIncasa() {

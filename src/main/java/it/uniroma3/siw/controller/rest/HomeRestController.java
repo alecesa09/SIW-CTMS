@@ -1,4 +1,4 @@
-package it.uniroma3.siw.controller;
+package it.uniroma3.siw.controller.rest;
 
 import java.util.List;
 
@@ -7,17 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.uniroma3.siw.Partita;
+import it.uniroma3.siw.dto.PartitaDTO;
 import it.uniroma3.siw.service.PartitaService;
 @RestController
-public class HomeController {
+public class HomeRestController {
 	private final PartitaService partitaService;
     
-	public HomeController(PartitaService partitaService) {
+	public HomeRestController(PartitaService partitaService) {
 		this.partitaService = partitaService; 
 	}
 
-	@GetMapping
-	public String start(Model model) {
-		return "index";
+	@GetMapping("/rest/partiteOggi")
+	public List<PartitaDTO> start() {
+		return partitaService.findPartiteOggi();
 	}
 }

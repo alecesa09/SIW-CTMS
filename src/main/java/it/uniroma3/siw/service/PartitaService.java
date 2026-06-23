@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Partita;
+import it.uniroma3.siw.dto.PartitaDTO;
 import it.uniroma3.siw.repository.PartitaRepository;
 
 @Service
@@ -49,5 +50,12 @@ public class PartitaService {
 		LocalDate date = LocalDate.now();
 		return partitaRepository.findByData(date);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<PartitaDTO> findPartiteOggi(){
+		LocalDate date = LocalDate.now();
+		return partitaRepository.findPartiteOggi(date);
+	}
+	
 	
 }
