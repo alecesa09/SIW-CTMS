@@ -29,7 +29,7 @@ public interface PartitaRepository extends JpaRepository<Partita, Long>{
 	
 	List<Partita> findByData(LocalDate data);
 	
-	@Query("SELECT new it.uniroma3.siw.dto.PartitaDTO(p.id, p.stato, t.id, t.nome,c.id, c.nome, c.logo,tr.id, tr.nome, tr.logo, p.golCasa, p.golTrasferta) FROM Partita p JOIN p.squadraCasa c JOIN p.squadraTrasferta tr JOIN p.torneo t WHERE p.data = :date")  
+	@Query("SELECT new it.uniroma3.siw.dto.PartitaDTO(p.id, p.stato, p.ora, t.id, t.nome, c.nome, c.logo, tr.nome, tr.logo, p.golCasa, p.golTrasferta) FROM Partita p JOIN p.squadraCasa c JOIN p.squadraTrasferta tr JOIN p.torneo t WHERE p.data = :date")  
 		List<PartitaDTO> findPartiteOggi(@Param("date") LocalDate date);
 	
 }
