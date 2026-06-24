@@ -1,5 +1,6 @@
 package it.uniroma3.siw;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -47,6 +48,7 @@ public class Partita {
 	private String luogo;
 	private Integer golCasa;
 	private Integer golTrasferta;
+	private LocalTime ora;
 	
 	@Enumerated(EnumType.STRING)
 	private Stato stato;
@@ -153,6 +155,12 @@ public class Partita {
 	}
 	public void setTorneo(Torneo torneo) {
 		this.torneo = torneo;
+	}
+	public LocalTime getOra() {
+		return ora;
+	}
+	public void setOra(LocalTime ora) {
+		this.ora = ora;
 	}
 	
 }

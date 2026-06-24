@@ -1,5 +1,6 @@
 package it.uniroma3.siw.dto;
 
+import java.time.LocalTime;
 import java.util.Objects;
 
 import it.uniroma3.siw.Partita;
@@ -9,17 +10,15 @@ public class PartitaDTO {
     private Partita.Stato stato;
     private Long torneoId;
     private String nomeTorneo;
-    private Long squadraCasaId; 
     private String nomeSquadraCasa;
     private String logoSquadraCasa;
-    private Long squadraTrasfertaId;
     private String nomeSquadraTrasferta;
     private String logoSquadraTrasferta;
+    private LocalTime ora;
     private int golCasa;
     private int golTrasferta;
     
-	public PartitaDTO(Long id, Partita.Stato stato,Long torneoId, String nomeTorneo,Long squadraCasaId, String nomeSquadraCasa, String logoSquadraCasa,
-			Long squadraTrasfertaId, String nomeSquadraTrasferta, String logoSquadraTrasferta, int golCasa, int golTrasferta) {
+	public PartitaDTO(Long id, Partita.Stato stato,LocalTime ora,Long torneoId, String nomeTorneo, String nomeSquadraCasa, String logoSquadraCasa, String nomeSquadraTrasferta, String logoSquadraTrasferta, int golCasa, int golTrasferta) {
 		this.id = id;
 		this.stato = stato;
 		this.torneoId =torneoId;
@@ -30,8 +29,7 @@ public class PartitaDTO {
 		this.logoSquadraTrasferta = logoSquadraTrasferta;
 		this.golCasa = golCasa;
 		this.golTrasferta = golTrasferta;
-		this.squadraCasaId=squadraCasaId;
-		this.squadraTrasfertaId=squadraTrasfertaId;
+		this.ora=ora;
 	}
 	public Long getId() {
 		return id;
@@ -116,17 +114,12 @@ public class PartitaDTO {
 	public void setTorneoId(Long torneoId) {
 		this.torneoId = torneoId;
 	}
-	public Long getSquadraCasaId() {
-		return squadraCasaId;
+	public LocalTime getOra() {
+		return ora;
 	}
-	public void setSquadraCasaId(Long squadraCasaId) {
-		this.squadraCasaId = squadraCasaId;
+	public void setOra(LocalTime ora) {
+		this.ora = ora;
 	}
-	public Long getSquadraTrasfertaId() {
-		return squadraTrasfertaId;
-	}
-	public void setSquadraTrasfertaId(Long squadraTrasfertaId) {
-		this.squadraTrasfertaId = squadraTrasfertaId;
-	}
+
     
 }
