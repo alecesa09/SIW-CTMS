@@ -27,8 +27,8 @@ public class PartitaService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Partita> findCalendarioByTorneo(Long id) {
-		return partitaRepository.findByTorneoIdOrderByDataAsc(id);
+	public List<PartitaDTO> findCalendarioByTorneo(Long id) {
+		return partitaRepository.findCalendario(id);
 	}
 
 	@Transactional(readOnly = true)

@@ -7,22 +7,7 @@
     <link rel="stylesheet" href="/css/squadra-home.css">
 </head>
 <body>
-    <nav>
-        <div>
-            <a href="/">
-                <img th:src="@{/images/pallone.jpg}" alt="Logo ctms" class="logo">
-            </a>
-        </div>
-        <h1>CTMS</h1>
-        <div class="menu-destra">
-            <span><a href="/tornei">Tornei</a></span>
-            <span>			
-				<form th:action="@{/logout}" method="POST">
-			   	 	<button type="submit" >Esci</button>
-				</form>
-			</span>
-        </div>
-    </nav>
+    <nav th:replace="fragments/base.html :: navBar"></nav>
   
     <div th:if="${squadra}" th:object="${squadra}" class="squadra-header">
         <div>
@@ -30,7 +15,6 @@
             <div class="squadra-info">
                 <p><strong>Anno di fondazione:</strong> <span th:text="*{anno}"></span></p>
                 <p><strong>Città:</strong> <span th:text="*{citta}"></span></p>
-                <a class="btn-link" th:href="@{/squadra/calendario/{id}(id=${squadra.id})}">Calendario</a>
             </div>
         </div>
         <img th:if="${squadra.logo}" th:src="@{${squadra.logo}}" alt="Logo squadra" class="SquadraLogo">
@@ -41,7 +25,7 @@
             <h2 class="titolo-sezione">Rosa Giocatori</h2>
             <ul class="lista-verticale">
                 <li th:each="giocatore : ${giocatori}" class="riga-giocatore">
-                    <a th:href="@{/giocatore/{id}(id=${giocatore.id})}" th:text="${giocatore.nome + ' ' + giocatore.cognome}">Nome Cognome</a>
+                    <span th:text="${giocatore.nome + ' ' + giocatore.cognome}">Nome Cognome</span>
                 </li>
             </ul>
         </div>

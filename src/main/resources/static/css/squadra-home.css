@@ -1,3 +1,18 @@
+:root {
+  --colore-primario: #071b15;
+  --colore-secondario: #17b978;
+  --colore-accento: #2dd4bf;
+  --colore-accento-soft: rgba(45, 212, 191, 0.14);
+  --colore-sfondo-scuro: #030b09;
+  --colore-grigio-nav: rgba(5, 13, 10, 0.86);
+  --colore-grigio-chiaro: rgba(21, 41, 33, 0.95);
+  --colore-grigio-chiarissimo: rgba(255, 255, 255, 0.09);
+  --sfumatura: rgba(0, 0, 0, 0.28);
+  --colore-testo: #f4fff9;
+  --colore-testo-secondario: #a8c0b3;
+  --colore-bordo: rgba(255, 255, 255, 0.12);
+}
+
 html {
     font-size: 15px; 
 }
@@ -9,65 +24,82 @@ html {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background-color: rgba(33, 74, 38, 1); 
-    color: #ffffff; 
-	position: relative;
+    font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: radial-gradient(circle at top left, rgba(45, 212, 191, 0.18), transparent 50%),
+                linear-gradient(135deg, var(--colore-primario) 0%, var(--colore-sfondo-scuro) 100%);
+    color: var(--colore-testo); 
+    position: relative;
     min-height: 100vh;
-    padding-bottom: 3rem;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 2% 0 2%;
 }
 
 a {
-    color: #ffffff; 
+    color: var(--colore-testo); 
     text-decoration: none;
 }
 
-nav, .squadra-header, .info-squadra {
-    margin: 1.5rem; 
-}
-
-
+/* --- NAVIGAZIONE UNIFICATA (React & Thymeleaf) --- */
 nav {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr; 
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.4); 
-    border-radius: 20px;
-    padding: 0.5rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* 3 colonne per gestire sia SearchBar che lo spazio vuoto */
+  align-items: center;
+  width: 95%;
+  height: 80px;
+  position: sticky;
+  top: 20px;
+  margin: 1.5rem auto; /* Centra la nav e applica il margine */
+  border: 1px solid var(--colore-bordo);
+  border-radius: 24px;
+  background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+  box-shadow: 0 14px 35px var(--sfumatura);
+  padding: 0 20px;
+  z-index: 100;
 }
 
+/* Colonna 1: Allineata a sinistra */
+.nav-shared-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
-nav > div:first-child {
-    display: flex;
-    justify-content: flex-start;
+/* Colonna 2: Al centro (SearchBar o spazio vuoto) */
+.nav-shared-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 nav h1 {
-    margin: 0;
-    text-align: center;
-    font-size: 2.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: -0.05rem;
-	color:white;
+    letter-spacing: 0.05em;
+    color: var(--colore-accento);
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+nav h1 a {
+    color: var(--colore-accento);
+}
+
+/* Colonna 3: Allineata a destra */
 .menu-destra {
     display: flex;
     justify-content: flex-end; 
     gap: 0.5rem;
 }
 
-.logo {
-    height: 3.3rem;
-    width: 3.3rem;
-    border-radius: 100%;
-}
-
 .menu-destra span {
     display: inline-block;
-    width: 8rem;          
+    width: auto; /* Permette ai tasti di adattarsi al testo (es. "Ciao, Utente!") */
+    min-width: 8rem;          
     height: 3rem;          
-    background-color: rgba(0, 0, 0, 0.3); 
+    background-color: transparent; 
     border-radius: 8px;    
     transition: background-color 0.2s ease;
 }
@@ -78,16 +110,16 @@ nav h1 {
     justify-content: center; 
     align-items: center;     
     width: 100%;             
-    height: 100%;                      
+    height: 100%;
+    padding: 0 10px;                   
     text-transform: uppercase;
     font-size: 0.9rem;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--colore-testo);
     background-color: transparent; 
     border: none;
     cursor: pointer;
     font-family: inherit;
-    padding: 0;
 }
 
 .menu-destra span form {
@@ -99,7 +131,18 @@ nav h1 {
 }
 
 .menu-destra span:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--colore-grigio-chiarissimo);
+}
+
+
+.squadra-header, .info-squadra {
+    margin: 1.5rem; 
+}
+
+.logo {
+    height: 3.3rem;
+    width: 3.3rem;
+    border-radius: 100%;
 }
 
 .squadra-header {
@@ -107,8 +150,10 @@ nav h1 {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem;
-    border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+    box-shadow: 0 12px 28px var(--sfumatura);
+    border: 1px solid var(--colore-bordo);
 }
 
 h1 {
@@ -121,7 +166,7 @@ h1 {
 .squadra-info p {
     font-size: 1rem;
     margin-bottom: 0.3rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--colore-testo-secondario);
 }
 
 .squadra-header img {
@@ -129,22 +174,21 @@ h1 {
     height: auto;
 }
 
-.btn-link {
+.btn-link, .btn {
     display: inline-block;
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--colore-grigio-chiarissimo);
+    border: 1px solid var(--colore-bordo);
     border-radius: 6px;
     font-size: 1rem;
-    transition: background-color 0.2s ease;
+    color: var(--colore-testo);
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.btn-link:hover {
-    background-color:  rgba(255, 255, 255, 0.2);
-}
-
-.btn : hover{
-	background-color:  rgba(255, 255, 255, 0.2);
+.btn-link:hover, .btn:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
 }
 
 .info-squadra {
@@ -155,19 +199,24 @@ h1 {
 
 .contenitore-lista {
     flex: 1; 
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 20px 20px 0 0;
+    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+    border-radius: 18px;
     padding: 0px;
+    box-shadow: 0 12px 28px var(--sfumatura);
+    border: 1px solid var(--colore-bordo);
+    overflow: hidden;
 }
 
 .titolo-sezione {
-    font-size: 1.3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0.5rem;
-    border-radius: 20px 20px 0 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    background: linear-gradient(90deg, var(--colore-accento) 0%, var(--colore-secondario) 100%);
+    padding: 12px;
+    margin: 0;
+    color: var(--colore-testo);
 }
 
 .lista-verticale {
@@ -175,31 +224,23 @@ h1 {
 }
 
 .riga-giocatore {
-    background-color: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255,255, 255, 0.3);;
-    padding: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.riga-giocatore:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.riga-giocatore a {
-    display: block;
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-top: 1px solid var(--colore-bordo);
 }
 
 .link-partita-blocco {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
 .data-partita {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--colore-testo-secondario);
     background-color: rgba(0, 0, 0, 0.5);
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
@@ -209,10 +250,12 @@ h1 {
     font-size: 1.1rem;
     font-weight: bold;
     letter-spacing: 0.05rem;
+    color: var(--colore-accento);
 }
 
 footer {
-	background-color: black;
+    background: linear-gradient(135deg, var(--colore-grigio-nav) 0%, rgba(10, 23, 18, 0.96) 100%);
+    border-top: 1px solid var(--colore-bordo);
     position: absolute;
     bottom: 0;
     left: 0;

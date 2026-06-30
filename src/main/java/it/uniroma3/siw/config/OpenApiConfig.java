@@ -17,6 +17,4 @@ public class OpenApiConfig {
                 .version("v1")
                 .description("API REST per la gestione tornei"));
     }
-    //http://localhost:8080/swagger-ui.html
-    //http://localhost:8080/v3/api-docs
 }

@@ -1,5 +1,5 @@
 
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (1, 'Genoa', 1893, 'Genova', '/immagini/genoa.png');
+INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (1, 'Genoa', 1893, 'Genova', '/immagini/genova.png');
 INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (2, 'Udinese', 1896, 'Udine', '/immagini/udinese.png');
 INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (3, 'Juventus', 1897, 'Torino', '/immagini/juventus.png');
 INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (4, 'Milan', 1899, 'Milano', '/immagini/milan.png');
@@ -28,28 +28,31 @@ INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (25, 'Spezia', 1906, 'L
 INSERT INTO torneo (id, nome, anno, descrizione) VALUES (1, 'Torneo Estivo Roma 2026', 2026, 'Torneo amatoriale a 11 per le squadre della capitale.');
 INSERT INTO torneo (id, nome, anno, descrizione) VALUES (2, 'Coppa Italia Nazionale 2026', 2026, 'Torneo a eliminazione diretta per tutte le 25 squadre iscritte.');
 
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (1, 1, 1, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (2, 1, 2, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (3, 1, 3, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (4, 1, 4, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (5, 1, 5, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (6, 1, 6, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (7, 1, 7, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (8, 1, 8, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (9, 1, 9, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (10, 1, 10, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (11, 1, 11, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (12, 1, 12, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (13, 1, 13, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (14, 1, 14, 1, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (15, 1, 15, 1, 0, 0, 0, 0);
+-- Iscrizioni Torneo 1 (id da 1 a 15)
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (1, 1, 1, 2, 1, 1, 0, 4);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (2, 1, 2, 1, 0, 0, 1, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (3, 1, 3, 1, 0, 0, 1, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (4, 1, 4, 1, 1, 0, 0, 3);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (5, 1, 5, 1, 0, 1, 0, 1);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (6, 1, 6, 1, 1, 0, 0, 3);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (7, 1, 7, 1, 0, 0, 1, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (8, 1, 8, 1, 0, 1, 0, 1);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (9, 1, 9, 1, 0, 1, 0, 1);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (10, 1, 10, 1, 1, 0, 0, 3);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (11, 1, 11, 1, 0, 0, 1, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (12, 1, 12, 0, 0, 0, 0, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (13, 1, 13, 0, 0, 0, 0, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (14, 1, 14, 0, 0, 0, 0, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (15, 1, 15, 0, 0, 0, 0, 0);
+
+-- Iscrizioni Torneo 2 (id da 16 a 40)
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (16, 2, 1, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (17, 2, 2, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (18, 2, 3, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (19, 2, 4, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (20, 2, 5, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (21, 2, 6, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (22, 2, 7, 0, 0, 0, 0, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (21, 2, 6, 1, 0, 0, 1, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (22, 2, 7, 1, 1, 0, 0, 3);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (23, 2, 8, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (24, 2, 9, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (25, 2, 10, 0, 0, 0, 0, 0);
@@ -59,12 +62,12 @@ INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pare
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (29, 2, 14, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (30, 2, 15, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (31, 2, 16, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (32, 2, 17, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (33, 2, 18, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (34, 2, 19, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (35, 2, 20, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (36, 2, 21, 0, 0, 0, 0, 0);
-INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (37, 2, 22, 0, 0, 0, 0, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (32, 2, 17, 1, 1, 0, 0, 3);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (33, 2, 18, 1, 0, 0, 1, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (34, 2, 19, 1, 0, 0, 1, 0);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (35, 2, 20, 1, 0, 1, 0, 1);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (36, 2, 21, 1, 0, 1, 0, 1);
+INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (37, 2, 22, 1, 1, 0, 0, 3);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (38, 2, 23, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (39, 2, 24, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (40, 2, 25, 0, 0, 0, 0, 0);
@@ -138,77 +141,53 @@ INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALU
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (53, 'Hernan', 'Crespo', '1975-07-05', 15, 'Argentina');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (54, 'Lilian', 'Thuram', '1972-01-01', 15, 'Francia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (55, 'Fabio', 'Cannavaro', '1973-09-13', 15, 'Italia');
--- Inter
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (56, 'Javier', 'Zanetti', '1973-08-10', 16, 'Argentina');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (57, 'Ronaldo', 'Nazario', '1976-09-18', 16, 'Brasile');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (58, 'Diego', 'Milito', '1979-06-12', 16, 'Argentina');
--- Monza
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (59, 'Matteo', 'Pessina', '1997-04-21', 17, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (60, 'Patrick', 'Ciurria', '1995-02-09', 17, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (61, 'Gianluca', 'Caprari', '1993-07-30', 17, 'Italia');
--- Lecce
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (62, 'Javier', 'Chevanton', '1980-08-12', 18, 'Uruguay');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (63, 'Guillermo', 'Giacomazzi', '1977-11-21', 18, 'Uruguay');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (64, 'Valeri', 'Bojinov', '1986-02-15', 18, 'Bulgaria');
--- Empoli
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (65, 'Massimo', 'Maccarone', '1979-09-06', 19, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (66, 'Francesco', 'Tavano', '1979-03-02', 19, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (67, 'Antonio', 'Di Natale', '1977-10-13', 19, 'Italia');
--- Frosinone
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (68, 'Daniel', 'Ciofani', '1985-07-31', 20, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (69, 'Federico', 'Dionisi', '1987-06-16', 20, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (70, 'Luca', 'Paganini', '1993-06-08', 20, 'Italia');
--- Salernitana
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (71, 'Franck', 'Ribery', '1983-04-07', 21, 'Francia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (72, 'Boulaye', 'Dia', '1996-11-16', 21, 'Senegal');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (73, 'Antonio', 'Candreva', '1987-02-28', 21, 'Italia');
--- Sassuolo
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (74, 'Domenico', 'Berardi', '1994-08-01', 22, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (75, 'Francesco', 'Magnanelli', '1984-11-12', 22, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (76, 'Giacomo', 'Raspadori', '2000-02-18', 22, 'Italia');
--- Cremonese
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (77, 'Gianluca', 'Vialli', '1964-07-09', 23, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (78, 'Attilio', 'Lombardo', '1966-01-06', 23, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (79, 'Cyriel', 'Dessers', '1994-12-08', 23, 'Nigeria');
--- Venezia
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (80, 'Alvaro', 'Recoba', '1976-03-17', 24, 'Uruguay');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (81, 'Filippo', 'Maniero', '1972-09-11', 24, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (82, 'Mattia', 'Aramu', '1995-05-14', 24, 'Italia');
--- Spezia
+
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (83, 'Mbala', 'Nzola', '1996-08-18', 25, 'Angola');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (84, 'Emmanuel', 'Gyasi', '1994-01-11', 25, 'Ghana');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (85, 'Giulio', 'Maggiore', '1998-03-12', 25, 'Italia');
 
-INSERT INTO arbitro (id, nome, cognome, nascita, nazionalita) VALUES (1, 'Pierluigi', 'Collina', '1960-10-30', 'Italia');
-INSERT INTO arbitro (id, nome, cognome, nascita, nazionalita) VALUES (2, 'Nicola', 'Rizzoli', '1987-07-27', 'Italia');
-INSERT INTO arbitro (id, nome, cognome, nascita, nazionalita) VALUES (3, 'Daniele', 'Orsato', '1975-11-23', 'Italia');
-INSERT INTO arbitro (id, nome, cognome, nascita, nazionalita) VALUES (4, 'Bjorn', 'Kuipers', '1973-03-28', 'Olanda');
+INSERT INTO arbitro (id, nome, cognome, codice_arbitrale, nascita, nazionalita) VALUES (1, 'Pierluigi', 'Collina',1, '1960-10-30', 'Italia');
+INSERT INTO arbitro (id, nome, cognome, codice_arbitrale, nascita, nazionalita) VALUES (2, 'Nicola', 'Rizzoli',3,'1987-07-27', 'Italia');
+INSERT INTO arbitro (id, nome, cognome, codice_arbitrale, nascita, nazionalita) VALUES (3, 'Daniele', 'Orsato',2, '1975-11-23', 'Italia');
+INSERT INTO arbitro (id, nome, cognome, codice_arbitrale, nascita, nazionalita) VALUES (4, 'Bjorn', 'Kuipers',4, '1973-03-28', 'Olanda');
 
--- ==========================================
--- 6. INSERIMENTO PARTITE (8 Partite totali)
--- ==========================================
--- Partite originali
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (1, '2026-06-01', '20:45:00', 'Stadio Olimpico', 2, 1, 'TERMINATA', 1, 2, 1, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (2, '2026-06-05', '20:45:00', 'Campo Flaminio', 0, 3, 'TERMINATA', 3, 4, 2, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (3, '2026-06-08', '20:45:00', 'Stadio dei Marmi', 1, 1, 'TERMINATA', 5, 1, 1, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (4, '2026-06-10', '20:45:00', 'Stadio Olimpico', 3, 1, 'TERMINATA', 6, 7, 1, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (5, '2026-06-12', '20:45:00', 'Artemio Franchi', 2, 2, 'TERMINATA', 8, 9, 2, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (6, '2026-06-24', '15:00:00', 'Dall Ara', 1, 0, 'TERMINATA', 10, 11, 1, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (7, '2026-06-24', '15:00:00', 'Marassi', 0, 1, 'ANNULLATA', 12, 13, 2, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (8, '2026-06-24', '15:00:00', 'Bentegodi', 2, 3, 'IN_SOSPESO', 14, 15, 1, 1);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (9, '2026-09-01', '20:45:00', 'San Siro', 2, 2, 'TERMINATA', 16, 3, 3, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (10, '2026-09-05', '20:45:00', 'U-Power Stadium', 1, 0, 'TERMINATA', 17, 18, 4, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (11, '2026-09-10', '20:45:00', 'Castellani', 0, 3, 'TERMINATA', 19, 7, 3, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (12, '2026-09-12', '15:00:00', 'Stirpe', 1, 1, 'TERMINATA', 20, 21, 4, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (13, '2026-09-15', '20:45:00', 'Mapei Stadium', 2, 1, 'TERMINATA', 22, 6, 3, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (14, '2026-09-18', '20:45:00', 'Zini', 0, 0, 'PROGRAMMATA', 23, 16, 4, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (15, '2026-06-24', '18:00:00', 'Penzo', 0, 0, 'IN_CORSO', 24, 25, 3, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (16, '2026-06-24', '18:00:00', 'Olimpico', 0, 0, 'PROGRAMMATA', 5, 8, 4, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (17, '2026-06-24', '20:45:00', 'Maradona', 0, 0, 'IN_CORSO', 7, 4, 3, 2);
-INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (18, '2026-09-30', '20:45:00', 'Allianz Stadium', 0, 0, 'PROGRAMMATA', 3, 1, 4, 2);
--- ==========================================
--- 7. UTENTI, CREDENZIALI E COMMENTI
--- ==========================================
+
 INSERT INTO utente (id, nome, cognome, email) VALUES (1, 'alessio', 'cesaroni', 'alessio.cesaroni@fake.it');
 INSERT INTO utente (id, nome, cognome, email) VALUES (2, 'mario', 'rossi', 'mario.rossi@fake.it');
 INSERT INTO utente (id, nome, cognome, email) VALUES (3, 'giulia', 'bianchi', 'giulia.bianchi@fake.it');
@@ -219,6 +198,25 @@ INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (2, 'marior
 INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (3, 'giuliab', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'USER', 3);
 INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (4, 'lucav', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'USER', 4);
 
+INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (1, '2026-06-01', '20:45:00', 'Stadio Olimpico', 2, 1, 'TERMINATA', 1, 2, 1, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (2, '2026-06-05', '20:45:00', 'Campo Flaminio', 0, 3, 'TERMINATA', 3, 4, 2, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (3, '2026-06-27', '20:45:00', 'Stadio dei Marmi', 1, 1, 'TERMINATA', 5, 1, 1, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (4, '2026-06-10', '20:45:00', 'Stadio Olimpico', 3, 1, 'TERMINATA', 6, 7, 1, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (5, '2026-06-12', '20:45:00', 'Artemio Franchi', 2, 2, 'TERMINATA', 8, 9, 2, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (6, '2026-06-29', '15:00:00', 'Dall Ara', 1, 0, 'TERMINATA', 10, 11, 1, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (7, '2026-06-29', '15:00:00', 'Marassi', 0, 1, 'ANNULLATA', 12, 13, 2, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (8, '2026-06-29', '15:00:00', 'Bentegodi', 2, 3, 'IN_SOSPESO', 14, 15, 1, 1);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (9, '2026-09-01', '20:45:00', 'San Siro', 2, 2, 'PROGRAMMATA', 16, 3, 3, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (10, '2026-09-05', '20:45:00', 'U-Power Stadium', 1, 0, 'TERMINATA', 17, 18, 4, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (11, '2026-09-10', '20:45:00', 'Castellani', 0, 3, 'TERMINATA', 19, 7, 3, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (12, '2026-09-12', '15:00:00', 'Stirpe', 1, 1, 'TERMINATA', 20, 21, 4, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (13, '2026-09-15', '20:45:00', 'Mapei Stadium', 2, 1, 'TERMINATA', 22, 6, 3, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (14, '2026-09-18', '20:45:00', 'Zini', 0, 0, 'PROGRAMMATA', 23, 16, 4, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (15, '2026-06-29', '18:00:00', 'Penzo', 0, 0, 'IN_CORSO', 24, 25, 3, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (16, '2026-06-29', '18:00:00', 'Olimpico', 0, 0, 'IN_CORSO', 5, 8, 4, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (17, '2026-06-29', '20:45:00', 'Maradona', 0, 0, 'PROGRAMMATA', 7, 4, 3, 2);
+	INSERT INTO partita (id, data, ora, luogo, gol_casa, gol_trasferta, stato, squadra_casa_id, squadra_trasferta_id, arbitro_id, torneo_id) VALUES (18, '2026-09-30', '20:45:00', 'Allianz Stadium', 0, 0, 'PROGRAMMATA', 3, 1, 4, 2);
+	
 INSERT INTO commento (id, testo, partita_id, utente_id) VALUES (1, 'Bella partita, molto combattuta!', 1, 1);
 INSERT INTO commento (id, testo, partita_id, utente_id) VALUES (2, 'Dominio assoluto degli ospiti.', 2, 1);
 INSERT INTO commento (id, testo, partita_id, utente_id) VALUES (3, 'Pareggio giusto alla fine.', 3, 1);
@@ -228,9 +226,6 @@ INSERT INTO commento (id, testo, partita_id, utente_id) VALUES (6, 'Il Napoli ha
 INSERT INTO commento (id, testo, partita_id, utente_id) VALUES (7, 'Risultato bugiardo, meritava il Frosinone.', 12, 2);
 INSERT INTO commento (id, testo, partita_id, utente_id) VALUES (8, 'Che vittoria per il Sassuolo contro la Roma!', 13, 3);
 
--- ==========================================
--- 8. AGGIORNAMENTO SEQUENZE HIBERNATE
--- ==========================================
 ALTER SEQUENCE squadra_seq RESTART WITH 26;
 ALTER SEQUENCE torneo_seq RESTART WITH 3;
 ALTER SEQUENCE iscrizioni_seq RESTART WITH 41;

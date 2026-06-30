@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Torneo;
-import it.uniroma3.siw.repository.SquadraRepository;
+import it.uniroma3.siw.dto.TorneoDTO;
 import it.uniroma3.siw.repository.TorneoRepository;
 
 
@@ -25,7 +25,7 @@ public class TorneoService {
 		return torneo;
 	}
     @Transactional(readOnly = true)
-	public List<Torneo> findAll() {
-        return (List<Torneo>) torneoRepository.findAll();
+	public List<TorneoDTO> findInfoTornei() {
+        return (List<TorneoDTO>) torneoRepository.FindInfoTornei();
     }
 }

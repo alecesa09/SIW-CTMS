@@ -12,4 +12,7 @@ import it.uniroma3.siw.dto.GiocatoreDto;
 public interface GiocatoreRepository extends JpaRepository<Giocatore, Long>{
     @Query("SELECT new it.uniroma3.siw.dto.GiocatoreDto(g.id, g.nome, g.cognome) FROM Giocatore g WHERE g.squadra.id = :squadraId")
     public List<GiocatoreDto> findParametriBySquadraId(@Param("squadraId") Long squadraId);
+    
+    
+    public List<Giocatore> findTop5ByNomeContainingIgnoreCaseOrCognomeContainingIgnoreCase(String parolaNome, String parolaCognome);
 }

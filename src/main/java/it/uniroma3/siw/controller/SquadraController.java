@@ -36,18 +36,4 @@ public class SquadraController {
 	    model.addAttribute("partite",partite );
 	    return "squadra/home";
 	}
-	
-	@GetMapping("/squadre")
-	public String list( Model model) {
-	    List<Squadra> squadre = this.squadraService.findAll();
-	    model.addAttribute("squadre",squadre);
-	    return "squadra/list";
-	}
-	
-	@GetMapping("/squadra/calendario/{id}")
-	public String calendario(@PathVariable("id") Long id, Model model) {
-	    List<Partita> partite = partitaService.findCalendarioBySquadra(id);
-	    model.addAttribute("partite",partite );
-	    return "squadra/calendario";
-	}
 }

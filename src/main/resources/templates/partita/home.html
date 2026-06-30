@@ -94,18 +94,16 @@
                 </p>
                 <p>
                     <strong>Arbitro:</strong> 
-                    <span th:if="*{arbitro != null}">
-                        <a th:href="@{'/arbitro/' + *{arbitro.id}}" th:text="*{arbitro.nome + ' ' + arbitro.cognome}">Nome Arbitro</a>
-                    </span>
-                    <span th:if="*{arbitro == null}">Non designato</span>
+                    <span th:text="*{arbitro.nome != null ? arbitro.nome : 'Da definire'}">Arbitro</span>
+					<span th:text="*{arbitro.cognome != null ? arbitro.cognome : 'Da definire'}">Arbitro</span>
                 </p>
             </div>
 				
-			<div th:if="${commenti == null}" style="padding: 1rem; border: 1px dashed rgba(255,255,255,0.5); border-radius: 8px;">
+			<div th:if="${userDetails == null}" style="padding: 1rem; border: 1px dashed rgba(255,255,255,0.5); border-radius: 8px;">
 		        <p>Devi essere registrato per leggere o scrivere commenti.</p>
 		        <a href="/login" class="btn-link" style="display: inline-block; margin-top: 10px;">Accedi o Registrati</a>
 		    </div>
-            <div class="card-info" th:if="${commenti != null}">
+            <div class="card-info" th:if="${userDetails != null}">
                 
                 <h3 class="titolo-sezione" style="border-radius: 10px; margin-bottom: 1rem;">Commenti (<span th:text="${commenti.size()}">0</span>)</h3>
                 
@@ -119,6 +117,11 @@
                         <span th:text="${commento.testo}">Testo del commento</span>
                     </li>
                 </ul>
+				
+				<div>
+				    <a th:href="@{/commento/form/{id}(id=${partita.id})}">Aggiungi commento</a>
+				</div>
+				
             </div>
 
         </div>

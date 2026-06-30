@@ -1,16 +1,0 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/css/squadra-home.css">
-	</head>
-	<body>
-		<nav th:replace="fragments/base.html :: navBar"></nav>
-		<div th:if="${squadre.isEmpty()}">
-	    	<p>Non ci sono squadre</p>
-		</div>
-		<div th:each="squadra:${squadre}">
-			<a th:href="@{'/squadra/' + ${squadra.id}}">
-				<h3 th:text="${squadra.nome}">squadra</h3>
-			</a>			
-	<body>

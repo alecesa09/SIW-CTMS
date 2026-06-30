@@ -1,0 +1,13 @@
+<DOCTYPE html!>
+<html>
+	<head>
+	</head>
+	<body>
+		<form th:action="@{/commento/crea/{id}(id=${partita.id})}" method="POST">
+		    
+		    <textarea name="testo" placeholder="Scrivi il tuo commento..." required></textarea>
+		    
+		    <button type="submit">Pubblica Commento</button>
+		</form>
+	</body>
+</html>

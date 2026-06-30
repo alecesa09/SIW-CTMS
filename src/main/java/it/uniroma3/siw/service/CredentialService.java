@@ -34,5 +34,9 @@ public class CredentialService {
 		credentials.setRuolo(Credentials.DEFAULT_ROLE);
 		return credentialRepository.save(credentials);
 	}
+
+	public Credentials findByUsername(String usernameLoggato) {
+		return credentialRepository.findByUsername(usernameLoggato).get();
+	}
 	
 }

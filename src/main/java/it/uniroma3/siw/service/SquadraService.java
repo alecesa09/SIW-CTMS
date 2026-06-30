@@ -27,10 +27,4 @@ public class SquadraService {
 	public List<Squadra> findAll() {
         return (List<Squadra>) squadraRepository.findAll();
     }
-	
-	@Transactional(readOnly = true)
-	public List<Object[]> findbyTorneoid_nome_id(Long id){
-		return squadraRepository.findSquadreRawByTorneoId(id);
-	}
-	
 }

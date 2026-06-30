@@ -25,6 +25,7 @@ public class Credentials {
 	@Column(nullable = false, unique = false) 
 	@NotBlank
 	private String psw; 
+	
 	private String ruolo; 
 	
 	@OneToOne(cascade = CascadeType.ALL) 

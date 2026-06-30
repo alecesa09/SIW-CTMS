@@ -22,8 +22,4 @@ public class GlobalController {
         }
         return user;
     }
-    @ModelAttribute("currentUri")
-    public String getCurrentUri(HttpServletRequest request) {
-        return request.getRequestURI();
-    }
 }
