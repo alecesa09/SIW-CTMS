@@ -41,7 +41,7 @@ public class Partita {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	private LocalDate data;
 	private String luogo;
@@ -71,10 +71,10 @@ public class Partita {
 	@JoinColumn(name="torneoId")
 	private Torneo torneo;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public LocalDate getData() {

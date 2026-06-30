@@ -23,7 +23,7 @@ import jakarta.validation.constraints.NotBlank;
 public class Squadra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@NotBlank
 	private String nome;

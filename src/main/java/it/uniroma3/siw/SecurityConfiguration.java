@@ -12,7 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 @Configuration
 @EnableWebSecurity 
 public class SecurityConfiguration { 
@@ -39,17 +41,38 @@ public class SecurityConfiguration {
     @Bean 
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception { 
     	httpSecurity.authorizeHttpRequests(authorize -> { 
-    		authorize.requestMatchers(HttpMethod.GET, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
-    		authorize.requestMatchers(HttpMethod.POST, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
+    		authorize.requestMatchers(HttpMethod.GET, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE,Credentials.ADMIN_ROLE);
+    		authorize.requestMatchers(HttpMethod.POST, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE,Credentials.ADMIN_ROLE);
     		authorize.requestMatchers(HttpMethod.GET, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
     		authorize.requestMatchers(HttpMethod.POST, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
     		authorize.anyRequest().permitAll(); });
 
-    	httpSecurity.formLogin(form -> { 
-    		form.loginPage("/login").permitAll(); 
-    		form.defaultSuccessUrl("/",false); 
-    		form.failureUrl("/login?error=true"); 
-    		});
+    	httpSecurity.formLogin(form -> form
+    		    .loginPage("/login")
+    		    .successHandler((request, response, authentication) -> {
+    		        // 1. Controlla se c'era una pagina privata bloccata in attesa (Scenario 1) [verificato]
+    		        SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
+    		        
+    		        if (savedRequest != null) {
+    		            // Lascia fare a Spring, ti manderà alla pagina privata richiesta
+    		            new SavedRequestAwareAuthenticationSuccessHandler().onAuthenticationSuccess(request, response, authentication);
+    		            return;
+    		        }
+
+    		        // 2. Scenario 2: L'utente ha premuto il tasto "Accedi" spontaneamente
+    		        String urlProvenienza = (String) request.getSession().getAttribute("url_pre_login");
+    		        
+    		        if (urlProvenienza != null) {
+    		            // Pulisce la memoria e lo rimanda da dove veniva [verificato]
+    		            request.getSession().removeAttribute("url_pre_login");
+    		            response.sendRedirect(urlProvenienza);
+    		        } else {
+    		            // Paracadute finale: se tutto va male, Home Page
+    		            response.sendRedirect("/");
+    		        }
+    		    })
+    		    .permitAll()
+    		);
     	
     	httpSecurity.logout(logout -> { 
     		logout.logoutUrl("/logout"); 

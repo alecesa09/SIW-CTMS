@@ -22,7 +22,7 @@ public class Commento {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@NotBlank
 	private String testo;
@@ -35,12 +35,19 @@ public class Commento {
 	@JoinColumn(name="utente_id")
 	private Utente utente;
 
+	public Commento() {
+	}
 
-	public long getId() {
+	public Commento(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
