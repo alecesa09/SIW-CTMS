@@ -13,40 +13,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import it.uniroma3.siw.Commento;
 import it.uniroma3.siw.exception.EccezioneCommento;
 import it.uniroma3.siw.service.CommentoService;
-import it.uniroma3.siw.service.CredentialService;
-import jakarta.validation.Valid; // Assicurati di avere questa importazione
+
+import jakarta.validation.Valid;
 
 @Controller
 public class CommentiController {
 	private final CommentoService commentoService;
-	private final CredentialService credentialService; // Mantenuto, ma attualmente inutilizzato in questa classe
+
 	
-	public CommentiController(CommentoService commentoService, CredentialService credentialService) {
+	public CommentiController(CommentoService commentoService) {
 		this.commentoService = commentoService;
-		this.credentialService = credentialService;
 	}
 
 	@GetMapping("commento/form/{id}")
-	public String iniziaCreazioneCommento( Model model) {
+	public String iniziaCreazioneCommento(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("commento", new Commento());
+		model.addAttribute("idPartita", id); 
 		return "commento/creaCommento";
 	}
 	
-	@PostMapping("commento/crea/{id}")
-	public String crea(@PathVariable("id") Long idPartita, 
+	@PostMapping("commento/salva/{idPartita}")
+	public String salva(@PathVariable("idPartita") Long idPartita, 
 	                   @Valid @ModelAttribute Commento commento,
 	                   BindingResult biR, 
 	                   Principal principal) {
 	    
-
 	    if(biR.hasErrors()) {
 	    	return "commento/creaCommento";
 	    }
 	    
 	    try {
-	        commentoService.crea(idPartita, commento, principal.getName());
+	        commentoService.salvaOAggiorna(idPartita, commento, principal.getName());
 	    } catch (EccezioneCommento e) {
-	        biR.reject("error-utente", e.getMessage()); 
+	        biR.reject("validazione", e.getMessage()); 
 	        return "commento/creaCommento";
 	    }
 
@@ -54,15 +53,15 @@ public class CommentiController {
 	}
 	
 	
-	@GetMapping("commenti/modifica/{id}")
-	public String modificaCommento(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("squadra", id);
-		return "commento/creaCommento";
+	@GetMapping("commento/modifica/{id}")
+	public String modificaCommento(@PathVariable("id") Long id, Model model,Principal principal) {
+	    Commento commento = commentoService.findById(id);
+	    if (!commento.getUtente().getEmail().equals(principal.getName())) {
+	        return "redirect:/";
+	    }
+	    model.addAttribute("commento", commento);
+	    model.addAttribute("idPartita", commento.getPartita().getId());
+	    return "commento/creaCommento";
 	}
 	
-
-	@PostMapping("commento/modifica/{id}")
-	public String save(@PathVariable("id") Long id) {
-		return "redirect:/";
-	}
 }

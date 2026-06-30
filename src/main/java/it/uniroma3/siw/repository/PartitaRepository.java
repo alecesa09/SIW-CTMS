@@ -2,6 +2,7 @@ package it.uniroma3.siw.repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -31,5 +32,8 @@ public interface PartitaRepository extends JpaRepository<Partita, Long>{
 	
 	@Query("SELECT new it.uniroma3.siw.dto.PartitaDTO(p.id, p.stato,p.data, p.ora, c.nome, c.logo, tr.nome, tr.logo, p.golCasa, p.golTrasferta) FROM Partita p JOIN p.squadraCasa c JOIN p.squadraTrasferta tr JOIN p.torneo t WHERE t.id = :id")  
 	List<PartitaDTO> findCalendario(@Param("id") Long id);
+	
+	@Query("SELECT p FROM Partita p LEFT JOIN FETCH p.squadraCasa LEFT JOIN FETCH p.squadraTrasferta LEFT JOIN FETCH p.arbitro  WHERE p.id = :id")
+	Optional<Partita> findByIdconTutto(@Param("id") Long id);
 	
 }

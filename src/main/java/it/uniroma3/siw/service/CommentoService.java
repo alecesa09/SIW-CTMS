@@ -19,6 +19,11 @@ public class CommentoService{
 	private final CommentiRepository commentoRepository;
 	private final PartitaRepository pr;
 	private final CredentialsRepository cr;
+	
+	
+	public Commento findById(Long id) {
+		return commentoRepository.findById(id).get();
+	}
 
 
 
@@ -28,7 +33,7 @@ public class CommentoService{
 		this.cr = cr;
 	}
 
-	public List<Commento> findByPartitaId(long id){
+	public List<Commento> findByPartitaId(Long id){
 		List<Commento> commenti =  commentoRepository.findByPartitaId(id);
 		if (commenti == null) {
 		    commenti = new ArrayList<>();
@@ -36,16 +41,31 @@ public class CommentoService{
 		return commenti;
 	}
 	
-	public void crea(Long idPartita, Commento commento, String usernameLoggato) {   
-		Partita partita = pr.findById(idPartita).orElseThrow(()->new EccezioneCommento("partita non esistente"));
-		
-		Credentials credenziali = cr.findByUsername(usernameLoggato).orElseThrow(() -> new EccezioneCommento("Utente non valido"));
-	    Utente autoreDelCommento = credenziali.getUtente();
+	public void salvaOAggiorna(Long idPartita, Commento commentoDalForm, String usernameLoggato) {   
 	    
-	    commento.setUtente(autoreDelCommento);
-	    commento.setPartita(partita);
+	    Partita partita = pr.findById(idPartita)
+	            .orElseThrow(() -> new EccezioneCommento("Partita non esistente"));
+	    
+	    Credentials credenziali = cr.findByUsername(usernameLoggato)
+	            .orElseThrow(() -> new EccezioneCommento("Utente non valido"));
+	    Utente utenteLoggato = credenziali.getUtente();
 
-	    commentoRepository.save(commento);
-		
+	    if (commentoDalForm.getId() == null) {
+	        commentoDalForm.setUtente(utenteLoggato);
+	        commentoDalForm.setPartita(partita);
+	        commentoRepository.save(commentoDalForm);
+	        
+	    } else {
+	        Commento commentoEsistente = commentoRepository.findById(commentoDalForm.getId())
+	            .orElseThrow(() -> new EccezioneCommento("Commento non trovato"));
+	        
+	        if (commentoEsistente.getUtente().getId() != utenteLoggato.getId()) {
+	            throw new EccezioneCommento("Non sei autorizzato a modificare questo commento");
+	        }
+	        
+	        commentoEsistente.setTesto(commentoDalForm.getTesto());
+	        
+	        commentoRepository.save(commentoEsistente);
+	    }
 	}
 }

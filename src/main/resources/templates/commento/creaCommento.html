@@ -1,13 +1,87 @@
-<DOCTYPE html!>
-<html>
-	<head>
-	</head>
-	<body>
-		<form th:action="@{/commento/crea/{id}(id=${partita.id})}" method="POST">
-		    
-		    <textarea name="testo" placeholder="Scrivi il tuo commento..." required></textarea>
-		    
-		    <button type="submit">Pubblica Commento</button>
-		</form>
-	</body>
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="stylesheet" href="/css/squadra-home.css">
+    <title th:text="${commento.id == null ? 'Nuovo Commento' : 'Modifica Commento'}">Gestione Commento</title>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212; /* Sfondo scuro */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .form-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 { margin-bottom: 1.5rem; text-align: center; color: #f8f9fa; }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            padding: 15px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #007bff; /* Colore highlight al click */
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover { background-color: #0056b3; }
+
+        .error-msg { color: #ff6b6b; font-size: 0.85rem; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2 th:text="${commento.id == null ? 'Scrivi un commento' : 'Modifica il commento'}">Titolo</h2>
+
+        <form th:action="@{/commento/salva/{idPartita}(idPartita=${idPartita})}" method="POST" th:object="${commento}">
+            
+            <div class="error-msg" th:if="${#fields.hasGlobalErrors()}">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+            </div>
+            
+            <input type="hidden" th:field="*{id}" />
+            
+            <div class="error-msg" th:if="${#fields.hasErrors('testo')}" th:errors="*{testo}"></div>
+            
+            <textarea th:field="*{testo}" placeholder="Cosa ne pensi della partita?" required></textarea>
+            
+            <button type="submit" th:text="${commento.id == null ? 'Pubblica Commento' : 'Salva Modifiche'}"></button>
+        </form>
+    </div>
+
+</body>
 </html>

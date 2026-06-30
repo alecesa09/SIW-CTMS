@@ -111,12 +111,23 @@
                     <p style="color: rgba(255,255,255,0.6);">Nessun commento per questa partita.</p>
                 </div>
                 
-                <ul class="lista-verticale" th:if="${!commenti.empty}">
-                    <li th:each="commento : ${commenti}" class="riga-giocatore" style="margin: 0.5rem 0;">
-                        <strong th:text="${commento.utente != null ? commento.utente.nome + ' ' + commento.utente.cognome : 'Anonimo'}">Utente</strong>: 
-                        <span th:text="${commento.testo}">Testo del commento</span>
-                    </li>
-                </ul>
+				<ul class="lista-verticale" th:if="${!commenti.empty}">
+				    <li th:each="commento : ${commenti}" class="riga-giocatore" style="margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;">
+				        
+				        <div style="flex: 1; padding-right: 15px;">
+				            <strong th:text="${commento.utente != null ? commento.utente.nome + ' ' + commento.utente.cognome + ':' : 'Anonimo:'}">Utente</strong> 
+				            <span th:text="${commento.testo}">Testo del commento</span>
+				        </div>
+
+				        <div th:if="${idUtenteLoggato != null and commento.utente != null and idUtenteLoggato == commento.utente.id}">
+				            <a th:href="@{/commento/modifica/{id}(id=${commento.id})}" 
+				               style="color: var(--colore-primario); background-color: var(--colore-accento); font-size: 0.8rem; font-weight: bold; padding: 4px 10px; border-radius: 6px; text-transform: uppercase;">
+				               Modifica
+				            </a>
+				        </div>
+
+				    </li>
+				</ul>
 				
 				<div>
 				    <a th:href="@{/commento/form/{id}(id=${partita.id})}">Aggiungi commento</a>

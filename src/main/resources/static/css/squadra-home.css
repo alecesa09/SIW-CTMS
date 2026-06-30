@@ -39,16 +39,15 @@ a {
     text-decoration: none;
 }
 
-/* --- NAVIGAZIONE UNIFICATA (React & Thymeleaf) --- */
 nav {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* 3 colonne per gestire sia SearchBar che lo spazio vuoto */
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  width: 95%;
+  width: 97%;
   height: 80px;
   position: sticky;
   top: 20px;
-  margin: 1.5rem auto; /* Centra la nav e applica il margine */
+  margin: 1.5rem auto;
   border: 1px solid var(--colore-bordo);
   border-radius: 24px;
   background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
@@ -57,14 +56,12 @@ nav {
   z-index: 100;
 }
 
-/* Colonna 1: Allineata a sinistra */
 .nav-shared-left {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-/* Colonna 2: Al centro (SearchBar o spazio vuoto) */
 .nav-shared-center {
   display: flex;
   justify-content: center;
@@ -96,7 +93,7 @@ nav h1 a {
 
 .menu-destra span {
     display: inline-block;
-    width: auto; /* Permette ai tasti di adattarsi al testo (es. "Ciao, Utente!") */
+    width: auto;
     min-width: 8rem;          
     height: 3rem;          
     background-color: transparent; 

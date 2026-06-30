@@ -23,7 +23,7 @@ public class PartitaService {
 	
 	@Transactional(readOnly = true)
 	public Partita findById(Long id) {
-		return partitaRepository.findById(id).get();
+		return partitaRepository.findByIdconTutto(id).get();
 	}
 
 	@Transactional(readOnly = true)
