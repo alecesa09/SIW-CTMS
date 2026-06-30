@@ -1,5 +1,6 @@
 package it.uniroma3.siw.dto;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ public class PartitaDTO {
     private String logoSquadraCasa;
     private String nomeSquadraTrasferta;
     private String logoSquadraTrasferta;
+    private LocalDate data;
     private LocalTime ora;
     private int golCasa;
     private int golTrasferta;
@@ -30,6 +32,19 @@ public class PartitaDTO {
 		this.golCasa = golCasa;
 		this.golTrasferta = golTrasferta;
 		this.ora=ora;
+	}
+	
+	public PartitaDTO(Long id, Partita.Stato stato,LocalDate data,LocalTime ora, String nomeSquadraCasa, String logoSquadraCasa, String nomeSquadraTrasferta, String logoSquadraTrasferta, int golCasa, int golTrasferta) {
+		this.id = id;
+		this.stato = stato;
+		this.nomeSquadraCasa = nomeSquadraCasa;
+		this.logoSquadraCasa = logoSquadraCasa;
+		this.nomeSquadraTrasferta = nomeSquadraTrasferta;
+		this.logoSquadraTrasferta = logoSquadraTrasferta;
+		this.golCasa = golCasa;
+		this.golTrasferta = golTrasferta;
+		this.ora=ora;
+		this.data=data;
 	}
 	public Long getId() {
 		return id;
@@ -119,6 +134,14 @@ public class PartitaDTO {
 	}
 	public void setOra(LocalTime ora) {
 		this.ora = ora;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 
     

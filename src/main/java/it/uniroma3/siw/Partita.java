@@ -31,7 +31,6 @@ import jakarta.validation.constraints.NotBlank;
 public class Partita {
 	
 	public Partita() {
-		super();
 		this.golCasa = 0;
 		this.golTrasferta = 0;
 	}
@@ -56,19 +55,19 @@ public class Partita {
 	@OneToMany(mappedBy = "partita")
 	private List<Commento> commenti;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="squadraCasaId")
 	private Squadra squadraCasa;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="squadraTrasfertaId")
 	private Squadra squadraTrasferta;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="arbitroId")
 	private Arbitro arbitro;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="torneoId")
 	private Torneo torneo;
 	

@@ -1,12 +1,11 @@
-<nav th:fragment="navBar">
-    <div>
-        <a href="/">
-            <img th:src="@{/images/pallone.jpg}" alt="Logo ctms" class="logo"/>
-        </a>
+<nav th:fragment="navBar"> 
+    
+    <div class="nav-shared-left">
+        <h1><a href="/">CTMS</a></h1>
     </div>
     
-    <h1>CTMS</h1>
-    
+    <div class="nav-shared-center"></div>
+
     <div class="menu-destra">
         
         <span>
@@ -24,8 +23,8 @@
 
         <th:block th:if="${userDetails != null}">
             <span>
-                <a href="/profilo">
-                    Ciao, <strong th:text="${userDetails.username}" style="margin-left: 5px;">Utente</strong>!
+                <a href="/commenti/modifica">
+                    <strong th:text="${userDetails.username}" style="margin-left: 5px;">modifica commenti</strong>modifica commenti!
                 </a>
             </span>
             

@@ -3,7 +3,6 @@ package it.uniroma3.siw.dto;
 public class GiocatoreDto {
 	
 	public GiocatoreDto(Long id, String nome, String cognome) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;

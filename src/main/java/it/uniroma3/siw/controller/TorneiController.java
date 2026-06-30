@@ -5,18 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class AuthController {
-
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "utente/login"; 
-    }
-    
-    @Value("${app.frontend.url}")
+public class TorneiController {
+	@Value("${app.frontend.url}")
     private String frontendUrl;
-
-    @GetMapping("/")
+    @GetMapping("/tornei")
     public String react() {
-        return "redirect:" + frontendUrl; 
+        return "redirect:" + frontendUrl +"/tornei"; 
     }
 }

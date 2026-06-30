@@ -24,13 +24,11 @@ public class PartitaController {
 	}
 
 	@GetMapping("/partita/{id}")
-	public String getPartita(@PathVariable("id") Long id, Model model, Principal principal) {
+	public String getPartita(@PathVariable("id") Long id, Model model) {
 		Partita partita = partitaService.findById(id);
 		model.addAttribute("partita", partita);
-		if (principal != null) {
-	        List<Commento> commenti = commentoService.findByPartitaId(id);
-	        model.addAttribute("commenti", commenti);
-	    } ;
+        List<Commento> commenti = commentoService.findByPartitaId(id);
+        model.addAttribute("commenti", commenti);
 		return "partita/home";
 	}
 }

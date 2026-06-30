@@ -36,15 +36,19 @@ public class Squadra {
 	
 	private String logo;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "squadra")
     private Set<Giocatore> giocatori;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="squadra")
 	List<SquadraIscritta> iscrizioni;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="squadraCasa")
 	List<Partita> partiteIncasa;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="squadraTrasferta")
 	List<Partita> partiteFuoriCasa;
 	

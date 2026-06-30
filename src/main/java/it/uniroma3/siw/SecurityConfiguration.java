@@ -39,15 +39,15 @@ public class SecurityConfiguration {
     @Bean 
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception { 
     	httpSecurity.authorizeHttpRequests(authorize -> { 
-    		authorize.requestMatchers(HttpMethod.GET, "/commento"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
-    		authorize.requestMatchers(HttpMethod.POST, "/commento"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
+    		authorize.requestMatchers(HttpMethod.GET, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
+    		authorize.requestMatchers(HttpMethod.POST, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE);
     		authorize.requestMatchers(HttpMethod.GET, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
     		authorize.requestMatchers(HttpMethod.POST, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
     		authorize.anyRequest().permitAll(); });
 
     	httpSecurity.formLogin(form -> { 
     		form.loginPage("/login").permitAll(); 
-    		form.defaultSuccessUrl("/"); 
+    		form.defaultSuccessUrl("/",false); 
     		form.failureUrl("/login?error=true"); 
     		});
     	

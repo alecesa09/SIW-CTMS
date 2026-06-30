@@ -38,9 +38,11 @@ public class Torneo {
 	private String descrizione;
 	
 	@OneToMany(mappedBy="torneo")
+	@JsonIgnore
 	List<SquadraIscritta> iscrizioni;
 	
 	@OneToMany(mappedBy="torneo")
+	@JsonIgnore
 	List<Partita> partite;
 
 	public long getId() {
