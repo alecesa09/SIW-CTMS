@@ -33,4 +33,10 @@ public class AuthController {
     public String react() {
         return "redirect:" + frontendUrl; 
     }
+    
+    
+    @GetMapping("/error")
+    public String error() {
+    	return "/error";
+    }
 }

@@ -35,6 +35,9 @@ public class Utente {
 	@OneToMany(mappedBy="utente")
 	private List<Commento> commenti;
 	
+	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="utente") 
+	private Credentials credenziali;
+	
 	public Long getId() {
 		return id;
 	}
@@ -94,5 +97,13 @@ public class Utente {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Credentials getCredenziali() {
+		return credenziali;
+	}
+
+	public void setCredenziali(Credentials credenziali) {
+		this.credenziali = credenziali;
 	}
 }

@@ -7,8 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDate;
+
+import it.uniroma3.siw.validation.NotFutureYear;
 
 
 @Entity
@@ -26,8 +29,10 @@ public class Giocatore {
 	@JoinColumn(name="squadra_id")
     private Squadra squadra;
     
+    @Min(1930)
+    @NotFutureYear
     private LocalDate nascita;
-    
+    @NotBlank
     private String nazionalita;
     
     public Long getId() {

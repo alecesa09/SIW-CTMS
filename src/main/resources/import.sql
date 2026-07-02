@@ -193,7 +193,7 @@ INSERT INTO utente (id, nome, cognome, email) VALUES (2, 'mario', 'rossi', 'mari
 INSERT INTO utente (id, nome, cognome, email) VALUES (3, 'giulia', 'bianchi', 'giulia.bianchi@fake.it');
 INSERT INTO utente (id, nome, cognome, email) VALUES (4, 'luca', 'verdi', 'luca.verdi@fake.it');
 
-INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (1, 'alessio', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'ADMIN', 1);
+INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (1, 'cesa', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'ADMIN', 1);
 INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (2, 'mariorossi', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'USER', 2);
 INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (3, 'giuliab', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'USER', 3);
 INSERT INTO credentials (id, username, psw, ruolo, utente_id) VALUES (4, 'lucav', '$2a$12$/MlAeF6XHN.QL/.FVlWx2OmwJMc.nqOHoZ6cHr5SMhAfPeHaQjq82', 'USER', 4);

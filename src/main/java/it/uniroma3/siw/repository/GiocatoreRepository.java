@@ -15,4 +15,7 @@ public interface GiocatoreRepository extends JpaRepository<Giocatore, Long>{
     
     
     public List<Giocatore> findTop5ByNomeContainingIgnoreCaseOrCognomeContainingIgnoreCase(String parolaNome, String parolaCognome);
+    
+    @Query("SELECT g FROM Giocatore g JOIN FETCH g.squadra WHERE g.id = :id")
+    public Giocatore findGiocatoreFetchSquadra(@Param("id") Long id);
 }

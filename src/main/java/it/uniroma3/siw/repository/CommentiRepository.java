@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import it.uniroma3.siw.Commento;
 
 public interface CommentiRepository extends JpaRepository<Commento, Long>{
-	@EntityGraph(attributePaths = {"utente"})
+	@EntityGraph(attributePaths = {"utente","utente.credenziali"})
 	public List<Commento> findByPartitaId(Long id);
 }

@@ -18,7 +18,7 @@ public class GiocatoreService {
     }
     @Transactional(readOnly = true)
 	public Giocatore findGiocatoreById(long id){
-		Giocatore giocatore = this.giocatoreRepository.findById(id).get();
+		Giocatore giocatore = this.giocatoreRepository.findGiocatoreFetchSquadra(id);
 		return giocatore;
 	}
 	
@@ -27,4 +27,6 @@ public class GiocatoreService {
 		List<GiocatoreDto> giocatori = this.giocatoreRepository.findParametriBySquadraId(id);
 		return giocatori;
 	}
+	
+
 }
