@@ -7,6 +7,8 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import it.uniroma3.siw.validation.NotFutureYear;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +31,7 @@ public class Squadra {
 	private String nome;
 	
 	@Min(1700)
-	@Max(2100)
+	@NotFutureYear
 	private Integer anno;
 	
 	private String citta;

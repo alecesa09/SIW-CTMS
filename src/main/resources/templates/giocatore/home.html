@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dettaglio Giocatore</title>
+    <link rel="stylesheet" href="/css/squadra-home.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .giocatore-container {
+            display: flex;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .giocatore-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .giocatore-card h1 {
+            color: #f8f9fa;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+
+        .giocatore-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .squadra-link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .squadra-link:hover {
+            color: #0056b3;
+        }
+
+        .btn-indietro {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-indietro:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav th:replace="fragments/base.html :: navBar"></nav>
+
+    <div class="giocatore-container">
+        <div th:if="${giocatore}" class="giocatore-card" th:object="${giocatore}">
+            <h1 th:text="*{nome} + ' ' + *{cognome}">Nome Cognome</h1>
+            
+            <div class="giocatore-info">
+                <p><strong>Data di Nascita:</strong> <span th:text="*{nascita}"></span></p>
+                <p><strong>Nazionalità:</strong> <span th:text="*{nazionalita}"></span></p>
+                <p th:if="*{squadra}">
+                    <strong>Squadra:</strong> 
+                    <a th:href="@{/squadra/{id}(id=*{squadra.id})}" class="squadra-link" th:text="*{squadra.nome}">Nome Squadra</a>
+                </p>
+            </div>
+
+            <a class="btn-indietro" href="javascript:history.back()">Indietro</a>
+        </div>
+
+        <div th:if="${giocatore == null}" class="giocatore-card">
+            <h2>Giocatore non trovato</h2>
+            <a class="btn-indietro" href="/">Torna alla Home</a>
+        </div>
+    </div>
+</body>
+</html>

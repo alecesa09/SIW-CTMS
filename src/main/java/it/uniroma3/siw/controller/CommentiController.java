@@ -56,7 +56,8 @@ public class CommentiController {
 	@GetMapping("commento/modifica/{id}")
 	public String modificaCommento(@PathVariable("id") Long id, Model model,Principal principal) {
 	    Commento commento = commentoService.findById(id);
-	    if (!commento.getUtente().getEmail().equals(principal.getName())) {
+	    if (!commento.getUtente().getCredenziali().getUsername().equals(principal.getName())) {
+	    	System.out.println(commento.getUtente().getNome() + principal.getName());
 	        return "redirect:/";
 	    }
 	    model.addAttribute("commento", commento);

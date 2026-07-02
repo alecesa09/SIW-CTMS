@@ -50,24 +50,18 @@ public class SecurityConfiguration {
     	httpSecurity.formLogin(form -> form
     		    .loginPage("/login")
     		    .successHandler((request, response, authentication) -> {
-    		        // 1. Controlla se c'era una pagina privata bloccata in attesa (Scenario 1) [verificato]
     		        SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
     		        
     		        if (savedRequest != null) {
-    		            // Lascia fare a Spring, ti manderà alla pagina privata richiesta
     		            new SavedRequestAwareAuthenticationSuccessHandler().onAuthenticationSuccess(request, response, authentication);
     		            return;
     		        }
-
-    		        // 2. Scenario 2: L'utente ha premuto il tasto "Accedi" spontaneamente
     		        String urlProvenienza = (String) request.getSession().getAttribute("url_pre_login");
     		        
     		        if (urlProvenienza != null) {
-    		            // Pulisce la memoria e lo rimanda da dove veniva [verificato]
     		            request.getSession().removeAttribute("url_pre_login");
     		            response.sendRedirect(urlProvenienza);
     		        } else {
-    		            // Paracadute finale: se tutto va male, Home Page
     		            response.sendRedirect("/");
     		        }
     		    })
