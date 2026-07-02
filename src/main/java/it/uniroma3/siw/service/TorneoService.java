@@ -1,12 +1,14 @@
 package it.uniroma3.siw.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Torneo;
 import it.uniroma3.siw.dto.TorneoDTO;
+
 import it.uniroma3.siw.repository.TorneoRepository;
 
 
@@ -21,8 +23,8 @@ public class TorneoService {
     
     @Transactional(readOnly = true)
 	public Torneo findById(long id){
-    	Torneo torneo = this.torneoRepository.findById(id).get();
-		return torneo;
+    	Optional<Torneo> torneo = this.torneoRepository.findById(id);
+   		 return torneo.get();
 	}
     @Transactional(readOnly = true)
 	public List<TorneoDTO> findInfoTornei() {

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class TorneiController {
+	
 	@Value("${app.frontend.url}")
     private String frontendUrl;
     @GetMapping("/tornei")

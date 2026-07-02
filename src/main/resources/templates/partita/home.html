@@ -61,10 +61,6 @@
 <body>
     <nav th:replace="fragments/base.html :: navBar"></nav>
 
-    <div th:if="${partita == null}" class="error" style="margin: 2rem; text-align: center;">
-        Nessuna partita trovata con questo identificativo.
-    </div>
-
     <div th:if="${partita != null}" th:object="${partita}">
         
         <div class="tabellone-partita">
