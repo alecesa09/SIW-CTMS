@@ -1,29 +1,29 @@
 
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (1, 'Genoa', 1893, 'Genova', '/immagini/genova.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (2, 'Udinese', 1896, 'Udine', '/immagini/udinese.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (3, 'Juventus', 1897, 'Torino', '/immagini/juventus.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (4, 'Milan', 1899, 'Milano', '/immagini/milan.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (5, 'Lazio', 1900, 'Roma', '/immagini/lazio.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (6, 'Roma', 1927, 'Roma', '/immagini/roma.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (7, 'Napoli', 1926, 'Napoli', '/immagini/napoli.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (8, 'Fiorentina', 1926, 'Firenze', '/immagini/fiorentina.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (9, 'Atalanta', 1907, 'Bergamo', '/immagini/atalanta.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (10, 'Bologna', 1909, 'Bologna', '/immagini/bologna.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (11, 'Torino', 1906, 'Torino', '/immagini/torino.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (12, 'Sampdoria', 1946, 'Genova', '/immagini/sampdoria.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (13, 'Cagliari', 1920, 'Cagliari', '/immagini/cagliari.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (14, 'Verona', 1903, 'Verona', '/immagini/verona.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (15, 'Parma', 1913, 'Parma', '/immagini/parma.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (16, 'Inter', 1908, 'Milano', '/immagini/inter.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (17, 'Monza', 1912, 'Monza', '/immagini/monza.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (18, 'Lecce', 1908, 'Lecce', '/immagini/lecce.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (19, 'Empoli', 1920, 'Empoli', '/immagini/empoli.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (20, 'Frosinone', 1928, 'Frosinone', '/immagini/frosinone.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (21, 'Salernitana', 1919, 'Salerno', '/immagini/salernitana.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (22, 'Sassuolo', 1920, 'Sassuolo', '/immagini/sassuolo.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (23, 'Cremonese', 1903, 'Cremona', '/immagini/cremonese.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (24, 'Venezia', 1907, 'Venezia', '/immagini/venezia.png');
-INSERT INTO squadra (id, nome, anno, citta, logo) VALUES (25, 'Spezia', 1906, 'La Spezia', '/immagini/spezia.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (1, 'Genoa', '1968-06-26', 'Genova', '/immagini/genova.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (2, 'Udinese', '1978-01-09', 'Udine', '/immagini/udinese.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (3, 'Juventus', '1993-12-20', 'Torino', '/immagini/juventus.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (4, 'Milan', '1968-06-26', 'Milano', '/immagini/milan.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (5, 'Lazio', '1993-12-20', 'Roma', '/immagini/lazio.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (6, 'Roma', '1978-01-09', 'Roma', '/immagini/roma.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (7, 'Napoli', '1968-06-26', 'Napoli', '/immagini/napoli.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (8, 'Fiorentina', '1993-12-20', 'Firenze', '/immagini/fiorentina.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (9, 'Atalanta', '1993-12-20', 'Bergamo', '/immagini/atalanta.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (10, 'Bologna', '1993-12-20', 'Bologna', '/immagini/bologna.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (11, 'Torino', '1968-06-26', 'Torino', '/immagini/torino.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (12, 'Sampdoria', '1978-01-09', 'Genova', '/immagini/sampdoria.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (13, 'Cagliari','1978-01-09', 'Cagliari', '/immagini/cagliari.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (14, 'Verona', '1993-12-20', 'Verona', '/immagini/verona.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (15, 'Parma', '1968-06-26', 'Parma', '/immagini/parma.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (16, 'Inter', '1993-12-20', 'Milano', '/immagini/inter.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (17, 'Monza', '1993-12-20', 'Monza', '/immagini/monza.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (18, 'Lecce', '1968-06-26', 'Lecce', '/immagini/lecce.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (19, 'Empoli', '1993-12-20', 'Empoli', '/immagini/empoli.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (20, 'Frosinone', '1978-01-09', 'Frosinone', '/immagini/frosinone.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (21, 'Salernitana', '1993-12-20', 'Salerno', '/immagini/salernitana.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (22, 'Sassuolo', '1968-06-26', 'Sassuolo', '/immagini/sassuolo.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (23, 'Cremonese', '1993-12-20', 'Cremona', '/immagini/cremonese.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (24, 'Venezia', '1968-06-26', 'Venezia', '/immagini/venezia.png');
+INSERT INTO squadra (id, nome, fondazione, citta, logo) VALUES (25, 'Spezia', '1978-01-09', 'La Spezia', '/immagini/spezia.png');
 
 INSERT INTO torneo (id, nome, anno, descrizione) VALUES (1, 'Torneo Estivo Roma 2026', 2026, 'Torneo amatoriale a 11 per le squadre della capitale.');
 INSERT INTO torneo (id, nome, anno, descrizione) VALUES (2, 'Coppa Italia Nazionale 2026', 2026, 'Torneo a eliminazione diretta per tutte le 25 squadre iscritte.');
@@ -71,6 +71,7 @@ INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pare
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (38, 2, 23, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (39, 2, 24, 0, 0, 0, 0, 0);
 INSERT INTO Squadra_Iscritta (id, torneo_id, squadra_id, giocate, vittorie, pareggi, sconfitte, punti) VALUES (40, 2, 25, 0, 0, 0, 0, 0);
+
 
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (1, 'Marco', 'Rossi', '1990-05-12', 1, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (2, 'Luca', 'Bianchi', '1992-08-24', 1, 'Italia');
@@ -181,6 +182,7 @@ INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALU
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (83, 'Mbala', 'Nzola', '1996-08-18', 25, 'Angola');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (84, 'Emmanuel', 'Gyasi', '1994-01-11', 25, 'Ghana');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (85, 'Giulio', 'Maggiore', '1998-03-12', 25, 'Italia');
+
 
 INSERT INTO arbitro (id, nome, cognome, codice_arbitrale, nascita, nazionalita) VALUES (1, 'Pierluigi', 'Collina',1, '1960-10-30', 'Italia');
 INSERT INTO arbitro (id, nome, cognome, codice_arbitrale, nascita, nazionalita) VALUES (2, 'Nicola', 'Rizzoli',3,'1987-07-27', 'Italia');

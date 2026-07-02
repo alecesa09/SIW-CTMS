@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dettaglio Squadra</title>
-    <link rel="stylesheet" href="/css/squadra-home.css">
+    <link rel="stylesheet" href="/css/CTMS.css">
 </head>
 <body>
     <nav th:replace="fragments/base.html :: navBar"></nav>
@@ -13,7 +13,7 @@
         <div>
             <h1 th:text="*{nome}">Nome Squadra</h1>
             <div class="squadra-info">
-                <p><strong>Anno di fondazione:</strong> <span th:text="*{anno}"></span></p>
+                <p><strong>Anno di fondazione:</strong> <span th:text="*{fondazione}"></span></p>
                 <p><strong>Città:</strong> <span th:text="*{citta}"></span></p>
             </div>
         </div>
