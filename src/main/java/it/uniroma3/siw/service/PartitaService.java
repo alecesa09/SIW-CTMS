@@ -2,6 +2,7 @@ package it.uniroma3.siw.service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.dto.PartitaDTO;
+import it.uniroma3.siw.exception.GiocatoreNonTrovatoException;
+import it.uniroma3.siw.exception.PartitaNonTrovataException;
 import it.uniroma3.siw.repository.PartitaRepository;
 
 @Service
@@ -23,7 +26,12 @@ public class PartitaService {
 	
 	@Transactional(readOnly = true)
 	public Partita findById(Long id) {
-		return partitaRepository.findByIdconTutto(id).get();
+		Optional<Partita> partita = partitaRepository.findByIdconTutto(id);
+		 if (partita.isPresent()) {
+		 return partita.get();
+		 } else {
+		 throw new PartitaNonTrovataException(id);
+		 }
 	}
 
 	@Transactional(readOnly = true)

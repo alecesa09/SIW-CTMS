@@ -34,8 +34,9 @@ public class TorneoController {
 	@GetMapping("/rest/torneo/{id}")
 	public Torneo show(@PathVariable("id") Long id) {
     	Torneo torneo = this.torneoService.findById(id);
+    	System.out.println(torneo);
 	    return torneo;
-	}
+    	}
     @GetMapping("/rest/tornei")
 	public List<TorneoDTO> list( Model model) {
 	    List<TorneoDTO> tornei = this.torneoService.findInfoTornei();

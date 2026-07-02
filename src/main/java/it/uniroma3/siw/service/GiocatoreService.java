@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.dto.GiocatoreDto;
+import it.uniroma3.siw.exception.GiocatoreNonTrovatoException;
 import it.uniroma3.siw.repository.GiocatoreRepository;
 
 @Service
@@ -19,6 +20,9 @@ public class GiocatoreService {
     @Transactional(readOnly = true)
 	public Giocatore findGiocatoreById(long id){
 		Giocatore giocatore = this.giocatoreRepository.findGiocatoreFetchSquadra(id);
+		if(giocatore == null) {
+			throw(new GiocatoreNonTrovatoException(id));
+		}
 		return giocatore;
 	}
 	
