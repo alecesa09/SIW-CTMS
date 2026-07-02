@@ -8,4 +8,6 @@ import it.uniroma3.siw.Credentials;
 
 public interface CredentialsRepository extends JpaRepository<Credentials, Long> {
 	public Optional<Credentials> findByUsername(String username);
+	
+	public boolean existsByUsername(String username);
 }

@@ -1,5 +1,6 @@
 package it.uniroma3.siw;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -30,9 +31,8 @@ public class Squadra {
 	@NotBlank
 	private String nome;
 	
-	@Min(1700)
 	@NotFutureYear
-	private Integer anno;
+	private LocalDate fondazione;
 	
 	private String citta;
 	
@@ -68,14 +68,6 @@ public class Squadra {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Integer getAnno() {
-		return anno;
-	}
-
-	public void setAnno(Integer anno) {
-		this.anno = anno;
 	}
 
 	public String getCitta() {
@@ -141,5 +133,17 @@ public class Squadra {
 
 	public void setPartiteFuoriCasa(List<Partita> partiteFuoriCasa) {
 		this.partiteFuoriCasa = partiteFuoriCasa;
+	}
+
+	public LocalDate getFondazione() {
+		return fondazione;
+	}
+
+	public void setFondazione(LocalDate fondazione) {
+		this.fondazione = fondazione;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

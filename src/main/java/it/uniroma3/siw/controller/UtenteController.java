@@ -2,6 +2,7 @@ package it.uniroma3.siw.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,19 +10,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import it.uniroma3.siw.Credentials;
 import it.uniroma3.siw.Utente;
+import it.uniroma3.siw.exception.EmailUtenteDuplicataException;
 import it.uniroma3.siw.service.CredentialService;
 import it.uniroma3.siw.service.UtenteService;
+import jakarta.validation.Valid;
 
 @Controller
 public class UtenteController {
 	private final UtenteService utenteService;
 	private final CredentialService credentialService;
-    private PasswordEncoder passwordEncoder;
+
 	
-	public UtenteController(UtenteService utenteService,CredentialService credentialService,PasswordEncoder passwordEncoder) {
+	public UtenteController(UtenteService utenteService,CredentialService credentialService) {
 		this.utenteService = utenteService;
-		this.credentialService =credentialService;
-		this.passwordEncoder = passwordEncoder;
+		this.credentialService =credentialService;	
 	}
 	
 	@GetMapping("/registrazione")
@@ -32,12 +34,24 @@ public class UtenteController {
 	}
 	
 	@PostMapping("/registrazione")
-	public String completaRegistrazione(@ModelAttribute Utente utente, @ModelAttribute Credentials credentials) {
-		credentials.setUtente(utente);
-		String passwordCifrata = passwordEncoder.encode(credentials.getPsw());
-        credentials.setPsw(passwordCifrata);
-        credentialService.saveCredentials(credentials);	
-		return "redirect:/login";
+	public String completaRegistrazione(
+	        @Valid @ModelAttribute("utente") Utente utente, 
+	        BindingResult utenteBindingResult,
+	        @Valid @ModelAttribute("credentials") Credentials credentials, 
+	        BindingResult credentialsBindingResult,
+	        Model model) {
+		if(credentialsBindingResult.hasErrors() || utenteBindingResult.hasErrors()) {
+			return "/utente/registrazione";
+		}
+		 try {
+			 credentialService.saveCredentials(credentials,utente);
+			 return "redirect:/login";
+		 }
+		 catch (RuntimeException e) {
+			 utenteBindingResult.reject("errore", e.getMessage());
+			 return "/utente/registrazione";
+		 }
+		
 	}
 	
 }

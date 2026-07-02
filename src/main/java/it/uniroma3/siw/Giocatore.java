@@ -29,7 +29,7 @@ public class Giocatore {
 	@JoinColumn(name="squadra_id")
     private Squadra squadra;
     
-    @Min(1930)
+    
     @NotFutureYear
     private LocalDate nascita;
     @NotBlank
