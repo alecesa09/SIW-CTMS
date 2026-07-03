@@ -1,0 +1,67 @@
+.classifica {
+    margin-top: 5vh;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+    box-shadow: 0 12px 28px var(--sfumatura);
+    border: 1px solid var(--colore-bordo);
+    color: white;
+}
+.classifica h2{
+    display: flex;
+    justify-content: center;
+}
+
+.squadra {
+    display: grid;
+    grid-template-columns: 30px 50px 1fr 40px 40px 40px 40px 40px; 
+    align-items: center; 
+    width: 100%;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.squadra:last-child {
+    border-bottom: none;
+}
+
+.squadra:hover:not(.header) {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    cursor: default;
+}
+
+.header {
+    font-weight: bold;
+    color: #a0aab2;
+    border-bottom: 2px solid white;
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo {
+    width: 35px;
+    height: 35px;
+    object-fit: contain; /* Evita che il logo si deformi */
+}
+
+.nomeLink {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.stat {
+    text-align: center;
+}
+.posizione {
+    color: #a0aab2;
+    font-weight: bold;
+    text-align: center;
+}

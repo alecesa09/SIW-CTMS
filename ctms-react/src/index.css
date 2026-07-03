@@ -1,0 +1,31 @@
+:root {
+  --colore-primario: #071b15;
+  --colore-secondario: #17b978;
+  --colore-accento: #2dd4bf;
+  --colore-accento-soft: rgba(45, 212, 191, 0.14);
+  --colore-sfondo-scuro: #030b09;
+  --colore-grigio-nav: rgba(5, 13, 10, 0.86);
+  --colore-grigio-chiaro: rgba(21, 41, 33, 0.95);
+  --colore-grigio-chiarissimo: rgba(255, 255, 255, 0.09);
+  --sfumatura: rgba(0, 0, 0, 0.28);
+  --colore-testo: #f4fff9;
+  --colore-testo-secondario: #a8c0b3;
+  --colore-bordo: rgba(255, 255, 255, 0.12);
+  color: var(--colore-testo);
+  background-color: var(--colore-primario);
+  font-family: Inter, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--colore-primario);
+}

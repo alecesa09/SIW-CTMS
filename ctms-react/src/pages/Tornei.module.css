@@ -1,0 +1,59 @@
+.contenitore{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+
+.titolo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+    color: var(--colore-accento-soft);
+}
+.titolo h1{
+    color: var(--colore-testo-secondario);
+}
+
+.filter{
+    color: var(--colore-testo);
+    margin-top: 5vh;
+    width:10%;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+    box-shadow: 0 12px 28px var(--sfumatura);
+    border: 1px solid var(--colore-bordo);
+}
+.tornei{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.torneo{
+    margin-top: 5vh;
+    width:35%;
+    display: flex;
+    padding:10px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 18px;
+    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+    box-shadow: 0 12px 28px var(--sfumatura);
+    border: 1px solid var(--colore-bordo);
+}
+.torneo a {
+    text-decoration: none;
+    color: inherit; 
+}
+
+.torneo:hover{
+    background-color: var(--colore-accento-soft);
+}
