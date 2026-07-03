@@ -1,0 +1,106 @@
+.contenitore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Ripristinata la griglia per mantenere il posizionamento identico a Thymeleaf [verificato] */
+.nav {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    border: 1px solid var(--colore-bordo);
+    border-radius: 24px;
+    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+    width: 95%;
+    height: 80px;
+    position: sticky;
+    top: 20px;
+    box-shadow: 0 14px 35px var(--sfumatura);
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+/* Rimossa la copia duplicata, tenuta la versione unificata */
+.figlio {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.linkSenzaStile {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.navsharedleft {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navsharedcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.menudestra {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 0.5rem;
+}
+.menudestra span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    height: 3rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.menudestra span a{
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    width: 100%;             
+    height: 100%;
+    padding: 0 10px;                   
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--colore-testo);
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.menudestra span:hover {
+    background-color: var(--colore-grigio-chiarissimo);
+}
+
+.titolo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.titolo a {
+    color: var(--colore-accento);
+}

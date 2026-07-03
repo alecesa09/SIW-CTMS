@@ -1,0 +1,52 @@
+.listContainer {
+  padding: 24px 12px 0;
+  width: 100%;
+  border-radius: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--colore-testo);
+  margin-top: 24px;
+}
+
+.listContainer h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  color: var(--colore-testo);
+  text-align: center;
+}
+
+.listaTornei {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.torneo {
+  width: 100%;
+  border-radius: 18px;
+  background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 12px 28px var(--sfumatura);
+  border: 1px solid var(--colore-bordo);
+}
+
+.nomeTorneo {
+  font-size: 1rem;
+  color: var(--colore-testo);
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, var(--colore-accento) 0%, var(--colore-secondario) 100%);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}

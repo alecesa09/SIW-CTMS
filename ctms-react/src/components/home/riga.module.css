@@ -1,0 +1,54 @@
+.riga {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  color: var(--colore-testo);
+  text-decoration: none;
+  border-top: 1px solid var(--colore-bordo);
+  gap: 10px;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.riga:hover {
+  background-color: var(--colore-grigio-chiarissimo);
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.squadraCasa {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.squadraTrasferta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.inCorso {
+  color: #5eea7d;
+  font-weight: 700;
+}
+
+.annullata {
+  color: #ff8080;
+  font-weight: 700;
+}
+
+.sospesa {
+  color: #84a9ff;
+  font-weight: 700;
+}

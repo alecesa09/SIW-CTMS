@@ -1,0 +1,39 @@
+
+h3{
+    font-size:small;
+}
+
+.lista{
+    margin:0px;
+    padding:0px;
+}
+.titoloGruppo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    margin: 0px;
+    background-color: var(--colore-grigio-chiaro);
+}
+
+.rigaSquadra {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+}
+
+.rigaSquadra img {
+  width: 20%;
+  height: auto;
+  margin-right: 10px;
+}
+
+.Gruppo {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+
