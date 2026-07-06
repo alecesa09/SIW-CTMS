@@ -30,4 +30,9 @@ public class TorneoService {
 	public List<TorneoDTO> findInfoTornei() {
         return (List<TorneoDTO>) torneoRepository.FindInfoTornei();
     }
+    
+    @Transactional(readOnly = true)
+   	public List<Long> findIdTorneiBySquadra(Long id) {
+           return torneoRepository.findIdtorneiBySquadra(id);
+       }
 }

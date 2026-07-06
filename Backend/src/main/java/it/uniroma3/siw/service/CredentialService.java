@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Credentials;
 import it.uniroma3.siw.Utente;
@@ -28,17 +29,17 @@ public class CredentialService {
 		this.credentialRepository = credentialRepository;
 		this.utenteRepository = utenteRepository;
 	}
-
+	@Transactional(readOnly = true)
 	public Credentials getCredentials(Long id) {
 		return credentialRepository.findById(id).get();
 		
 	}
-	
+	@Transactional(readOnly = true)
 	public Credentials getCredentials(String username) {
 		return credentialRepository.findByUsername(username).get();
 	}
 	
-	public Credentials saveCredentials(Credentials credentials, Utente utente) throws EmailUtenteDuplicataException {
+	public Credentials saveCredentials(Credentials credentials, Utente utente) throws UsernameDuplicatoException,EmailUtenteDuplicataException {
 		if(credentialRepository.existsByUsername(credentials.getUsername())) {
 			throw( new UsernameDuplicatoException());
 		}
@@ -52,7 +53,8 @@ public class CredentialService {
 		credentials.setRuolo(Credentials.DEFAULT_ROLE);
 		return credentialRepository.save(credentials);
 	}
-
+	
+	@Transactional(readOnly = true)
 	public Credentials findByUsername(String usernameLoggato) {
 		return credentialRepository.findByUsername(usernameLoggato).get();
 	}

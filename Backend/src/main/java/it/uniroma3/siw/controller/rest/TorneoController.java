@@ -3,20 +3,16 @@ package it.uniroma3.siw.controller.rest;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import it.uniroma3.siw.Partita;
-import it.uniroma3.siw.Squadra;
 import it.uniroma3.siw.Torneo;
 import it.uniroma3.siw.dto.ClassificaDTO;
 import it.uniroma3.siw.dto.PartitaDTO;
 import it.uniroma3.siw.dto.TorneoDTO;
 import it.uniroma3.siw.service.PartitaService;
 import it.uniroma3.siw.service.SquadraIscrittaService;
-import it.uniroma3.siw.service.SquadraService;
 import it.uniroma3.siw.service.TorneoService;
 
 @RestController

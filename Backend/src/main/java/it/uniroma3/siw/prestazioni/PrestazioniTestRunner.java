@@ -10,8 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import it.uniroma3.siw.repository.TorneoRepository;
-import it.uniroma3.siw.Torneo;
-import it.uniroma3.siw.SquadraIscritta;
+
 
 @Component
 public class PrestazioniTestRunner implements CommandLineRunner {

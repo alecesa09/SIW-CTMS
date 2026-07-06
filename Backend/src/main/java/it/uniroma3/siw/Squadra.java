@@ -5,18 +5,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import it.uniroma3.siw.validation.NotFutureYear;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @JsonIdentityInfo(
@@ -32,6 +32,7 @@ public class Squadra {
 	private String nome;
 	
 	@NotFutureYear
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fondazione;
 	
 	private String citta;
@@ -43,23 +44,19 @@ public class Squadra {
     private Set<Giocatore> giocatori;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="squadra")
-	List<SquadraIscritta> iscrizioni;
+	@OneToMany(mappedBy = "squadra", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<SquadraIscritta> iscrizioni;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="squadraCasa")
-	List<Partita> partiteIncasa;
+	private List<Partita> partiteIncasa;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="squadraTrasferta")
-	List<Partita> partiteFuoriCasa;
+	private List<Partita> partiteFuoriCasa;
 	
-	public long getId() {
+	public Long getId() {
 		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getNome() {

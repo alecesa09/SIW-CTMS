@@ -99,6 +99,12 @@ public class  SquadraIscritta {
 		SquadraIscritta other = (SquadraIscritta) obj;
 		return Objects.equals(id, other.id);
 	}
-
-    
+	public SquadraIscritta(Torneo torneo, Squadra squadra) {
+		this.torneo = torneo;
+		this.squadra = squadra;;
+	}
+	
+	public SquadraIscritta() {
+		
+	};    
 }
