@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form creazione o modifica Squadra</title>
+        <link rel="stylesheet" href="/css/CTMS.css">
+    </head>
+    <body>
+        <form th:action="@{/admin/registrazione/squadra}" method="POST">
+            <div th:object="${squadra}">
+				<ul style="color: red;" th:if="${#fields.hasGlobalErrors()}">
+					    <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
+				</ul>
+				<input type="hidden" th:field="*{id}" />
+			    <div>
+					<label>Nome:</label>
+					<span><input type="text" th:field="*{nome}" /></span>
+					<span style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				</div>
+				<div>
+					<label>Fondazione:</label>
+					<span><input type="date" th:field="*{fondazione}" /></span>
+					<span style="color: red;" th:if="${#fields.hasErrors('fondazione')}" th:errors="*{fondazione}"></span>
+				</div>
+				<div>
+					<label>Citta:</label>
+					<span><input type="text" th:field="*{citta}" /></span>
+					<span style="color: red;" th:if="${#fields.hasErrors('citta')}" th:errors="*{citta}"></span>
+				</div>
+                <div>
+					<label>Logo(url):</label>
+					<span><input type="text" th:field="*{logo}" /></span>
+					<span style="color: red;" th:if="${#fields.hasErrors('logo')}" th:errors="*{logo}"></span>
+				</div>
+			</div>	
+			<fieldset>
+			    <legend>Seleziona i tornei:</legend>
+			    <div th:each="torneo : ${tornei}">
+			        <input type="checkbox" 
+			            th:id="|torneo_${torneo.id}|" 
+			            name="tornei" 
+			            th:value="${torneo.id}"
+						th:checked="${IscrizioniCorrenti != null and #lists.contains(IscrizioniCorrenti, torneo.id)}">
+			        <label th:for="|torneo_${torneo.id}|" th:text="|${torneo.nome} (${torneo.anno})|">Nome Torneo</label>
+			    </div>
+			</fieldset>
+		
+   			<button type="submit">Registra squadra</button>
+        </form>
+    </body>
+</html>

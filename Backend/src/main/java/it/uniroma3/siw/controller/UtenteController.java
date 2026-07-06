@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import it.uniroma3.siw.Credentials;
 import it.uniroma3.siw.Utente;
 import it.uniroma3.siw.exception.EmailUtenteDuplicataException;
+import it.uniroma3.siw.exception.UsernameDuplicatoException;
 import it.uniroma3.siw.service.CredentialService;
 import it.uniroma3.siw.service.UtenteService;
 import jakarta.validation.Valid;
@@ -47,7 +48,7 @@ public class UtenteController {
 			 credentialService.saveCredentials(credentials,utente);
 			 return "redirect:/login";
 		 }
-		 catch (RuntimeException e) {
+		 catch (EmailUtenteDuplicataException | UsernameDuplicatoException e) {
 			 utenteBindingResult.reject("errore", e.getMessage());
 			 return "/utente/registrazione";
 		 }
