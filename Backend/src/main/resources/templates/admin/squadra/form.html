@@ -7,7 +7,8 @@
         <link rel="stylesheet" href="/css/CTMS.css">
     </head>
     <body>
-        <form th:action="@{/admin/registrazione/squadra}" method="POST">
+        <!-- Aggiunto enctype="multipart/form-data" qui -->
+        <form th:action="@{/admin/registrazione/squadra}" method="POST" enctype="multipart/form-data">
             <div th:object="${squadra}">
 				<ul style="color: red;" th:if="${#fields.hasGlobalErrors()}">
 					    <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
@@ -28,12 +29,14 @@
 					<span><input type="text" th:field="*{citta}" /></span>
 					<span style="color: red;" th:if="${#fields.hasErrors('citta')}" th:errors="*{citta}"></span>
 				</div>
-                <div>
-					<label>Logo(url):</label>
-					<span><input type="text" th:field="*{logo}" /></span>
-					<span style="color: red;" th:if="${#fields.hasErrors('logo')}" th:errors="*{logo}"></span>
-				</div>
+				
+                <!-- Rimosso il tag <form> annidato, mantenuto solo l'input -->
+			    <div>
+			        <label for="file">Seleziona un file (es. logo squadra):</label>
+			        <input type="file" id="file" name="file" />
+			    </div>
 			</div>	
+
 			<fieldset>
 			    <legend>Seleziona i tornei:</legend>
 			    <div th:each="torneo : ${tornei}">

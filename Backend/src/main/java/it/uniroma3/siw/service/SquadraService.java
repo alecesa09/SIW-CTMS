@@ -1,5 +1,10 @@
 package it.uniroma3.siw.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -7,9 +12,12 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.Squadra;
 import it.uniroma3.siw.SquadraIscritta;
@@ -49,66 +57,113 @@ public class SquadraService {
         return (List<Squadra>) squadraRepository.findAll();
     }
 	
-	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
-	public void saveSquadra(Squadra squadra, List<Long> torneiId) throws TorneoNotFoundException {
-	    logger.info("transazione modifica e creazione squadra iniziata con questi tornei: id={}", torneiId);
+	@Value("${app.upload.dir}")
+	private String uploadDir;
+	
+	private String salvaImmagineSuDisco(MultipartFile file) throws IOException {
+	    if (file == null || file.isEmpty()) {
+	        return null;
+	    }
+
+	    String nomeFile = StringUtils.cleanPath(file.getOriginalFilename());
+	    Path cartellaUpload = Paths.get(uploadDir);
 	    
-	    // SICUREZZA: Se torneiId è null (nessuna spunta), creiamo una lista vuota per evitare NullPointerException
+	    if (!Files.exists(cartellaUpload)) {
+	        Files.createDirectories(cartellaUpload);
+	    }
+	    
+	    Path percorsoCompleto = cartellaUpload.resolve(nomeFile);
+	    Files.copy(file.getInputStream(), percorsoCompleto, StandardCopyOption.REPLACE_EXISTING);
+	    
+	    return nomeFile; 
+	}
+	
+	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
+	public void saveSquadra(Squadra squadra, List<Long> torneiId, MultipartFile file) throws Exception,TorneoNotFoundException,SquadraNonTrovataException {
+	    logger.info("Transazione modifica/creazione squadra iniziata. Tornei ID: {}", torneiId);
+
+	    // 1. Salvo il file e ottengo solo il nome
+	    String nomeFileGenerato = salvaImmagineSuDisco(file);
+	    
 	    List<Long> torneiSicuri = (torneiId != null) ? torneiId : new ArrayList<>();
 
-	    if (squadra.getId() == null) {
-	        // ================= CREAZIONE =================
-	        List<SquadraIscritta> iscrizioni = new ArrayList<>();
-	        for (Long torneoId : torneiSicuri) {
-	            Torneo torneo = tR.findById(torneoId).orElseThrow(() -> new TorneoNotFoundException(torneoId));
-	            SquadraIscritta squadraIscritta = new SquadraIscritta(torneo, squadra);
-	            iscrizioni.add(squadraIscritta);
+	    try {
+	        // 2. Smistamento logica DB
+	        if (squadra.getId() == null) {
+	            eseguiCreazione(squadra, torneiSicuri, nomeFileGenerato);
+	        } else {
+	            eseguiModifica(squadra, torneiSicuri, nomeFileGenerato);
 	        }
-	        squadra.setIscrizioni(iscrizioni);
-	        squadraRepository.save(squadra);
-	    } else {
-	        // ================= MODIFICA =================
-	        
-	        // FIX DEFINITIVO: L'oggetto 'squadra' dal form è "staccato" e non conosce le sue vere iscrizioni.
-	        // Dobbiamo caricare l'entità REALE dal database per avere la sua collezione tracciata:
-	        Squadra squadraEsistente = squadraRepository.findById(squadra.getId())
-	                .orElseThrow(() -> new RuntimeException("Squadra non trovata nel DB"));
-	        
-	        // AGGIORNAMENTO DATI: Copiamo i campi testuali modificati dal form all'entità reale
-	        squadraEsistente.setNome(squadra.getNome());
-	        // IMPORTANTE: Decommenta e adatta le righe seguenti in base ai campi che hai nella tua classe!
-	        // squadraEsistente.setAnno(squadra.getAnno());         
-	        // squadraEsistente.setCitta(squadra.getCitta());       
-	        // squadraEsistente.setFondazione(squadra.getFondazione()); 
-	        
-	        // 1. ELIMINAZIONI (Lavoriamo sulla PersistentBag REALE di squadraEsistente)
-	        Iterator<SquadraIscritta> iterator = squadraEsistente.getIscrizioni().iterator();
-	        while (iterator.hasNext()) {
-	            SquadraIscritta si = iterator.next();
-	            // Se l'ID del torneo dell'iscrizione attuale NON è presente nella lista del form...
-	            if (!torneiSicuri.contains(si.getTorneo().getId())) {
-	                iterator.remove(); // Rimuove dalla PersistentBag (Hibernate farà la DELETE)
+	    } catch (Exception  e) {
+	        // 3. ROLLBACK MANUALE DEL FILE IN CASO DI ERRORE DB
+	        if (nomeFileGenerato != null) {
+	            Path percorsoFile = Paths.get(uploadDir).resolve(nomeFileGenerato);
+	            try {
+	                Files.deleteIfExists(percorsoFile);
+	                logger.info("Rollback eseguito: eliminato file orfano {}", nomeFileGenerato);
+	            } catch (IOException ioException) {
+	                logger.error("Impossibile eliminare il file orfano: {}", nomeFileGenerato, ioException);
 	            }
 	        }
-
-	        // 2. PRENDI TUTTI I TORNEI ATTUALI (RIMASTI NEL DATABASE)
-	        List<Long> idTorneiAttuali = new ArrayList<>();
-	        for (SquadraIscritta si : squadraEsistente.getIscrizioni()) {
-	            idTorneiAttuali.add(si.getTorneo().getId()); 
-	        }
-
-	        // 3. AGGIUNGI LE ISCRIZIONI MANCANTI
-	        for (Long idDesiderato : torneiSicuri) {
-	            if (!idTorneiAttuali.contains(idDesiderato)) {
-	                Torneo torneo = tR.findById(idDesiderato).orElseThrow(() -> new TorneoNotFoundException(idDesiderato));
-	                // Creiamo la nuova iscrizione legandola alla squadraEsistente, non a quella staccata
-	                SquadraIscritta nuovaIscrizione = new SquadraIscritta(torneo, squadraEsistente);
-	                squadraEsistente.getIscrizioni().add(nuovaIscrizione);
-	            }
-	        }
-
-	        // Salviamo l'entità GESTITA da Hibernate, che ora contiene i dati aggiornati
-	        squadraRepository.save(squadraEsistente);
+	        // Rilancio l'eccezione per far scattare il rollback del database di Spring
+	        throw e;
 	    }
+	}
+	
+	private void eseguiCreazione(Squadra squadra, List<Long> torneiSicuri, String nomeFileNuovo) throws TorneoNotFoundException {
+	    List<SquadraIscritta> iscrizioni = new ArrayList<>();
+	    for (Long torneoId : torneiSicuri) {
+	        Torneo torneo = tR.findById(torneoId).orElseThrow(() -> new TorneoNotFoundException(torneoId));
+	        SquadraIscritta squadraIscritta = new SquadraIscritta(torneo, squadra);
+	        iscrizioni.add(squadraIscritta);
+	    }
+	    squadra.setIscrizioni(iscrizioni);
+	    
+	    if (nomeFileNuovo != null) {
+	        squadra.setLogo("/immagini/" + nomeFileNuovo); 
+	    }
+	    
+	    squadraRepository.save(squadra);
+	}
+
+	private void eseguiModifica(Squadra squadraDalForm, List<Long> torneiSicuri, String nomeFileNuovo) throws TorneoNotFoundException,SquadraNonTrovataException {
+	    Squadra squadraEsistente = squadraRepository.findById(squadraDalForm.getId())
+	            .orElseThrow(() -> new SquadraNonTrovataException(squadraDalForm.getId()));
+	    
+	    // Aggiornamento dati anagrafici
+	    squadraEsistente.setNome(squadraDalForm.getNome());
+	    squadraEsistente.setCitta(squadraDalForm.getCitta());       
+	    squadraEsistente.setFondazione(squadraDalForm.getFondazione()); 
+	    
+	    // Assegnazione corretta con prefisso
+	    if (nomeFileNuovo != null) {
+	        squadraEsistente.setLogo("/immagini/" + nomeFileNuovo); 
+	    }
+	    
+	    // Rimozione tornei deselezionati
+	    Iterator<SquadraIscritta> iterator = squadraEsistente.getIscrizioni().iterator();
+	    while (iterator.hasNext()) {
+	        SquadraIscritta si = iterator.next();
+	        if (!torneiSicuri.contains(si.getTorneo().getId())) {
+	            iterator.remove(); 
+	        }
+	    }
+
+	    // Identificazione tornei già presenti
+	    List<Long> idTorneiAttuali = new ArrayList<>();
+	    for (SquadraIscritta si : squadraEsistente.getIscrizioni()) {
+	        idTorneiAttuali.add(si.getTorneo().getId()); 
+	    }
+
+	    // Aggiunta nuovi tornei selezionati
+	    for (Long idDesiderato : torneiSicuri) {
+	        if (!idTorneiAttuali.contains(idDesiderato)) {
+	            Torneo torneo = tR.findById(idDesiderato).orElseThrow(() -> new TorneoNotFoundException(idDesiderato));
+	            SquadraIscritta nuovaIscrizione = new SquadraIscritta(torneo, squadraEsistente);
+	            squadraEsistente.getIscrizioni().add(nuovaIscrizione);
+	        }
+	    }
+
+	    squadraRepository.save(squadraEsistente);
 	}
 }
