@@ -4,6 +4,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,7 @@ import it.uniroma3.siw.service.SquadraService;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	private static final Logger logger =LoggerFactory.getLogger(SquadraService.class);
+	
 	 @ExceptionHandler(GiocatoreNonTrovatoException.class)
 	 @ResponseStatus(HttpStatus.NOT_FOUND)
 		public String handleGiocatoreNotFound(GiocatoreNonTrovatoException e, Model model) {
@@ -39,8 +43,17 @@ public class GlobalExceptionHandler {
 	 @ExceptionHandler(Exception.class)
 	 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 		public String handleUnexpectedException(Exception e, Model model) {
-		model.addAttribute("errorMessage",e.getMessage());
-		logger.debug(e.getMessage());
+		model.addAttribute("errorMessage","errore interno");
+		logger.error(e.getMessage());
 		return "error/500";
 	}
+	
+	 @ExceptionHandler(IOException.class)
+	 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+		public String handleImageException(Exception e, Model model) {
+		model.addAttribute("errorMessage","è sorto un problema con il salvataggio dell`immagine");
+		logger.error(e.getMessage());
+		return "error/500";
+	}
+	 
 }
