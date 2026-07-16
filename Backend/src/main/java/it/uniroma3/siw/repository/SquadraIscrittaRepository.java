@@ -3,6 +3,7 @@ package it.uniroma3.siw.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,5 +21,8 @@ public interface SquadraIscrittaRepository extends JpaRepository<SquadraIscritta
 	Optional<SquadraIscritta> findBySquadraAndTorneo(Squadra squadra, Torneo torneo);
 	
 	List<SquadraIscritta> findBySquadra(Squadra squadra);
+
+	@EntityGraph(attributePaths = {"squadra"})
+	List<SquadraIscritta> findByTorneo(Torneo torneo);
 	
 }

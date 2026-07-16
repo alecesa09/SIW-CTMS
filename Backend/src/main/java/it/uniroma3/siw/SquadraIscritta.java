@@ -1,22 +1,24 @@
 package it.uniroma3.siw;
 
+import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
-@Entity
-@Table(
-    name = "SquadraIscritta",
-    uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"torneo_id", "squadra_id"})
-    }
-)
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class,
-		  property = "id")
-public class  SquadraIscritta {
+	@Entity
+	@Table(
+	    name = "SquadraIscritta",
+	    uniqueConstraints = {
+	        @UniqueConstraint(columnNames = {"torneo_id", "squadra_id"})
+	    }
+	)
+	@JsonIdentityInfo(
+			  generator = ObjectIdGenerators.PropertyGenerator.class,
+			  property = "id")
+	public class  SquadraIscritta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,6 +32,14 @@ public class  SquadraIscritta {
     @JoinColumn(name = "squadra_id", nullable = false)
     private Squadra squadra;
     
+	@JsonIgnore
+	@OneToMany(mappedBy="squadraCasa")
+	private List<Partita> partiteIncasa;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="squadraTrasferta")
+	private List<Partita> partiteFuoriCasa;
+	
     private int punti;
     private int giocate;
     private int vittorie;
@@ -107,4 +117,19 @@ public class  SquadraIscritta {
 	public SquadraIscritta() {
 		
 	};    
+	public List<Partita> getPartiteIncasa() {
+		return partiteIncasa;
+	}
+
+	public void setPartiteIncasa(List<Partita> partiteIncasa) {
+		this.partiteIncasa = partiteIncasa;
+	}
+
+	public List<Partita> getPartiteFuoriCasa() {
+		return partiteFuoriCasa;
+	}
+
+	public void setPartiteFuoriCasa(List<Partita> partiteFuoriCasa) {
+		this.partiteFuoriCasa = partiteFuoriCasa;
+	}
 }

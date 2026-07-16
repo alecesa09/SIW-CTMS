@@ -1,34 +1,35 @@
 .contenitore {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
+    /* Rimosso align-items: center; per evitare che i figli si restringano */
 }
 
-/* Ripristinata la griglia per mantenere il posizionamento identico a Thymeleaf [verificato] */
 .nav {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
-    border: 1px solid var(--colore-bordo);
-    border-radius: 24px;
-    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
-    width: 95%;
+    
+    /* Regole di distanziamento per replicare il backend */
+    margin: 1.5rem;
+    align-self: stretch; /* Forza l'elemento a espandersi per tutta la larghezza del genitore */
+    
     height: 80px;
     position: sticky;
     top: 20px;
+    
+    border: 1px solid var(--colore-bordo);
+    border-radius: 24px;
+    background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);
     box-shadow: 0 14px 35px var(--sfumatura);
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 100;
 }
 
-/* Rimossa la copia duplicata, tenuta la versione unificata */
 .figlio {
-    width: 95%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 12px;
+    width: 100%;
+    display: block; 
 }
 
 .linkSenzaStile {
@@ -63,7 +64,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 8rem;
+    width: auto;       
+    min-width: 8rem;    
     height: 3rem;
     border-radius: 8px;
     transition: background-color 0.2s ease;

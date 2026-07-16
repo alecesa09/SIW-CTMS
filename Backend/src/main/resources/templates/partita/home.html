@@ -64,16 +64,22 @@
     <div th:if="${partita != null}" th:object="${partita}">
         
         <div class="tabellone-partita">
-            <div class="squadra-nome" th:text="*{squadraCasa != null ? squadraCasa.nome : 'Squadra in attesa'}">Squadra Casa</div>
-            
+			<div class="squadra-nome">
+	            <a th:href="@{/squadra/{id}(id=${partita.squadraCasa.squadra.id})}">
+					 <div th:text="*{squadraCasa != null ? squadraCasa.squadra.nome : 'Squadra in attesa'}">Squadra Casa	</div>
+	            </a>
+			</div>
             <div>
                 <div class="badge-stato" th:text="*{stato}">PROGRAMMATA</div>
                 <div class="punteggio">
                     <span th:text="*{golCasa}">0</span> - <span th:text="*{golTrasferta}">0</span>
                 </div>
             </div>
-
-            <div class="squadra-nome" th:text="*{squadraTrasferta != null ? squadraTrasferta.nome : 'Squadra in attesa'}">Squadra Trasferta</div>
+			<div class="squadra-nome">
+				<a th:href="@{/squadra/{id}(id=${partita.squadraCasa.squadra.id})}">
+	            	<div th:text="*{squadraTrasferta != null ? squadraTrasferta.squadra.nome : 'Squadra in attesa'}">Squadra Trasferta</div>
+				</a>
+			</div>
         </div>
 
         <div class="dettagli-grid">

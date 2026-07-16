@@ -46,7 +46,7 @@ public class PartitaService {
 
 	@Transactional(readOnly = true)
 	public List<Partita> findUltime5(Long idSquadra) {
-	    return partitaRepository.findTop5BySquadraCasaIdAndStatoOrSquadraTrasfertaIdAndStatoOrderByDataDesc(
+	    return partitaRepository.findTop5BySquadraCasa_Squadra_IdAndStatoOrSquadraTrasferta_Squadra_IdAndStatoOrderByDataDesc(
 	        idSquadra,               
 	        Partita.Stato.TERMINATA, 
 	        idSquadra,               

@@ -37,7 +37,7 @@
                 <li th:each="partita : ${partite}" class="riga-giocatore">		            
                     <a th:href="@{/partita/{id}(id=${partita.id})}" class="link-partita-blocco">
                         <span class="data-partita" th:text="${partita.data}">01-01-2026</span>
-                        <span class="risultato-partita" th:text="|${partita.squadraCasa.nome} ${partita.golCasa} - ${partita.golTrasferta} ${partita.squadraTrasferta.nome}|">Roma 2 - 1 Lazio</span>
+                        <span class="risultato-partita" th:text="|${partita.squadraCasa.squadra.nome} ${partita.golCasa} - ${partita.golTrasferta} ${partita.squadraTrasferta.squadra.nome}|">Roma 2 - 1 Lazio</span>
                     </a>
                 </li>
             </ul>

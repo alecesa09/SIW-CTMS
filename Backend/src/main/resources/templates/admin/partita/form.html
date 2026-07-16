@@ -1,53 +1,65 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Form creazione o modifica Partita</title>
-        <link rel="stylesheet" href="/css/CTMS.css">
-    </head>
-	    <body>
-	        <form th:action="@{/admin/giocatore/registra}" method="POST">
-	            <div th:object="${giocatore}">
-					<ul style="color: red;" th:if="${#fields.hasGlobalErrors()}">
-						    <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
-					</ul>
-					<input type="hidden" th:field="*{id}" />
-				    <div>
-						<label>Nome:</label>
-						<span><input type="text" th:field="*{nome}" /></span>
-						<span style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-					</div>
-					<div>
-						<label>Cognome:</label>
-						<span><input type="text" th:field="*{cognome}" /></span>
-						<span style="color: red;" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-					</div>
-					<div>
-						<label>Nascita:</label>
-						<span><input type="date" th:field="*{nascita}" /></span>
-						<span style="color: red;" th:if="${#fields.hasErrors('nascita')}" th:errors="*{nascita}"></span>
-					</div>
-					<div>
-						<label>Nazionalita:</label>
-						<span><input type="text" th:field="*{nazionalita}" /></span>
-						<span style="color: red;" th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
-					</div>
-				</div>	
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/CTMS.css">
+    <title>Crea Nuova Partita</title>
+</head>
+<body>
+    <h2>Registra nuova Partita</h2>
+    
+	<form th:action="@{/admin/partita/registra}" th:object="${partita}" method="POST">
+	    <input type="hidden" th:field="*{id}" />
+	    <input type="hidden" th:field="*{torneo}" />
 
-				<fieldset>
-				    <legend>Seleziona la squadra di appartenenza:</legend>
-				    <div th:each="squadraIterata : ${squadre}">
-				        <input type="radio" 
-				            th:id="|squadra_${squadraIterata.id}|" 
-				            name="squadra" 
-				            th:value="${squadraIterata.id}"
-				            th:checked="${giocatore.squadra != null and giocatore.squadra.id == squadraIterata.id}">
-				        <label th:for="|squadra_${squadraIterata.id}|" th:text="|${squadraIterata.nome} (${squadraIterata.citta})|">Nome Squadra</label>
-				    </div>
-				</fieldset>
-			
-	   			<button type="submit">Registra</button>
-	        </form>
-	    </body>
-	</html>
+	    <div>
+	        <label>Torneo:</label>
+	        <span th:text="${torneo.nome}">Nome Torneo</span>
+	    </div>
+
+	    <div>
+	        <label>Squadra Casa:</label>
+	        <select th:field="*{squadraCasa}" required>
+	            <option th:each="si : ${squadreIscritte}" 
+	                    th:value="${si.id}" 
+	                    th:text="${si.squadra.nome}"></option>
+	        </select>
+	    </div>
+        <div>
+            <label>Squadra Trasferta:</label>
+            <select th:field="*{squadraTrasferta}" required>
+                <option value="">Seleziona Squadra Trasferta</option>
+                <option th:each="si : ${squadreIscritte}" 
+                        th:value="${si.id}" 
+                        th:text="${si.squadra.nome}"></option>
+            </select>
+        </div>
+
+        <div>
+            <label>Data:</label>
+            <input type="date" th:field="*{data}" required />
+        </div>
+
+        <div>
+            <label>Ora:</label>
+            <input type="time" th:field="*{ora}" required />
+        </div>
+
+        <div>
+            <label>Luogo:</label>
+            <input type="text" th:field="*{luogo}" required />
+        </div>
+		<div>
+		    <label>Stato:</label>
+		    <select th:field="*{stato}" required>
+		        <option th:each="stato : ${T(it.uniroma3.siw.Partita.Stato).values()}" 
+		                th:value="${stato}" 
+		                th:text="${stato}">
+		        </option>
+		    </select>
+		</div>
+        <button type="submit">Salva Partita</button>
+    </form>
+</body>
+</html>

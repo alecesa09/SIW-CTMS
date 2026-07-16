@@ -17,11 +17,16 @@ import it.uniroma3.siw.Credentials;
 import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.Squadra;
+import it.uniroma3.siw.SquadraIscritta;
+import it.uniroma3.siw.Torneo;
 import it.uniroma3.siw.exception.SquadraNonTrovataException;
 import it.uniroma3.siw.exception.TorneoNotFoundException;
 import it.uniroma3.siw.service.CommentoService;
 import it.uniroma3.siw.service.CredentialService;
 import it.uniroma3.siw.service.PartitaService;
+import it.uniroma3.siw.service.SquadraIscrittaService;
+import it.uniroma3.siw.service.SquadraService;
+import it.uniroma3.siw.service.TorneoService;
 import jakarta.validation.Valid;
 @Controller
 public class PartitaController {
@@ -29,11 +34,15 @@ public class PartitaController {
 	private final PartitaService partitaService;
 	private final CommentoService commentoService;
 	private final CredentialService credentialService;
+	private final SquadraIscrittaService squadraIscrittaService;
+	private final TorneoService torneoService;
 	
-	public PartitaController(PartitaService partitaService, CommentoService commentoService,CredentialService credentialService ) {
+	public PartitaController(PartitaService partitaService, CommentoService commentoService,CredentialService credentialService,SquadraIscrittaService squadraService,TorneoService torneoService ) {
 		this.partitaService = partitaService;
 		this.commentoService=commentoService;
 		this.credentialService=credentialService;
+		this.squadraIscrittaService=squadraService;
+		this.torneoService=torneoService;
 	}
 
 	@GetMapping("/partita/{id}")
@@ -50,14 +59,32 @@ public class PartitaController {
         
         return "partita/home";
 	}
-	@GetMapping("admin/partita/crea")
-	public String getFormCreaGiocatore(Model model) {
-		List<Partita> squadre = partitaService.findAllWithSquadre();
-	    model.addAttribute("giocatore", new Partita());
-	    model.addAttribute("squadre", squadre);
-		return "admin/partita/form";
-	}
 	
+	@GetMapping("admin/partita/crea/ListTornei")
+	public String getFormCreaGiocatore(Model model) {
+		List<Torneo> tornei = torneoService.findAll();
+	    model.addAttribute("tornei", tornei);
+		return "admin/partita/ListTornei";
+	}
+	@GetMapping("admin/partita/crea/{idTorneo}")
+	public String getFormCreaPartita(@PathVariable("idTorneo") Long idTorneo, Model model) {
+	    // 1. Recuperi il torneo dal database
+	    Torneo torneo = torneoService.findById(idTorneo); 
+	    
+	    // 2. Crei l'oggetto partita
+	    Partita partita = new Partita();
+	    
+	    // 3. ASSEGNAZIONE DIRETTA: Colleghi il torneo all'oggetto partita
+	    partita.setTorneo(torneo);
+	    
+	    // 4. Passi tutto al model
+	    model.addAttribute("torneo", torneo);
+	    model.addAttribute("partita", partita); // Ora la partita ha già il torneo impostato
+	    model.addAttribute("squadreIscritte", squadraIscrittaService.findByTorneoWithSquadra(torneo));
+	    
+	    return "admin/partita/form";
+	}
+	/*
 	@PostMapping("admin/partita/registra")
 	public String creaOModificaSquadra(
 	        @Valid @ModelAttribute("giocatore") Partita partita,
@@ -113,4 +140,5 @@ public class PartitaController {
 
 	    return "admin/giocatore/list"; 
 	}
+	*/
 }
