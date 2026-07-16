@@ -231,7 +231,7 @@ INSERT INTO commento (id, testo, partita_id, utente_id) VALUES (8, 'Che vittoria
 ALTER SEQUENCE squadra_seq RESTART WITH 26;
 ALTER SEQUENCE torneo_seq RESTART WITH 3;
 ALTER SEQUENCE squadra_Iscritta_seq RESTART WITH 41;
-ALTER SEQUENCE giocatore_seq RESTART WITH 86;
+SELECT setval('giocatore_seq', (SELECT MAX(id) FROM giocatore));
 ALTER SEQUENCE arbitro_seq RESTART WITH 5;
 ALTER SEQUENCE partita_seq RESTART WITH 19;
 ALTER SEQUENCE utente_seq RESTART WITH 5;

@@ -43,11 +43,11 @@ nav {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
-  width: 97%;
   height: 80px;
   position: sticky;
   top: 20px;
-  margin: 1.5rem auto;
+  margin: 1.5rem;
+  
   border: 1px solid var(--colore-bordo);
   border-radius: 24px;
   background: linear-gradient(180deg, var(--colore-grigio-chiaro) 0%, rgba(6, 16, 13, 0.9) 100%);

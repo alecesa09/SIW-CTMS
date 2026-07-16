@@ -65,5 +65,8 @@ public class PartitaService {
 		return partitaRepository.findPartiteOggi(date);
 	}
 	
-	
+	@Transactional(readOnly = true)
+	public List<Partita> findAllWithSquadre(){
+		return partitaRepository.findallWithSquadre();
+	}
 }

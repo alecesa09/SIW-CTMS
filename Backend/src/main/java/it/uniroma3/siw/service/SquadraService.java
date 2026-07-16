@@ -28,7 +28,7 @@ import it.uniroma3.siw.repository.SquadraIscrittaRepository;
 import it.uniroma3.siw.repository.SquadraRepository;
 import it.uniroma3.siw.repository.TorneoRepository;
 
-
+import java.util.UUID;
 @Service
 public class SquadraService {
 	private final SquadraRepository squadraRepository;
@@ -59,23 +59,36 @@ public class SquadraService {
 	
 	@Value("${app.upload.dir}")
 	private String uploadDir;
-	
+
 	private String salvaImmagineSuDisco(MultipartFile file) throws IOException {
 	    if (file == null || file.isEmpty()) {
 	        return null;
 	    }
 
-	    String nomeFile = StringUtils.cleanPath(file.getOriginalFilename());
+	    // 1. Prendo il nome originale per estrarre l'estensione
+	    String nomeOriginale = StringUtils.cleanPath(file.getOriginalFilename());
+	    String estensione = "";
+	    
+	    int dotIndex = nomeOriginale.lastIndexOf('.');
+	    if (dotIndex >= 0) {
+	        estensione = nomeOriginale.substring(dotIndex); // Restituisce ".png", ".jpg", ecc.
+	    }
+
+	    // 2. Genero un nome completamente nuovo e univoco
+	    String nomeFileUnivoco = UUID.randomUUID().toString() + estensione;
+
 	    Path cartellaUpload = Paths.get(uploadDir);
 	    
 	    if (!Files.exists(cartellaUpload)) {
 	        Files.createDirectories(cartellaUpload);
 	    }
 	    
-	    Path percorsoCompleto = cartellaUpload.resolve(nomeFile);
+	    // 3. Salvo il file usando il NUOVO nome
+	    Path percorsoCompleto = cartellaUpload.resolve(nomeFileUnivoco);
 	    Files.copy(file.getInputStream(), percorsoCompleto, StandardCopyOption.REPLACE_EXISTING);
 	    
-	    return nomeFile; 
+	    // Restituisco il nuovo nome (es. "123e4567-e89b-12d3-a456-426614174000.png")
+	    return nomeFileUnivoco; 
 	}
 	
 	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
