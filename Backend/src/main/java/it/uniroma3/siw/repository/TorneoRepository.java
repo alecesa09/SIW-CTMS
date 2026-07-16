@@ -28,5 +28,6 @@ public interface TorneoRepository extends CrudRepository<Torneo, Long>{
 	@Query("SELECT t FROM Torneo t JOIN t.iscrizioni i WHERE i.id = :id")
 	Optional<Torneo> findtorneiBySquadraIscrittaId(@Param("id") Long id);
     
+	List<Torneo> findAll();
     
 }

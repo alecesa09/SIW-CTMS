@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista Tornei</title>
+        <link rel="stylesheet" href="/css/CTMS.css">
+    </head>
+    <body>
+		<h1> scegli torneo in cui creare la partita <h1>
+		<div th:each="torneo : ${tornei}" th:object="${torneo}">
+			<a th:href="@{/admin/partita/crea/{id}(id=${torneo.id})}" class=btn-link>
+		        <div>
+		            <span style="color:black">Nome: </span><span th:text="*{nome} ">Nome</span>
+					<span style="color:black">Anno: </span><span th:text="*{anno} ">Squadra</span>
+		        </div>
+			</a>
+		</div>
+    </body>
+</html>

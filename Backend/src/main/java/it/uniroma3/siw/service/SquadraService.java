@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import it.uniroma3.siw.Squadra;
 import it.uniroma3.siw.SquadraIscritta;
 import it.uniroma3.siw.Torneo;
+import it.uniroma3.siw.exception.IscrizioneConPartiteException;
 import it.uniroma3.siw.exception.SquadraNonTrovataException;
 import it.uniroma3.siw.exception.TorneoNotFoundException;
 import it.uniroma3.siw.repository.SquadraIscrittaRepository;
@@ -44,7 +45,7 @@ public class SquadraService {
 	
 	@Transactional(readOnly = true)
 	public Squadra findById(long id){
-		Optional<Squadra> squadra = this.squadraRepository.findById(id);
+		 Optional<Squadra> squadra = this.squadraRepository.findById(id);
 		 if (squadra.isPresent()) {
 		 return squadra.get();
 		 } else {
@@ -92,7 +93,8 @@ public class SquadraService {
 	}
 	
 	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
-	public void saveSquadra(Squadra squadra, List<Long> torneiId, MultipartFile file) throws Exception,TorneoNotFoundException,SquadraNonTrovataException {
+	public void saveSquadra(Squadra squadra, List<Long> torneiId, MultipartFile file) 
+	        throws Exception, TorneoNotFoundException, SquadraNonTrovataException, IscrizioneConPartiteException {
 	    logger.info("Transazione modifica/creazione squadra iniziata. Tornei ID: {}", torneiId);
 
 	    // 1. Salvo il file e ottengo solo il nome
@@ -139,7 +141,9 @@ public class SquadraService {
 	    squadraRepository.save(squadra);
 	}
 
-	private void eseguiModifica(Squadra squadraDalForm, List<Long> torneiSicuri, String nomeFileNuovo) throws TorneoNotFoundException,SquadraNonTrovataException {
+	private void eseguiModifica(Squadra squadraDalForm, List<Long> torneiSicuri, String nomeFileNuovo) 
+	        throws TorneoNotFoundException, SquadraNonTrovataException, IscrizioneConPartiteException {
+	    
 	    Squadra squadraEsistente = squadraRepository.findById(squadraDalForm.getId())
 	            .orElseThrow(() -> new SquadraNonTrovataException(squadraDalForm.getId()));
 	    
@@ -153,11 +157,25 @@ public class SquadraService {
 	        squadraEsistente.setLogo("/immagini/" + nomeFileNuovo); 
 	    }
 	    
-	    // Rimozione tornei deselezionati
+	    // Rimozione tornei deselezionati con salvaguardia dell'integrità
 	    Iterator<SquadraIscritta> iterator = squadraEsistente.getIscrizioni().iterator();
 	    while (iterator.hasNext()) {
 	        SquadraIscritta si = iterator.next();
+	        
+	        // Se il torneo attuale non è presente nella nuova lista di torneiSicuri
 	        if (!torneiSicuri.contains(si.getTorneo().getId())) {
+	            
+	            // [verificato] Controllo sulle due liste tramite i metodi getter generati
+	            boolean haGiocatoInCasa = si.getPartiteIncasa() != null && !si.getPartiteIncasa().isEmpty();
+	            boolean haGiocatoFuoriCasa = si.getPartiteFuoriCasa() != null && !si.getPartiteFuoriCasa().isEmpty();
+	            
+	            if (haGiocatoInCasa || haGiocatoFuoriCasa) {
+	                // Interrompe istantaneamente la transazione @Transactional
+	                throw new IscrizioneConPartiteException(
+	                    "Impossibile rimuovere la squadra dal torneo. Risultano già delle partite a calendario."
+	                );
+	            }
+	            
 	            iterator.remove(); 
 	        }
 	    }

@@ -41,6 +41,7 @@ public class GiocatoreController {
 		model.addAttribute("giocatore", giocatore);
 		return "/giocatore/home";
 	}
+	
 	@GetMapping("admin/giocatore/crea")
 	public String getFormCreaGiocatore(Model model) {
 		List<Squadra> squadre = squadraService.findAll();

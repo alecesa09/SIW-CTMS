@@ -57,11 +57,11 @@ public class Partita {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="squadraCasaId")
-	private Squadra squadraCasa;
+	private SquadraIscritta squadraCasa;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="squadraTrasfertaId")
-	private Squadra squadraTrasferta;
+	private SquadraIscritta squadraTrasferta;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="arbitroId")
@@ -131,16 +131,16 @@ public class Partita {
 		Partita other = (Partita) obj;
 		return id == other.id;
 	}
-	public Squadra getSquadraCasa() {
+	public SquadraIscritta getSquadraCasa() {
 		return squadraCasa;
 	}
-	public void setSquadraCasa(Squadra squadraCasa) {
+	public void setSquadraCasa(SquadraIscritta squadraCasa) {
 		this.squadraCasa = squadraCasa;
 	}
-	public Squadra getSquadraTrasferta() {
+	public SquadraIscritta getSquadraTrasferta() {
 		return squadraTrasferta;
 	}
-	public void setSquadraTrasferta(Squadra squadraTrasferta) {
+	public void setSquadraTrasferta(SquadraIscritta squadraTrasferta) {
 		this.squadraTrasferta = squadraTrasferta;
 	}
 	public Arbitro getArbitro() {

@@ -35,4 +35,9 @@ public class TorneoService {
    	public List<Long> findIdTorneiBySquadra(Long id) {
            return torneoRepository.findIdtorneiBySquadra(id);
        }
+
+	public List<Torneo> findAll() {
+		List<Torneo> tornei= torneoRepository.findAll();
+		return tornei;
+	}
 }

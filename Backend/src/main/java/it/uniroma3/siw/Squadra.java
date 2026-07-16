@@ -47,13 +47,6 @@ public class Squadra {
 	@OneToMany(mappedBy = "squadra", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<SquadraIscritta> iscrizioni;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="squadraCasa")
-	private List<Partita> partiteIncasa;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="squadraTrasferta")
-	private List<Partita> partiteFuoriCasa;
 	
 	public Long getId() {
 		return id;
@@ -114,22 +107,6 @@ public class Squadra {
 
 	public void setIscrizioni(List<SquadraIscritta> classifica) {
 		this.iscrizioni = classifica;
-	}
-
-	public List<Partita> getPartiteIncasa() {
-		return partiteIncasa;
-	}
-
-	public void setPartiteIncasa(List<Partita> partiteIncasa) {
-		this.partiteIncasa = partiteIncasa;
-	}
-
-	public List<Partita> getPartiteFuoriCasa() {
-		return partiteFuoriCasa;
-	}
-
-	public void setPartiteFuoriCasa(List<Partita> partiteFuoriCasa) {
-		this.partiteFuoriCasa = partiteFuoriCasa;
 	}
 
 	public LocalDate getFondazione() {
