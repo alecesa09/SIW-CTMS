@@ -33,4 +33,8 @@ public interface PartitaRepository extends JpaRepository<Partita, Long>{
 	@Query("SELECT p FROM Partita p LEFT JOIN FETCH p.squadraCasa LEFT JOIN FETCH p.squadraTrasferta LEFT JOIN FETCH p.arbitro  WHERE p.id = :id")
 	Optional<Partita> findByIdconTutto(@Param("id") Long id);
 	
+	@Query("SELECT p FROM Partita p LEFT JOIN FETCH p.squadraCasa LEFT JOIN FETCH p.squadraTrasferta")
+	List<Partita> findallWithSquadre();
+	
+	
 }

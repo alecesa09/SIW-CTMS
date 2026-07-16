@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.Squadra;
-import it.uniroma3.siw.Utente;
 import it.uniroma3.siw.dto.GiocatoreDto;
 import it.uniroma3.siw.dto.TorneoDTO;
 import it.uniroma3.siw.exception.SquadraNonTrovataException;
@@ -30,7 +29,7 @@ import it.uniroma3.siw.service.PartitaService;
 import it.uniroma3.siw.service.SquadraService;
 import it.uniroma3.siw.service.TorneoService;
 import jakarta.validation.Valid;
-import org.springframework.util.StringUtils;
+
 @Controller
 public class SquadraController {
 	private final SquadraService squadraService; 
@@ -87,7 +86,7 @@ public class SquadraController {
 	public String creaOModificaSquadra(@Valid @ModelAttribute("squadra") Squadra squadra,BindingResult squadraBindingResult,
 									   @RequestParam(required = false) List<Long> tornei, @RequestParam( required = false) MultipartFile file) throws Exception{
 		if(squadraBindingResult.hasErrors()) {
-			return "redirect:admin/squadra/form";
+			return "admin/squadra/form";
 		}
 		try {
 			 squadraService.saveSquadra(squadra,tornei,file);

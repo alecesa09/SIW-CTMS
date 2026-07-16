@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form creazione o modifica Partita</title>
+        <link rel="stylesheet" href="/css/CTMS.css">
+    </head>
+	    <body>
+	        <form th:action="@{/admin/giocatore/registra}" method="POST">
+	            <div th:object="${giocatore}">
+					<ul style="color: red;" th:if="${#fields.hasGlobalErrors()}">
+						    <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
+					</ul>
+					<input type="hidden" th:field="*{id}" />
+				    <div>
+						<label>Nome:</label>
+						<span><input type="text" th:field="*{nome}" /></span>
+						<span style="color: red;" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					</div>
+					<div>
+						<label>Cognome:</label>
+						<span><input type="text" th:field="*{cognome}" /></span>
+						<span style="color: red;" th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+					</div>
+					<div>
+						<label>Nascita:</label>
+						<span><input type="date" th:field="*{nascita}" /></span>
+						<span style="color: red;" th:if="${#fields.hasErrors('nascita')}" th:errors="*{nascita}"></span>
+					</div>
+					<div>
+						<label>Nazionalita:</label>
+						<span><input type="text" th:field="*{nazionalita}" /></span>
+						<span style="color: red;" th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+					</div>
+				</div>	
+
+				<fieldset>
+				    <legend>Seleziona la squadra di appartenenza:</legend>
+				    <div th:each="squadraIterata : ${squadre}">
+				        <input type="radio" 
+				            th:id="|squadra_${squadraIterata.id}|" 
+				            name="squadra" 
+				            th:value="${squadraIterata.id}"
+				            th:checked="${giocatore.squadra != null and giocatore.squadra.id == squadraIterata.id}">
+				        <label th:for="|squadra_${squadraIterata.id}|" th:text="|${squadraIterata.nome} (${squadraIterata.citta})|">Nome Squadra</label>
+				    </div>
+				</fieldset>
+			
+	   			<button type="submit">Registra</button>
+	        </form>
+	    </body>
+	</html>

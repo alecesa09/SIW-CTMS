@@ -1,8 +1,12 @@
 body {
-    background-color:var(--colore-primario);
-    padding: 0px;
-    margin:0px;
-    height:100%;
+    font-family: Inter, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: radial-gradient(circle at top left, rgba(45, 212, 191, 0.18), transparent 50%),
+                linear-gradient(135deg, var(--colore-primario) 0%, var(--colore-sfondo-scuro) 100%);
+    color: var(--colore-testo); 
+    position: relative;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 2% 0 2%;
 }
 .app{
     display: flex;

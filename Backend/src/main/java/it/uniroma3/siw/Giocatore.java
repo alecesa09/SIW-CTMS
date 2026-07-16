@@ -7,14 +7,20 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import it.uniroma3.siw.validation.NotFutureYear;
 
 
 @Entity
+@Table(uniqueConstraints = {
+	    @UniqueConstraint(columnNames = {"nome", "cognome", "nascita"})
+	})
 public class Giocatore {
 
     @Id
@@ -29,7 +35,7 @@ public class Giocatore {
 	@JoinColumn(name="squadra_id")
     private Squadra squadra;
     
-    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotFutureYear
     private LocalDate nascita;
     @NotBlank
