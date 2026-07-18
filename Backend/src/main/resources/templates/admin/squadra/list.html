@@ -7,14 +7,19 @@
         <link rel="stylesheet" href="/css/CTMS.css">
     </head>
     <body>
-			<div th:each="squadra : ${squadre}" th:object="${squadra}">
-				<a th:href="@{/admin/modifica/squadra/{id}(id=${squadra.id})}" class=btn-link>
-			        <div>
-			            <span style="color:black">nome: </span><span th:text="*{nome} ">MoficaSquadra</span>
-						<span style="color:black">fondazione: </span><span th:text="*{fondazione} ">MoficaSquadra</span>
-						<span style="color:black">citta: </span><span th:text="*{citta} ">MoficaSquadra</span>
-			        </div>
-				</a>
-			</div>
+		<form th:action="@{/admin/squadra/ricerca}" method="GET">
+		    <input type="text" name="nome" placeholder="Cerca per nome">    
+		    <button type="submit" class="btn">Cerca</button>
+		    <a th:href="@{/admin/squadra/modifica/list}" class="btn-link">Azzera filtri</a>
+		</form>
+		<div th:each="squadra : ${squadre}" th:object="${squadra}">
+			<a th:href="@{/admin/modifica/squadra/{id}(id=${squadra.id})}" class=btn-link>
+		        <div>
+		            <span style="color:black">nome: </span><span th:text="*{nome} ">MoficaSquadra</span>
+					<span style="color:black">fondazione: </span><span th:text="*{fondazione} ">MoficaSquadra</span>
+					<span style="color:black">citta: </span><span th:text="*{citta} ">MoficaSquadra</span>
+		        </div>
+			</a>
+		</div>
     </body>
 </html>

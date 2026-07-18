@@ -1,5 +1,7 @@
 package it.uniroma3.siw.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.Arbitro;
@@ -17,5 +19,9 @@ public class ArbitroService {
 
 	public Arbitro getArbitro(Long id) {
 		return arbitroRepository.findById(id).get();
+	}
+	
+	public List<Arbitro> findAll(){
+		return arbitroRepository.findAll();
 	}
 }

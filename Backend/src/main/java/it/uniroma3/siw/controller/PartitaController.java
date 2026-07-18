@@ -3,6 +3,7 @@ package it.uniroma3.siw.controller;
 import java.security.Principal;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,13 +21,18 @@ import it.uniroma3.siw.Squadra;
 import it.uniroma3.siw.SquadraIscritta;
 import it.uniroma3.siw.Torneo;
 import it.uniroma3.siw.exception.SquadraNonTrovataException;
+import it.uniroma3.siw.exception.SquadraUgualeException;
+import it.uniroma3.siw.exception.TorneoDiversoException;
 import it.uniroma3.siw.exception.TorneoNotFoundException;
+import it.uniroma3.siw.service.ArbitroService;
 import it.uniroma3.siw.service.CommentoService;
 import it.uniroma3.siw.service.CredentialService;
 import it.uniroma3.siw.service.PartitaService;
 import it.uniroma3.siw.service.SquadraIscrittaService;
 import it.uniroma3.siw.service.SquadraService;
 import it.uniroma3.siw.service.TorneoService;
+import it.uniroma3.siw.validation.EtaMinimaValidator;
+import it.uniroma3.siw.validation.PartitaValidator;
 import jakarta.validation.Valid;
 @Controller
 public class PartitaController {
@@ -36,13 +42,18 @@ public class PartitaController {
 	private final CredentialService credentialService;
 	private final SquadraIscrittaService squadraIscrittaService;
 	private final TorneoService torneoService;
+	private final ArbitroService arbitroService;
 	
-	public PartitaController(PartitaService partitaService, CommentoService commentoService,CredentialService credentialService,SquadraIscrittaService squadraService,TorneoService torneoService ) {
+	@Autowired
+	private PartitaValidator pv;
+	public PartitaController(PartitaService partitaService, CommentoService commentoService,CredentialService credentialService
+								,SquadraIscrittaService squadraService,TorneoService torneoService,ArbitroService arbitroService ) {
 		this.partitaService = partitaService;
 		this.commentoService=commentoService;
 		this.credentialService=credentialService;
 		this.squadraIscrittaService=squadraService;
 		this.torneoService=torneoService;
+		this.arbitroService=arbitroService;
 	}
 
 	@GetMapping("/partita/{id}")
@@ -68,77 +79,73 @@ public class PartitaController {
 	}
 	@GetMapping("admin/partita/crea/{idTorneo}")
 	public String getFormCreaPartita(@PathVariable("idTorneo") Long idTorneo, Model model) {
-	    // 1. Recuperi il torneo dal database
 	    Torneo torneo = torneoService.findById(idTorneo); 
 	    
-	    // 2. Crei l'oggetto partita
 	    Partita partita = new Partita();
 	    
-	    // 3. ASSEGNAZIONE DIRETTA: Colleghi il torneo all'oggetto partita
 	    partita.setTorneo(torneo);
 	    
-	    // 4. Passi tutto al model
 	    model.addAttribute("torneo", torneo);
-	    model.addAttribute("partita", partita); // Ora la partita ha già il torneo impostato
+	    model.addAttribute("partita", partita);
 	    model.addAttribute("squadreIscritte", squadraIscrittaService.findByTorneoWithSquadra(torneo));
+	    model.addAttribute("arbitri", this.arbitroService.findAll());
 	    
 	    return "admin/partita/form";
 	}
-	/*
+
 	@PostMapping("admin/partita/registra")
 	public String creaOModificaSquadra(
-	        @Valid @ModelAttribute("giocatore") Partita partita,
+	        @Valid @ModelAttribute("partita") Partita partita,
 	        BindingResult BindingResult,
-	        @RequestParam(name = "squadra", required = false) Long squadraId, 
 	        Model model) throws Exception {
-		
-		if (squadraId == null) {
-	        BindingResult.rejectValue("squadra", "giocatore.squadra.mancante", "Selezionare obbligatoriamente una squadra");
-	    }
+		this.pv.validate(partita, BindingResult);
 
-	    if(giocatoreBindingResult.hasErrors()) {
-	        model.addAttribute("squadre", squadraService.findAll()); 
-	        return "admin/giocatore/form";
-	    }
-
+		if(BindingResult.hasErrors()) {
+		    model.addAttribute("torneo", partita.getTorneo());
+		    model.addAttribute("squadreIscritte", squadraIscrittaService.findByTorneoWithSquadra(partita.getTorneo()));
+		    model.addAttribute("arbitri", arbitroService.findAll());
+		    return "admin/partita/form";
+		}
 	    try {
-	         giocatoreService.saveGiocatore(giocatore, squadraId);
+	         partitaService.savePartita(partita);
 	         return "redirect:/admin";
 	    } 
-	    catch (TorneoNotFoundException | SquadraNonTrovataException e) {
-	         giocatoreBindingResult.reject("errore", e.getMessage());
-	         
-	         model.addAttribute("squadre", squadraService.findAll()); 
-	         
-	         return "admin/giocatore/form"; 
+	    catch (TorneoDiversoException | SquadraUgualeException e) {
+	        BindingResult.reject("errore", e.getMessage());
+	        model.addAttribute("torneo", partita.getTorneo());
+	        model.addAttribute("squadreIscritte", squadraIscrittaService.findByTorneoWithSquadra(partita.getTorneo())); 
+	        model.addAttribute("arbitri", arbitroService.findAll());
+	        return "admin/partita/form"; 
 	    }
 	}
-	@GetMapping("admin/giocatore/modifica/list")
+	@GetMapping("admin/partita/modifica/list")
 	public String getListModificaGiocatore(Model model) {
-		List<Giocatore> giocatori = giocatoreService.findAllWithSquadra();
-		model.addAttribute("giocatori", giocatori);
-		return "admin/giocatore/list";
+		List<Partita> partite = partitaService.findAllWithSquadre();
+		model.addAttribute("partite", partite);
+		return "admin/partita/list";
 	}
 	
-	@GetMapping("admin/giocatore/modifica/{id}")
+	@GetMapping("admin/partita/modifica/{id}")
 	public String getFormModificaGiocatore(@PathVariable("id") Long id,Model model) {
-		List<Squadra> squadre = squadraService.findAll();
-	    model.addAttribute("giocatore", giocatoreService.findGiocatoreById(id));
-	    model.addAttribute("squadre", squadre);
-		return "admin/giocatore/form";
+	    Partita partita = partitaService.findById(id);
+	    model.addAttribute("torneo", partita.getTorneo());
+	    model.addAttribute("partita", partita);
+	    model.addAttribute("squadreIscritte", squadraIscrittaService.findByTorneoWithSquadra(partita.getTorneo()));
+	    model.addAttribute("arbitri", this.arbitroService.findAll());
+	    
+	    return "admin/partita/form";
 	}
-	
-	@GetMapping("/admin/giocatore/ricerca")
+	@GetMapping("/admin/partita/ricerca")
 	public String ricercaGiocatori(
-	        @RequestParam(required = false) String nome,
-	        @RequestParam(required = false) String cognome,
+	        @RequestParam(required = false) String nomeTorneo,
+	        @RequestParam(required = false) Integer anno,
 	        @RequestParam(required = false) String nomeSquadra,
 	        Model model) {
-	    List<Giocatore> giocatoriTrovati = giocatoreService.ricercaAvanzata(nome, cognome, nomeSquadra);
-	    
-	    model.addAttribute("giocatori", giocatoriTrovati); 
+		List<Partita> partiteTrovate = partitaService.ricercaAvanzata(nomeTorneo, anno, nomeSquadra);
+		    
+		model.addAttribute("partite", partiteTrovate);
 
-	    return "admin/giocatore/list"; 
+	    return "admin/partita/list"; 
 	}
-	*/
+	
 }

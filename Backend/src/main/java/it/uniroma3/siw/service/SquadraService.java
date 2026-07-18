@@ -197,4 +197,9 @@ public class SquadraService {
 
 	    squadraRepository.save(squadraEsistente);
 	}
+
+	public List<Squadra> ricercaAvanzata(String nome) {
+		// TODO Auto-generated method stub
+		return squadraRepository.findByNomeContainingIgnoreCase(nome);
+	}
 }

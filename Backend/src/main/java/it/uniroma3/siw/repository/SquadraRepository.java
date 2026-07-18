@@ -11,6 +11,6 @@ public interface SquadraRepository extends JpaRepository<Squadra, Long> {
     
     public List<Squadra> findTop5ByNomeContainingIgnoreCase(String parziale);
     
-    
+    List<Squadra> findByNomeContainingIgnoreCase(String nome);
     
 }

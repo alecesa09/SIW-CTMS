@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -20,7 +22,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 @JsonIdentityInfo(
@@ -42,10 +46,14 @@ public class Partita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate data;
+	@NotNull
 	private String luogo;
+	@Min(0)
 	private Integer golCasa;
+	@Min(0)
 	private Integer golTrasferta;
 	private LocalTime ora;
 	
@@ -57,18 +65,22 @@ public class Partita {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="squadraCasaId")
+	@NotNull
 	private SquadraIscritta squadraCasa;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="squadraTrasfertaId")
+	@NotNull
 	private SquadraIscritta squadraTrasferta;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="arbitroId")
+	@NotNull
 	private Arbitro arbitro;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="torneoId")
+	@NotNull(message = "Il torneo è obbligatorio")
 	private Torneo torneo;
 	
 	public Long getId() {

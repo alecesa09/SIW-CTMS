@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.Squadra;
 import it.uniroma3.siw.dto.GiocatoreDto;
@@ -97,4 +98,16 @@ public class SquadraController {
 			 return "admin/squadra/form";
 		 }
 	}
+	@GetMapping("/admin/squadra/ricerca")
+	public String ricercaGiocatori(
+	        @RequestParam(required = false) String nome,
+	        Model model) {
+		List<Squadra> squadreTrovate = squadraService.ricercaAvanzata(nome);
+		    
+		model.addAttribute("squadre",squadreTrovate);
+
+	    return "admin/squadra/list"; 
+	}
+
+	
 }
