@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.dto.PartitaDTO;
 
@@ -72,4 +73,20 @@ public interface PartitaRepository extends JpaRepository<Partita, Long>{
 			   "LEFT JOIN FETCH p.squadraTrasferta st " +
 			   "LEFT JOIN FETCH st.squadra")
 		List<Partita> findallWithSquadre();
+		
+		@EntityGraph(attributePaths = {
+			    "torneo", 
+			    "squadraCasa.squadra", 
+			    "squadraTrasferta.squadra"
+			})
+		@Query("SELECT p FROM Partita p WHERE " +
+			       "(:nomeTorneo IS NULL OR :nomeTorneo = '' OR LOWER(p.torneo.nome) LIKE LOWER(CONCAT('%', :nomeTorneo, '%'))) AND " +
+			       "(:annoTorneo IS NULL OR p.torneo.anno = :annoTorneo) AND " +
+			       "(:nomeSquadra IS NULL OR :nomeSquadra = '' OR LOWER(p.squadraCasa.squadra.nome) LIKE LOWER(CONCAT('%', :nomeSquadra, '%')) OR LOWER(p.squadraTrasferta.squadra.nome) LIKE LOWER(CONCAT('%', :nomeSquadra, '%')))")
+		List<Partita> ricercaAvanzata(
+		        @Param("nomeTorneo") String nomeTorneo, 
+		        @Param("annoTorneo") Integer annoTorneo, 
+		        @Param("nomeSquadra") String nomeSquadra);
+
+		
 }

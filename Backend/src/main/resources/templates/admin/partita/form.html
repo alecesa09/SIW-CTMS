@@ -10,6 +10,9 @@
     <h2>Registra nuova Partita</h2>
     
 	<form th:action="@{/admin/partita/registra}" th:object="${partita}" method="POST">
+		<ul style="color: red;" th:if="${#fields.hasGlobalErrors()}">
+			    <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
+		</ul>
 	    <input type="hidden" th:field="*{id}" />
 	    <input type="hidden" th:field="*{torneo}" />
 
@@ -51,6 +54,14 @@
             <input type="text" th:field="*{luogo}" required />
         </div>
 		<div>
+	        <label>Arbitro:</label>
+	        <select th:field="*{arbitro}" required>
+	            <option th:each="ar : ${arbitri}" 
+	                    th:value="${ar.id}" 
+	                    th:text="${ar.nome} + ' ' + ${ar.cognome}"></option>
+	        </select>
+	    </div>
+		<div>
 		    <label>Stato:</label>
 		    <select th:field="*{stato}" required>
 		        <option th:each="stato : ${T(it.uniroma3.siw.Partita.Stato).values()}" 
@@ -59,6 +70,15 @@
 		        </option>
 		    </select>
 		</div>
+		<div>
+		    <label>golCasa:</label>
+		    <input type="number" th:field="*{golCasa}" min="0" required />
+		</div>
+		<div>
+            <label>golTrasferta:</label>
+            <input type="number" th:field="*{golTrasferta}" min="0" required />
+        </div>
+		
         <button type="submit">Salva Partita</button>
     </form>
 </body>

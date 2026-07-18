@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista Squadre</title>
+        <link rel="stylesheet" href="/css/CTMS.css">
+    </head>
+    <body>
+		<form th:action="@{/admin/partita/ricerca}" method="GET">
+		    <input type="text" name="nomeTorneo" placeholder="Cerca per nome torneo">
+		    <input type="number" name="anno" placeholder="Cerca per anno">
+		    <input type="text" name="nomeSquadra" placeholder="Cerca per squadra">
+		    
+		    <button type="submit" class="btn">Cerca</button>
+		    <a th:href="@{/admin/giocatore/modifica/list}" class="btn-link">Azzera filtri</a>
+		</form>
+		<div th:each="partita : ${partite}" th:object="${partita}">
+			<a th:href="@{/admin/partita/modifica/{id}(id=${partita.id})}" class=btn-link>
+		        <div>
+		            </span><span th:text="*{squadraCasa.squadra.nome} ">squadra casa</span>
+					<span>-</span>
+					<span th:text="*{squadraTrasferta.squadra.nome} ">squadra Trasferta</span>
+					<span style="color:black">data: </span><span th:text="(*{data})">data</span>
+		        </div>
+			</a>
+		</div>
+    </body>
+</html>

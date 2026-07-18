@@ -79,7 +79,7 @@ INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALU
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (4, 'Giovanni', 'Colombo', '1988-02-15', 1, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (5, 'Andrea', 'Ricci', '1993-07-09', 1, 'Italia');
 
-INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (6, 'Antonio', 'Di Natale', '1977-10-13', 2, 'Italia');
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (6, 'Antonio', 'Di Natale', '1977-10-20', 2, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (7, 'Luigi', 'Costa', '1991-03-08', 2, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (8, 'Simone', 'Giordano', '1993-05-25', 2, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (9, 'Federico', 'Rizzo', '1995-09-14', 2, 'Italia');
@@ -171,7 +171,7 @@ INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALU
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (75, 'Francesco', 'Magnanelli', '1984-11-12', 22, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (76, 'Giacomo', 'Raspadori', '2000-02-18', 22, 'Italia');
 
-INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (77, 'Gianluca', 'Vialli', '1964-07-09', 23, 'Italia');
+INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (77, 'Gianluca', 'Vialli', '1964-07-03', 23, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (78, 'Attilio', 'Lombardo', '1966-01-06', 23, 'Italia');
 INSERT INTO giocatore (id, nome, cognome, nascita, squadra_id, nazionalita) VALUES (79, 'Cyriel', 'Dessers', '1994-12-08', 23, 'Nigeria');
 
