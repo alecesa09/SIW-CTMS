@@ -17,7 +17,7 @@ import it.uniroma3.siw.service.SquadraService;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-	private static final Logger logger =LoggerFactory.getLogger(SquadraService.class);
+	private static final Logger logger =LoggerFactory.getLogger(GlobalExceptionHandler.class);
 	
 	 @ExceptionHandler(GiocatoreNonTrovatoException.class)
 	 @ResponseStatus(HttpStatus.NOT_FOUND)
