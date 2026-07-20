@@ -10,8 +10,6 @@ import java.nio.file.Paths;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
-
-    // Spring legge "app.upload.dir" dal file properties e lo inserisce qui
     @Value("${app.upload.dir}")
     private String uploadDir;
 

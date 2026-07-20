@@ -28,3 +28,6 @@ body {
   min-height: 100vh;
   background-color: var(--colore-primario);
 }
+html {
+    font-size: 15px;
+}
