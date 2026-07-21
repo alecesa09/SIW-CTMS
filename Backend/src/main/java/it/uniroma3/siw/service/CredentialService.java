@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Credentials;
@@ -38,7 +39,7 @@ public class CredentialService {
 	public Credentials getCredentials(String username) {
 		return credentialRepository.findByUsername(username).get();
 	}
-	
+	@Transactional(isolation = Isolation.SERIALIZABLE)//da controllare isolation
 	public Credentials saveCredentials(Credentials credentials, Utente utente) throws UsernameDuplicatoException,EmailUtenteDuplicataException {
 		if(credentialRepository.existsByUsername(credentials.getUsername())) {
 			throw( new UsernameDuplicatoException());

@@ -113,7 +113,7 @@ public class PartitaService {
 	    BeanUtils.copyProperties(partitaDalForm, partitaDaAggiornare, "id", "torneo", "commenti");
 	    partitaRepository.save(partitaDaAggiornare);
 	}
-
+	@Transactional(readOnly = true)
 	public List<Partita> ricercaAvanzata(String nomeTorneo, Integer anno, String nomeSquadra) {
 		return partitaRepository.ricercaAvanzata(nomeTorneo, anno, nomeSquadra);
 	}

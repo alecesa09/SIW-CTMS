@@ -44,7 +44,7 @@ public class GiocatoreService {
 		return giocatori;
 	}
 	
-	@Transactional(isolation = Isolation.SERIALIZABLE,rollbackFor = Exception.class)
+	@Transactional(isolation = Isolation.SERIALIZABLE)
 	public void saveGiocatore(Giocatore giocatore,Long idSquadra) throws Exception {
 		 logger.info("Transazione modifica/creazione giocatore iniziata: " + giocatore.getNome() + " "+ giocatore.getCognome());
 		 if (giocatore.getId()!=null) {
@@ -74,9 +74,11 @@ public class GiocatoreService {
 		giocatoreRepository.save(giocatore);
 	}
 	
+	@Transactional(readOnly = true)
 	public List<Giocatore> findAllWithSquadra(){
 		return giocatoreRepository.findAllWithSquadra();
 	}
+	@Transactional(readOnly = true)
 	public List<Giocatore> ricercaAvanzata(String nome, String cognome, String nomeSquadra){
 		return giocatoreRepository.ricercaAvanzata(nome,cognome,nomeSquadra);
 	}

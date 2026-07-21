@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.Squadra;
@@ -29,6 +30,7 @@ public class HomeService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeService.class);
 	
+	@Transactional(readOnly = true)
 	public List<HomeSearchDTO> search(String str){
 		List<HomeSearchDTO> risultato = new ArrayList<HomeSearchDTO>();
 		for(Giocatore giocatore : gr.findTop5ByNomeContainingIgnoreCaseOrCognomeContainingIgnoreCase(str,str)) {
