@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.Commento;
 import it.uniroma3.siw.Credentials;
@@ -20,7 +22,7 @@ public class CommentoService{
 	private final PartitaRepository pr;
 	private final CredentialsRepository cr;
 	
-	
+	@Transactional(readOnly=true)
 	public Commento findById(Long id) {
 		return commentoRepository.findById(id).get();
 	}
@@ -33,6 +35,7 @@ public class CommentoService{
 		this.cr = cr;
 	}
 
+	@Transactional(readOnly=true)
 	public List<Commento> findByPartitaId(Long id){
 		List<Commento> commenti =  commentoRepository.findByPartitaId(id);
 		if (commenti == null) {
@@ -40,7 +43,7 @@ public class CommentoService{
 		}
 		return commenti;
 	}
-	
+	@Transactional(isolation = Isolation.SERIALIZABLE)//da controllare isolation
 	public void salvaOAggiorna(Long idPartita, Commento commentoDalForm, String usernameLoggato) {   
 	    
 	    Partita partita = pr.findById(idPartita)
