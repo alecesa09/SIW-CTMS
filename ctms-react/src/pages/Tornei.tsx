@@ -69,7 +69,7 @@ function Tornei () {
                     value={anno}
                     onChange={(_, newValue) => setAnno(newValue as number[])}
                     valueLabelDisplay="auto"
-                    min={1900}
+                    min={2000}
                     max={2026}
                     disableSwap
                     />

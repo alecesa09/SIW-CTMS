@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import it.uniroma3.siw.SquadraIscritta;
+import it.uniroma3.siw.Torneo;
 import it.uniroma3.siw.repository.TorneoRepository;
 
 
@@ -22,7 +24,7 @@ public class PrestazioniTestRunner implements CommandLineRunner {
     @Transactional // strategie per il fetch dellaa classifica
     public void run(String... args) throws Exception {
     	
-       /*
+        /*
         StopWatch stopWatchBase = new StopWatch();
         stopWatchBase.start();
         Torneo torneoBase = torneoRepository.findByIdWithIscrizioni(2L);
@@ -35,10 +37,7 @@ public class PrestazioniTestRunner implements CommandLineRunner {
         System.out.println("Tempo impiegato (LAZY/EAGER dall'entità): " + stopWatchBase.getTotalTimeSeconds() + " secondi");
 	
          
-        // TEST 2: JOIN FETCH (Puoi farlo girare di seguito!)
-        // Presuppone che tu abbia creato nel TorneoRepository un metodo: 
-        // @Query("SELECT t FROM Torneo t JOIN FETCH t.iscrizioni WHERE t.id = :id")
-        // Torneo findByIdWithIscrizioni(Long id);
+        //join fetch
         StopWatch stopWatchJoin = new StopWatch();
         stopWatchJoin.start();
         
@@ -51,9 +50,9 @@ public class PrestazioniTestRunner implements CommandLineRunner {
         
         stopWatchJoin.stop();
         System.out.println("Tempo impiegato (JOIN FETCH): " + stopWatchJoin.getTotalTimeSeconds() + " secondi" + iscrizioni2.size());
-        */
+      
         
         System.out.println("--- FINE TEST PRESTAZIONI ---");
-       
+       */
     }
 }
