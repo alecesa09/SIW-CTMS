@@ -40,10 +40,6 @@ public class PartitaService {
 		return partitaRepository.findCalendario(id);
 	}
 
-	@Transactional(readOnly = true)
-	public List<Partita> findCalendarioBySquadra(Long id) {
-		return partitaRepository.getCalendarioDiSquadraPerId(id);
-	}
 
 	@Transactional(readOnly = true)
 	public List<Partita> findUltime5(Long idSquadra) {
@@ -54,11 +50,6 @@ public class PartitaService {
 	        Partita.Stato.TERMINATA  
 	    );
 	}
-	@Transactional(readOnly = true)
-	public List<Partita> findByData(){
-		LocalDate date = LocalDate.now();
-		return partitaRepository.findByData(date);
-	}
 	
 	@Transactional(readOnly = true)
 	public List<PartitaDTO> findPartiteOggi(){
@@ -66,50 +57,4 @@ public class PartitaService {
 		return partitaRepository.findPartiteOggi(date);
 	}
 	
-	@Transactional(readOnly = true)
-	public List<Partita> findAllWithSquadre(){
-		return partitaRepository.findallWithSquadre();
-	}
-	
-	@Transactional(isolation = Isolation.SERIALIZABLE)
-	public void savePartita(Partita partita){
-	    
-	    // Controllo comunque null nonostante il validation nel controller
-	    if (partita.getTorneo() == null || partita.getSquadraCasa() == null || partita.getSquadraTrasferta() == null) {
-	        throw new IllegalArgumentException("Torneo e squadre non possono essere nulli");
-	    }
-
-	    Long idTorneoPartita = partita.getTorneo().getId();
-	    Long idTorneoCasa = partita.getSquadraCasa().getTorneo().getId();
-	    Long idTorneoTrasferta = partita.getSquadraTrasferta().getTorneo().getId();
-
-	    if (!idTorneoCasa.equals(idTorneoPartita) || !idTorneoTrasferta.equals(idTorneoPartita)) {
-	        throw new TorneoDiversoException(partita.getTorneo(), partita.getSquadraCasa(), partita.getSquadraTrasferta());
-	    }
-	    if (partita.getSquadraCasa().getId()==partita.getSquadraTrasferta().getId()) {
-	        throw new SquadraUgualeException();
-	    }
-	    if(partita.getId() != null){
-	        modificaPartita(partita);
-	    } else {
-	        creaPartita(partita);
-	    }
-	}
-	
-	private void creaPartita(Partita partita) {
-		partitaRepository.save(partita);
-	}
-	
-
-
-	private void modificaPartita(Partita partitaDalForm) {
-	    Partita partitaDaAggiornare = partitaRepository.findById(partitaDalForm.getId())
-	            .orElseThrow(() -> new PartitaNonTrovataException(partitaDalForm.getId()));
-	    BeanUtils.copyProperties(partitaDalForm, partitaDaAggiornare, "id", "torneo", "commenti");
-	    partitaRepository.save(partitaDaAggiornare);
-	}
-	@Transactional(readOnly = true)
-	public List<Partita> ricercaAvanzata(String nomeTorneo, Integer anno, String nomeSquadra) {
-		return partitaRepository.ricercaAvanzata(nomeTorneo, anno, nomeSquadra);
-	}
 }
