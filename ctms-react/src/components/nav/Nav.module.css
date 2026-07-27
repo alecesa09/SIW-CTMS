@@ -1,8 +1,7 @@
 .contenitore {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    /* Rimosso align-items: center; per evitare che i figli si restringano */
+    padding: 0 2% 0 2%;
 }
 
 .nav {
@@ -28,8 +27,8 @@
 }
 
 .figlio {
-    width: 100%;
     display: block; 
+    margin:1.5rem;
 }
 
 .linkSenzaStile {
