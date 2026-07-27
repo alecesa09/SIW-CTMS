@@ -1,7 +1,7 @@
-package it.uniroma3.siw;
+package it.uniroma3.siw.config;
 
 import javax.sql.DataSource;
-
+import org.springframework.security.config.Customizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,6 +15,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+
+import it.uniroma3.siw.Credentials;
 @Configuration
 @EnableWebSecurity 
 public class SecurityConfiguration { 
@@ -40,42 +42,50 @@ public class SecurityConfiguration {
 
     @Bean 
     protected SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception { 
-    	httpSecurity.authorizeHttpRequests(authorize -> { 
-    		authorize.requestMatchers(HttpMethod.GET, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE,Credentials.ADMIN_ROLE);
-    		authorize.requestMatchers(HttpMethod.POST, "/commento/**"). hasAnyAuthority(Credentials.DEFAULT_ROLE,Credentials.ADMIN_ROLE);
-    		authorize.requestMatchers(HttpMethod.GET, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
-    		authorize.requestMatchers(HttpMethod.POST, "/admin/**"). hasAnyAuthority(Credentials.ADMIN_ROLE) ; 
-    		authorize.anyRequest().permitAll(); });
+        
+        // 1. Collega Spring Security alla tua classe CorsConfig
+        httpSecurity.cors(Customizer.withDefaults());
+        
+        // 2. Disabilita il CSRF per permettere chiamate POST/PUT/DELETE dal frontend React
+        httpSecurity.csrf(csrf -> csrf.disable());
 
-    	httpSecurity.formLogin(form -> form
-    		    .loginPage("/login")
-    		    .successHandler((request, response, authentication) -> {
-    		        SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
-    		        
-    		        if (savedRequest != null) {
-    		            new SavedRequestAwareAuthenticationSuccessHandler().onAuthenticationSuccess(request, response, authentication);
-    		            return;
-    		        }
-    		        String urlProvenienza = (String) request.getSession().getAttribute("url_pre_login");
-    		        
-    		        if (urlProvenienza != null) {
-    		            request.getSession().removeAttribute("url_pre_login");
-    		            response.sendRedirect(urlProvenienza);
-    		        } else {
-    		            response.sendRedirect("/");
-    		        }
-    		    })
-    		    .permitAll()
-    		);
-    	
-    	httpSecurity.logout(logout -> { 
-    		logout.logoutUrl("/logout"); 
-    		logout.logoutSuccessUrl("/");
-    		logout.invalidateHttpSession(true); 
-    		logout.deleteCookies("JSESSIONID"); 
-    		logout.clearAuthentication(true); 
-    		logout.permitAll(); 
-    		});
+        httpSecurity.authorizeHttpRequests(authorize -> { 
+            authorize.requestMatchers(HttpMethod.GET, "/commento/**").hasAnyAuthority(Credentials.DEFAULT_ROLE,Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.POST, "/commento/**").hasAnyAuthority(Credentials.DEFAULT_ROLE,Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE); 
+            authorize.requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(Credentials.ADMIN_ROLE); 
+            authorize.anyRequest().permitAll(); 
+        });
+
+        httpSecurity.formLogin(form -> form
+            .loginPage("/login")
+            .successHandler((request, response, authentication) -> {
+                SavedRequest savedRequest = new HttpSessionRequestCache().getRequest(request, response);
+                
+                if (savedRequest != null) {
+                    new SavedRequestAwareAuthenticationSuccessHandler().onAuthenticationSuccess(request, response, authentication);
+                    return;
+                }
+                String urlProvenienza = (String) request.getSession().getAttribute("url_pre_login");
+                
+                if (urlProvenienza != null) {
+                    request.getSession().removeAttribute("url_pre_login");
+                    response.sendRedirect(urlProvenienza);
+                } else {
+                    response.sendRedirect("/");
+                }
+            })
+            .permitAll()
+        );
+        
+        httpSecurity.logout(logout -> { 
+            logout.logoutUrl("/logout"); 
+            logout.logoutSuccessUrl("/");
+            logout.invalidateHttpSession(true); 
+            logout.deleteCookies("JSESSIONID"); 
+            logout.clearAuthentication(true); 
+            logout.permitAll(); 
+        });
 
         return httpSecurity.build();
     }
