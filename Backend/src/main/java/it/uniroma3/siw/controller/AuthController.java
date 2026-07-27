@@ -37,11 +37,11 @@ public class AuthController {
     
     @GetMapping("/error")
     public String error() {
-    	return "/error";
+    	return "error/500";
     }
     
     @GetMapping("/admin")
     public String getmenu() {
-    	return "/admin/index";
+    	return "admin/index";
     }
 }
