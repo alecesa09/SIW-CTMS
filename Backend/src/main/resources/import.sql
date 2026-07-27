@@ -282,12 +282,12 @@ UPDATE Squadra_Iscritta SET giocate=1, vittorie=0, pareggi=0, sconfitte=1, punti
 UPDATE Squadra_Iscritta SET giocate=1, vittorie=0, pareggi=0, sconfitte=1, punti=0 WHERE id=3;
 UPDATE Squadra_Iscritta SET giocate=1, vittorie=1, pareggi=0, sconfitte=0, punti=3 WHERE id=4;
 
-ALTER SEQUENCE squadra_seq RESTART WITH 26;
-ALTER SEQUENCE torneo_seq RESTART WITH 10;
-ALTER SEQUENCE squadra_Iscritta_seq RESTART WITH 80;
-SELECT setval('giocatore_seq', (SELECT MAX(id) FROM giocatore));
-ALTER SEQUENCE arbitro_seq RESTART WITH 5;
-ALTER SEQUENCE partita_seq RESTART WITH 19;
-ALTER SEQUENCE utente_seq RESTART WITH 5;
-ALTER SEQUENCE credentials_seq RESTART WITH 5;
-ALTER SEQUENCE commento_seq RESTART WITH 11;
+ALTER SEQUENCE squadra_seq RESTART WITH 200;
+ALTER SEQUENCE torneo_seq RESTART WITH 200;
+ALTER SEQUENCE squadra_iscritta_seq RESTART WITH 200;
+ALTER SEQUENCE giocatore_seq RESTART WITH 200;
+ALTER SEQUENCE arbitro_seq RESTART WITH 200;
+ALTER SEQUENCE partita_seq RESTART WITH 200;
+ALTER SEQUENCE utente_seq RESTART WITH 200;
+ALTER SEQUENCE credentials_seq RESTART WITH 200;
+ALTER SEQUENCE commento_seq RESTART WITH 200;
