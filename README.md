@@ -1,6 +1,16 @@
 siw-CTMS
 Progetto SIW di gestione tornei amatoriali.
 
+
+è stato effettuato il deploy del sito con le seguenti modalita:
+- react su hosting firebase
+- backend su  railways
+- db su neon
+
+il sito è visitabile al link:https://siw-ctms.web.app/
+
+errore: se aggiungo troppe partecipazioni a unn torneo per una squara ricevo un errore per il payload troppo grande
+
 casi d`uso:
 visualizzare dettagli torneo
 visualizzare calendario
