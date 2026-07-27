@@ -2,14 +2,14 @@ siw-CTMS
 Progetto SIW di gestione tornei amatoriali.
 
 
-è stato effettuato il deploy del sito con le seguenti modalita:
-- react su hosting firebase
-- backend su  railways
-- db su neon
+L'intero sistema è live ed è stato sottoposto a deployment strutturando un'architettura distribuita. Il sito è accessibile e testabile al seguente indirizzo: https://siw-ctms.web.app
 
-il sito è visitabile al link:https://siw-ctms.web.app/
+Nello specifico, i vari livelli dell'applicazione sono stati separati sfruttando piattaforme cloud differenti:
+Presentation Tier (Frontend): L'interfaccia in React è stata buildata e ospitata su Firebase Hosting.
+Logic Tier (Backend): L'applicazione Spring Boot è deployata come servizio web sulla piattaforma Railway.
+Data Tier (Database): I dati sono gestiti tramite un database PostgreSQL ospitato in cloud su Neon.
 
-errore: se aggiungo troppe partecipazioni a unn torneo per una squara ricevo un errore per il payload troppo grande
+errore: nella creazione o modifica della squadra  se aggiungo troppe partecipazioni a un torneo ricevo un errore per il payload troppo grande
 
 casi d`uso:
 visualizzare dettagli torneo
@@ -17,12 +17,10 @@ visualizzare calendario
 visualizzare classifica
 visualizzare partita
 visualizzare giocatore
-creare visualizzare modificare commento (utenti)
-inserimento e modifica Squadra
-inserimento e modifica giocatori
-inserimento e modifica partite
 ricerca globale di squadre giocatori e tornei
-
+creare visualizzare modificare commento (utenti)
+inserimento e modifica Squadra (admin)
+inserimento e modifica giocatori(admin)
 
 
 Analisi Sperimentale sulle Prestazioni
