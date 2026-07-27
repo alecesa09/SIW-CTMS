@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './riga.module.css';
 import type { PartitaDTO } from '../../types';
 

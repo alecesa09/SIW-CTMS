@@ -63,10 +63,11 @@ function Search() {
                 loading={caricamento}
                 inputValue={valoreInput}
                 // Gestisce il cambio del testo digitato
-                onInputChange={(event, newInputValue) => {
+                onInputChange={ (_event,newInputValue) => {
                     setValoreInput(newInputValue);
+
                 }}
-                onChange={(event, newValue) => {
+                onChange={(_event, newValue) => {
                     if (newValue) {
                         handleItemClick(newValue);
                     }

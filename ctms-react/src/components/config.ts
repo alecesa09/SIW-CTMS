@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'http://localhost:8080';
+export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ?? 'https://siw-ctms.railway.internal';
