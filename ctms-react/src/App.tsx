@@ -4,6 +4,7 @@ import Nav from './components/nav/Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Tornei from './pages/Tornei';
 import Torneo from './pages/Torneo';
+import Footer from './components/footer/Footer';
 function App() {
   return (
     <BrowserRouter> 
@@ -14,6 +15,7 @@ function App() {
           <Route path="/torneo/:id" element={<Torneo />} />
         </Route> 
       </Routes> 
+      <Footer/>
     </BrowserRouter>
 
   );

@@ -1,13 +1,13 @@
-package it.uniroma3.siw; // (assicurati che il package sia quello corretto)
+package it.uniroma3.siw; 
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SiwTorneoneApplication {
+public class SiwCtmsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SiwTorneoneApplication.class, args);
+		SpringApplication.run(SiwCtmsApplication.class, args);
 	}
 	
 }

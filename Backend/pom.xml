@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.uniroma3.project</groupId>
-	<artifactId>torneone</artifactId>
+	<artifactId>Ctms</artifactId>
 	<version>1.0</version>
-	<name>torneone</name>
-	<description>torneone</description>
+	<name>Ctms</name>
+	<description>Ctms</description>
 	<url />
 	<licenses>
 		<license />
