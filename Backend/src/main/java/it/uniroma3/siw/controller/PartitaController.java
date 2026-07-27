@@ -15,23 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.Commento;
 import it.uniroma3.siw.Credentials;
-import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.Partita;
-import it.uniroma3.siw.Squadra;
-import it.uniroma3.siw.SquadraIscritta;
 import it.uniroma3.siw.Torneo;
-import it.uniroma3.siw.exception.SquadraNonTrovataException;
 import it.uniroma3.siw.exception.SquadraUgualeException;
 import it.uniroma3.siw.exception.TorneoDiversoException;
-import it.uniroma3.siw.exception.TorneoNotFoundException;
 import it.uniroma3.siw.service.ArbitroService;
 import it.uniroma3.siw.service.CommentoService;
 import it.uniroma3.siw.service.CredentialService;
 import it.uniroma3.siw.service.PartitaService;
 import it.uniroma3.siw.service.SquadraIscrittaService;
-import it.uniroma3.siw.service.SquadraService;
 import it.uniroma3.siw.service.TorneoService;
-import it.uniroma3.siw.validation.EtaMinimaValidator;
 import it.uniroma3.siw.validation.PartitaValidator;
 import jakarta.validation.Valid;
 @Controller

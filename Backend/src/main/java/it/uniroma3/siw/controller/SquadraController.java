@@ -1,11 +1,5 @@
 package it.uniroma3.siw.controller;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -17,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.Squadra;
 import it.uniroma3.siw.dto.GiocatoreDto;

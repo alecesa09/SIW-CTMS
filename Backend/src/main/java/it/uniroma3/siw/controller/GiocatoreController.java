@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import it.uniroma3.siw.Giocatore;
 import it.uniroma3.siw.Squadra;
-import it.uniroma3.siw.dto.TorneoDTO;
 import it.uniroma3.siw.exception.SquadraNonTrovataException;
 import it.uniroma3.siw.exception.TorneoNotFoundException;
 import it.uniroma3.siw.service.GiocatoreService;

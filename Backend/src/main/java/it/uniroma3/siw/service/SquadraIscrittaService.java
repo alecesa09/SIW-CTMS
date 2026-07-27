@@ -2,9 +2,7 @@ package it.uniroma3.siw.service;
 
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
-
 import it.uniroma3.siw.SquadraIscritta;
 import it.uniroma3.siw.Torneo;
 import it.uniroma3.siw.dto.ClassificaDTO;
@@ -12,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.siw.exception.NumeroSquadreInsufficentiException;
 import it.uniroma3.siw.exception.TorneoNotFoundException;
 import it.uniroma3.siw.repository.SquadraIscrittaRepository;
-import org.springframework.transaction.annotation.Transactional;
 @Service
 public class SquadraIscrittaService {
 	private final SquadraIscrittaRepository squadraIscrittaRepository;

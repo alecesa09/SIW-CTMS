@@ -25,7 +25,6 @@ import it.uniroma3.siw.Torneo;
 import it.uniroma3.siw.exception.IscrizioneConPartiteException;
 import it.uniroma3.siw.exception.SquadraNonTrovataException;
 import it.uniroma3.siw.exception.TorneoNotFoundException;
-import it.uniroma3.siw.repository.SquadraIscrittaRepository;
 import it.uniroma3.siw.repository.SquadraRepository;
 import it.uniroma3.siw.repository.TorneoRepository;
 
@@ -34,13 +33,11 @@ import java.util.UUID;
 public class SquadraService {
 	private final SquadraRepository squadraRepository;
 	private final TorneoRepository tR;
-	private final SquadraIscrittaRepository sIR;
 	private static final Logger logger =LoggerFactory.getLogger(SquadraService.class);
    
-    public SquadraService(SquadraRepository squadraRepository,TorneoRepository tR,SquadraIscrittaRepository sIR) {
+    public SquadraService(SquadraRepository squadraRepository,TorneoRepository tR) {
         this.squadraRepository = squadraRepository;
         this.tR=tR;
-        this.sIR=sIR;
     }
 	
 	@Transactional(readOnly = true)

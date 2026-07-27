@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import it.uniroma3.siw.exception.GiocatoreNonTrovatoException;
 import it.uniroma3.siw.exception.PartitaNonTrovataException;
 import it.uniroma3.siw.exception.SquadraNonTrovataException;
-import it.uniroma3.siw.service.SquadraService;
+
 
 @ControllerAdvice
 public class GlobalExceptionHandler {

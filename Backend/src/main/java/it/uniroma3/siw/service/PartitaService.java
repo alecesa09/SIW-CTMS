@@ -1,19 +1,16 @@
 package it.uniroma3.siw.service;
 
-import it.uniroma3.siw.repository.ArbitroRepository;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.BeanUtils;
 import it.uniroma3.siw.Partita;
 import it.uniroma3.siw.dto.PartitaDTO;
-import it.uniroma3.siw.exception.GiocatoreNonTrovatoException;
 import it.uniroma3.siw.exception.PartitaNonTrovataException;
 import it.uniroma3.siw.exception.SquadraUgualeException;
 import it.uniroma3.siw.exception.TorneoDiversoException;
@@ -22,12 +19,10 @@ import it.uniroma3.siw.repository.PartitaRepository;
 @Service
 public class PartitaService {
 
-	private final ArbitroRepository arbitroRepository;
 	private final PartitaRepository partitaRepository;
 
-	public PartitaService(PartitaRepository partitaRepository, ArbitroRepository arbitroRepository) {
+	public PartitaService(PartitaRepository partitaRepository) {
 		this.partitaRepository = partitaRepository;
-		this.arbitroRepository = arbitroRepository;
 	}
 	
 	@Transactional(readOnly = true)
