@@ -1,5 +1,6 @@
 import styles from './riga.module.css';
 import type { PartitaDTO } from '../../types';
+import { BACKEND_URL } from '../config';
 
 const PartitaRow = ({ 
   id, stato,ora,
@@ -8,9 +9,9 @@ const PartitaRow = ({
   golCasa, golTrasferta 
 }: PartitaDTO) => {
   return (
-    <a href={`http://localhost:8080/partita/${id}`} className={styles.riga}>
+    <a href={`${BACKEND_URL}/partita/${id}`} className={styles.riga}>
       <div className={styles.squadraCasa}>
-      <img src={"http://localhost:8080" + logoSquadraCasa} alt="Logo Casa" className={styles.logo}/>
+      <img src={`${BACKEND_URL}` + logoSquadraCasa} alt="Logo Casa" className={styles.logo}/>
       <span>{nomeSquadraCasa}</span>
       </div>
 
@@ -25,7 +26,7 @@ const PartitaRow = ({
 
       <div className={styles.squadraTrasferta}>
       <span>{nomeSquadraTrasferta}</span>
-      <img src={"http://localhost:8080" + logoSquadraTrasferta} alt="Logo Trasferta" className={styles.logo}/>
+      <img src={ `${BACKEND_URL}`+ logoSquadraTrasferta} alt="Logo Trasferta" className={styles.logo}/>
       </div>
 
     </a>
